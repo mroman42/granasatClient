@@ -1,5 +1,6 @@
 /*
  * main.c
+ * granaSAT.Client 
  *
  *  Created on: Feb 22, 2014
  *      Author: Mario Román
