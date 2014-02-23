@@ -13,8 +13,39 @@
 #include <time.h>
 #include <stdlib.h>
 
+/**
+ * Constants and messages
+ */
+const int REFRESH_INTERVAL = 600;
+const char* MSG_CPU_TEMP = "CPU Temperature:\t\t %5d ºC";
+const char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
+const char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
+const int LABELS_X_POS = 10;
+const int LABELS_Y_POS_CPU = 10;
+const int LABELS_Y_POS_INNER = 30;
+const int LABELS_Y_POS_UPPER = 50;
 
+
+
+/**
+ * Refreshes a label with given new value.
+ */
+gboolean refreshLabel (GtkLabel* label, char* text, int new_value);
+
+/**
+ * Rewrites CPU Temperature.
+ */
 gboolean refreshCPUTemperature(GtkLabel* temp_label);
+
+/**
+ * Rewrites Inner Box Temperature.
+ */
+gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label);
+
+/**
+ * Rewrites Upper Box Temperature.
+ */
+gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label);
 
 
 int main (int argc, char* argv[])
@@ -22,7 +53,9 @@ int main (int argc, char* argv[])
 	GtkWidget* main_window;
 	GtkWidget* main_container;
 	GtkWidget* cpu_temperature_label;
-	const int REFRESH_INTERVAL = 10;
+	GtkWidget* innerbox_temperature_label;
+	GtkWidget* upperbox_temperature_label;
+	srand(time(NULL));
 
 	// Initialize GTK
 	gtk_init (&argc, &argv);
@@ -46,8 +79,22 @@ int main (int argc, char* argv[])
 	// CPU Temperature label
 	cpu_temperature_label = gtk_label_new (NULL);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshCPUTemperature, (gpointer) cpu_temperature_label);
-	gtk_fixed_put (GTK_FIXED (main_container), cpu_temperature_label, 10, 10);
+	gtk_fixed_put (GTK_FIXED (main_container), cpu_temperature_label, LABELS_X_POS, LABELS_Y_POS_CPU);
 	gtk_widget_show (cpu_temperature_label);
+
+	// Inner box Temperature label
+	innerbox_temperature_label = gtk_label_new (NULL);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshInnerBoxTemperature, (gpointer) innerbox_temperature_label);
+	gtk_fixed_put (GTK_FIXED (main_container), innerbox_temperature_label, LABELS_X_POS, LABELS_Y_POS_INNER);
+	gtk_widget_show (innerbox_temperature_label);
+
+	// Upper box Temperature label
+	upperbox_temperature_label = gtk_label_new (NULL);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
+	gtk_fixed_put (GTK_FIXED (main_container), upperbox_temperature_label, LABELS_X_POS, LABELS_Y_POS_UPPER);
+	gtk_widget_show (upperbox_temperature_label);
+
+
 
 
 	// Terminate application when window is destroyed
@@ -63,13 +110,38 @@ int main (int argc, char* argv[])
 gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
 	// Reads Raspberry CPU Temperature
 	// TO-DO
-	srand(time(NULL));
-	int new_temperature = rand();
+	int cpu_temperature = rand()/10000000;
 
 	// Refreshes temperature label
-	char buffer[100];
-	sprintf(buffer,"CPU Temperature: %d ºC",(new_temperature+1)/10000000);
-	gtk_label_set_text(temperature_label, buffer);
+	return refreshLabel (temperature_label, MSG_CPU_TEMP, cpu_temperature);
+}
 
+
+gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label) {
+	// Reads Inner Box Temperature
+	// TO-DO
+	int innerbox_temperature = rand()/10000000;
+
+	// Refreshes temperature label
+	return refreshLabel (temperature_label, MSG_INNERBOX_TEMP, innerbox_temperature);
+}
+
+gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
+	// Reads Inner Box Temperature
+	// TO-DO
+	int upperbox_temperature = rand()/10000000;
+
+	// Refreshes temperature label
+	return refreshLabel (temperature_label, MSG_UPPERBOX_TEMP, upperbox_temperature);
+}
+
+
+gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
+	// Uses a buffer to print the new value in the text.
+	char buffer[100];
+	sprintf(buffer, text, new_value);
+	gtk_label_set_text (label, buffer);
+
+	// Returning True makes the loop continue
 	return 1;
 }
