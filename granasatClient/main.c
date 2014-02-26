@@ -16,7 +16,7 @@
 /**
  * Constants and messages
  */
-const int REFRESH_INTERVAL = 600;
+const int REFRESH_INTERVAL = 1000;
 const char* MSG_CPU_TEMP = "CPU Temperature:\t\t %5d ºC";
 const char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
 const char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
