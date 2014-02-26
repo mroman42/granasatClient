@@ -137,7 +137,11 @@ int main (int argc, char* argv[])
 	// Terminate application when window is destroyed
 	g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
-	// GTK event loop
+	// GTK event loop.
+	// Refreshing temperatures at start
+	refreshCPUTemperature((GtkLabel*) cpu_temperature_label);
+	refreshInnerBoxTemperature((GtkLabel*) innerbox_temperature_label);
+	refreshUpperBoxTemperature((GtkLabel*) upperbox_temperature_label);
 	gtk_main();
 
 	return 0;
