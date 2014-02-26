@@ -16,10 +16,15 @@
 /**
  * Constants and messages
  */
+// Windows
 const int REFRESH_INTERVAL = 1000;
-const char* MSG_CPU_TEMP = "CPU Temperature:\t\t %5d ºC";
-const char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
-const char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
+const int MAIN_WINDOW_BORDER_WIDTH = 20;
+const int IMAGE_WINDOW_BORDER_WIDTH = 0;
+// Messages
+char* MSG_CPU_TEMP = "CPU Temperature:\t\t %5d ºC";
+char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
+char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
+// Location
 const int LABELS_X_POS = 10;
 const int LABELS_Y_POS_CPU = 10;
 const int LABELS_Y_POS_INNER = 30;
@@ -55,6 +60,10 @@ int main (int argc, char* argv[])
 	GtkWidget* cpu_temperature_label;
 	GtkWidget* innerbox_temperature_label;
 	GtkWidget* upperbox_temperature_label;
+
+	GtkWidget* image_window;
+	GtkWidget* image_container;
+	GtkWidget* image;
 	srand(time(NULL));
 
 	// Initialize GTK
@@ -62,10 +71,14 @@ int main (int argc, char* argv[])
 
 
 
+	////
+	// Main Window
+	////
+
 	// Display the main window
 	main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (main_window), "Client");
-	gtk_container_set_border_width (GTK_CONTAINER (main_window), 10);
+	gtk_container_set_border_width (GTK_CONTAINER (main_window), MAIN_WINDOW_BORDER_WIDTH);
 	gtk_widget_show(main_window);
 
 	// Create a fixed container
@@ -80,6 +93,7 @@ int main (int argc, char* argv[])
 	cpu_temperature_label = gtk_label_new (NULL);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshCPUTemperature, (gpointer) cpu_temperature_label);
 	gtk_fixed_put (GTK_FIXED (main_container), cpu_temperature_label, LABELS_X_POS, LABELS_Y_POS_CPU);
+	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
 	gtk_widget_show (cpu_temperature_label);
 
 	// Inner box Temperature label
@@ -93,6 +107,29 @@ int main (int argc, char* argv[])
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
 	gtk_fixed_put (GTK_FIXED (main_container), upperbox_temperature_label, LABELS_X_POS, LABELS_Y_POS_UPPER);
 	gtk_widget_show (upperbox_temperature_label);
+
+
+
+	////
+	// Image Window
+	////
+
+	// Create the image displayer window
+	image_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_title (GTK_WINDOW (image_window), "Images");
+	gtk_container_set_border_width (GTK_CONTAINER (image_window), IMAGE_WINDOW_BORDER_WIDTH);
+	gtk_window_set_accept_focus (GTK_WINDOW(image_window), FALSE);
+	gtk_widget_show(image_window);
+
+	// Create a fixed container
+	image_container = gtk_fixed_new();
+	gtk_container_add(GTK_CONTAINER(image_window), image_container);
+	gtk_widget_show(image_container);
+
+	// Show sample image
+	image = gtk_image_new_from_file("./sample_images/sample1.jpg");
+	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
+	gtk_widget_show(image);
 
 
 
