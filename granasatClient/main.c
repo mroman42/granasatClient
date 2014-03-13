@@ -6,12 +6,30 @@
  *      Author: Mario Román
  */
 
+// Client libraries
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <netdb.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <arpa/inet.h>
+
 // GTK GUI library
 #include <gtk/gtk.h>
 #include <glib.h>
+#include <cairo.h>
+
 // Random numbers
 #include <time.h>
 #include <stdlib.h>
+
+// Files
+#define FILEGLADE "client_design.glade"
 
 /**
  * Constants and messages
@@ -52,9 +70,17 @@ gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label);
  */
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label);
 
+/**
+ * Draws a graph using Cairo.
+ */
+void drawGraph();
+
 
 int main (int argc, char* argv[])
 {
+	// GTK Builder
+	GtkBuilder * builder;
+
 	GtkWidget* main_window;
 	GtkWidget* main_container;
 	GtkWidget* cpu_temperature_label;
@@ -66,25 +92,30 @@ int main (int argc, char* argv[])
 	GtkWidget* image;
 	srand(time(NULL));
 
+
 	// Initialize GTK
 	gtk_init (&argc, &argv);
 
+	/////
+	// Initialize Builder
+	/////
+	builder = gtk_builder_new ();
+	gtk_builder_add_from_file (builder, FILEGLADE, NULL);
 
-
-	////
 	// Main Window
-	////
+	main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
+	gtk_widget_show (main_window);
 
-	// Display the main window
-	main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title (GTK_WINDOW (main_window), "Client");
-	gtk_container_set_border_width (GTK_CONTAINER (main_window), MAIN_WINDOW_BORDER_WIDTH);
-	gtk_widget_show(main_window);
-
-	// Create a fixed container
-	main_container = gtk_fixed_new();
-	gtk_container_add(GTK_CONTAINER(main_window), main_container);
+	// Main Container
+	main_container = GTK_WIDGET (gtk_builder_get_object (builder, "main_fixed"));
 	gtk_widget_show(main_container);
+
+	/////
+	// Terminate building
+	/////
+	gtk_builder_connect_signals (builder, NULL);
+	g_object_unref (G_OBJECT (builder));
+
 
 
 
@@ -148,6 +179,8 @@ int main (int argc, char* argv[])
 }
 
 
+
+
 gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
 	// Reads Raspberry CPU Temperature
 	// TO-DO
@@ -185,4 +218,9 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
 
 	// Returning True makes the loop continue
 	return 1;
+}
+
+
+void drawGraph () {
+
 }
