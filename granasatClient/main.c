@@ -106,37 +106,38 @@ int main (int argc, char* argv[])
 	main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
 	gtk_widget_show (main_window);
 
+
 	// Main Container
 	main_container = GTK_WIDGET (gtk_builder_get_object (builder, "main_fixed"));
 	gtk_widget_show(main_container);
 
+
+	// Temperature labels
+	cpu_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "cpu_temperature_label"));
+	innerbox_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "inner_temperature_label"));
+	upperbox_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "upper_temperature_label"));
+
+
 	/////
-	// Terminate building
+	// Building
 	/////
 	gtk_builder_connect_signals (builder, NULL);
 	g_object_unref (G_OBJECT (builder));
-
+	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
 
 
 
 
 	// CPU Temperature label
-	cpu_temperature_label = gtk_label_new (NULL);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshCPUTemperature, (gpointer) cpu_temperature_label);
-	gtk_fixed_put (GTK_FIXED (main_container), cpu_temperature_label, LABELS_X_POS, LABELS_Y_POS_CPU);
-	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
 	gtk_widget_show (cpu_temperature_label);
 
 	// Inner box Temperature label
-	innerbox_temperature_label = gtk_label_new (NULL);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshInnerBoxTemperature, (gpointer) innerbox_temperature_label);
-	gtk_fixed_put (GTK_FIXED (main_container), innerbox_temperature_label, LABELS_X_POS, LABELS_Y_POS_INNER);
 	gtk_widget_show (innerbox_temperature_label);
 
 	// Upper box Temperature label
-	upperbox_temperature_label = gtk_label_new (NULL);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
-	gtk_fixed_put (GTK_FIXED (main_container), upperbox_temperature_label, LABELS_X_POS, LABELS_Y_POS_UPPER);
 	gtk_widget_show (upperbox_temperature_label);
 
 
