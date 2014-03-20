@@ -90,13 +90,64 @@
             <property name="height_request">37</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_right">75</property>
             <property name="fill_level">1000</property>
             <property name="round_digits">2</property>
           </object>
           <packing>
             <property name="x">352</property>
             <property name="y">346</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="led_1">
+            <property name="width_request">22</property>
+            <property name="height_request">22</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-media-record</property>
+          </object>
+          <packing>
+            <property name="x">57</property>
+            <property name="y">250</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="led_2">
+            <property name="width_request">22</property>
+            <property name="height_request">22</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-media-record</property>
+          </object>
+          <packing>
+            <property name="x">151</property>
+            <property name="y">250</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="raspberry_blink_label">
+            <property name="width_request">100</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Raspberry</property>
+          </object>
+          <packing>
+            <property name="x">20</property>
+            <property name="y">250</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="ethernet_blink_label">
+            <property name="width_request">100</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Ethernet</property>
+          </object>
+          <packing>
+            <property name="x">112</property>
+            <property name="y">250</property>
           </packing>
         </child>
       </object>

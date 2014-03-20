@@ -43,10 +43,7 @@ char* MSG_CPU_TEMP = "CPU Temperature:\t\t %5d ºC";
 char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
 char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
 // Location
-const int LABELS_X_POS = 10;
-const int LABELS_Y_POS_CPU = 10;
-const int LABELS_Y_POS_INNER = 30;
-const int LABELS_Y_POS_UPPER = 50;
+
 
 
 
@@ -87,6 +84,9 @@ int main (int argc, char* argv[])
 	GtkWidget* innerbox_temperature_label;
 	GtkWidget* upperbox_temperature_label;
 
+	GtkWidget* ethernet_adjustment;
+	GtkWidget* ethernet_scale;
+
 	GtkWidget* image_window;
 	GtkWidget* image_container;
 	GtkWidget* image;
@@ -125,6 +125,15 @@ int main (int argc, char* argv[])
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
 
 
+	// Sliders
+	//ethernet_slider = GTK_WIDGET (gtk_builder_get_object (builder, "ethernet_limit_scale"));
+	//gtk_widget_show (ethernet_slider);
+	//gtk_scale_set_draw_value (ethernet_slider, TRUE);
+	ethernet_adjustment = gtk_adjustment_new (50,0,100,1,1,1);
+	ethernet_scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,0,100,1);
+	gtk_range_set_value (ethernet_scale, 50);
+	gtk_widget_show (ethernet_scale);
+
 	/////
 	// Building
 	/////
@@ -136,7 +145,6 @@ int main (int argc, char* argv[])
 	////
 	// Image Window
 	////
-
 	// Create the image displayer window
 	image_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title (GTK_WINDOW (image_window), "Images");
