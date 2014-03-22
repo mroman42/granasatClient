@@ -54,18 +54,10 @@ char* MSG_ETHERNET_LIM = "Ethernet speed:\t %5d Kbps";
 gboolean refreshLabel (GtkLabel* label, char* text, int new_value);
 
 /**
- * Rewrites CPU Temperature.
+ * Rewrites CPU, inner box and upper box temperatures.
  */
 gboolean refreshCPUTemperature (GtkLabel* temp_label);
-
-/**
- * Rewrites Inner Box Temperature.
- */
 gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label);
-
-/**
- * Rewrites Upper Box Temperature.
- */
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label);
 
 /**
@@ -77,6 +69,7 @@ gboolean refreshEthernetLimit (GtkLabel* ethernet_label);
  * Draws a graph using Cairo.
  */
 static gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
+
 
 int main (int argc, char* argv[])
 {
@@ -94,7 +87,12 @@ int main (int argc, char* argv[])
 	GtkWidget* image_window;
 	GtkWidget* image_container;
 	GtkWidget* image;
+
+	// Measures
 	srand(time(NULL));
+	int magnetometer_measures []  = {10,20,40,35,13,50,20,16,35,90,17,20,12,35,98,43,20,10,35,78,10,5,10,35,43,34,35,34,23,34};
+	int accelerometer_measures [] = {10,20,10,35,98,10,20,40,35,13,50,20,16,35,90,17,20,12,35,98,43,20,10,35,78,10,5,10,35,43};
+
 
 
 	// Initialize GTK
@@ -144,11 +142,11 @@ int main (int argc, char* argv[])
 	/////
 	GtkWidget* drawing_area1 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea1"));
 	gtk_widget_show (drawing_area1);
-	g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), NULL);
+	g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), magnetometer_measures);
 
 	GtkWidget* drawing_area2 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea2"));
 	gtk_widget_show (drawing_area2);
-	g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), NULL);
+	g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), accelerometer_measures);
 
 	/////
 	// Building
@@ -177,8 +175,6 @@ int main (int argc, char* argv[])
 	image = gtk_image_new_from_file("./sample_images/sample1.jpg");
 	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
 	gtk_widget_show(image);
-
-
 
 
 	// Terminate application when window is destroyed
@@ -241,8 +237,8 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
 
 
 static gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
+	int* measures = (int*) user_data;
 	int i;
-	int temperatures [] = {10,20,10,35,98,10,20,10,35,98,10,20,10,35,98,10,20,10,35,98,10,20,10,35,98,10,20,10,35,98};
 
 	// Cairo initializing
 	cairo_set_source_rgb(cr, 1, 1, 1);
@@ -256,14 +252,13 @@ static gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 	cairo_line_to (cr, 25.0, 200.0);
 	cairo_stroke (cr);
 
-	/* Link each data point */
+	// Link each data point
 	for (i = 0; i < 30; i ++)
-		cairo_line_to (cr, i*10.0, 175.0-temperatures[i]);
+		cairo_line_to (cr, i*10.0, 175.0-measures[i]);
 
-	/* Draw the curve */
+	// Draw the curve
 	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
 	cairo_stroke (cr);
-
 
 	return 1;
 }
