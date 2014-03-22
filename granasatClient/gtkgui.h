@@ -35,9 +35,6 @@ char* MSG_INNERBOX_TEMP;
 char* MSG_UPPERBOX_TEMP;
 char* MSG_ETHERNET_LIM;
 
-// Location
-
-
 
 
 /**
@@ -53,7 +50,8 @@ gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label);
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label);
 
 /**
- * Rewrites Ethernet Limit
+ * Rewrites Ethernet Limit.
+ * @param ethernet_label
  */
 gboolean refreshEthernetLimit (GtkLabel* ethernet_label);
 
@@ -62,5 +60,67 @@ gboolean refreshEthernetLimit (GtkLabel* ethernet_label);
  */
 gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
 
+
+
+/**
+ * Adds the magnetometer and accelerometer drawing areas.
+ * @param builder GTK builder.
+ */
+ static inline void add_plots (GtkBuilder* builder, int* magnetometer_measures, int* accelerometer_measures) {
+	GtkWidget* drawing_area1 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea1"));
+	gtk_widget_show (drawing_area1);
+	g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), magnetometer_measures);
+
+	GtkWidget* drawing_area2 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea2"));
+	gtk_widget_show (drawing_area2);
+	g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), accelerometer_measures);
+}
+
+/**
+ * Write temperature labels.
+ * @param builder GTK builder.
+ */
+static inline void add_temperature_labels (GtkBuilder* builder) {
+	GtkWidget* cpu_temperature_label;
+	GtkWidget* innerbox_temperature_label;
+	GtkWidget* upperbox_temperature_label;
+
+	cpu_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "cpu_temperature_label"));
+	innerbox_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "inner_temperature_label"));
+	upperbox_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "upper_temperature_label"));
+	gtk_widget_show (cpu_temperature_label);
+	gtk_widget_show (innerbox_temperature_label);
+	gtk_widget_show (upperbox_temperature_label);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshCPUTemperature, (gpointer) cpu_temperature_label);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshInnerBoxTemperature, (gpointer) innerbox_temperature_label);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
+}
+
+
+/**
+ * Adds image window.
+ */
+static inline void add_image_window () {
+	GtkWidget* image_window;
+	GtkWidget* image_container;
+	GtkWidget* image;
+
+	// Create the image displayer window
+	image_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_title (GTK_WINDOW (image_window), "Images");
+	gtk_container_set_border_width (GTK_CONTAINER (image_window), IMAGE_WINDOW_BORDER_WIDTH);
+	gtk_window_set_accept_focus (GTK_WINDOW(image_window), FALSE);
+	gtk_widget_show(image_window);
+
+	// Create a fixed container
+	image_container = gtk_fixed_new();
+	gtk_container_add(GTK_CONTAINER(image_window), image_container);
+	gtk_widget_show(image_container);
+
+	// Show sample image
+	image = gtk_image_new_from_file("./sample_images/sample1.jpg");
+	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
+	gtk_widget_show(image);
+}
 
 #endif /* GTKGUI_H_ */
