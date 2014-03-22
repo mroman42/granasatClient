@@ -83,7 +83,7 @@ int main (int argc, char* argv[])
 	// Sliders
 	ethernet_scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,0,100,1);
 	ethernet_limit_label = GTK_WIDGET (gtk_builder_get_object (builder, "ethernet_limit_label"));
-	gtk_range_set_value (ethernet_scale, 5);
+	gtk_range_set_value ((GtkRange*) ethernet_scale, 5);
 	gtk_widget_set_size_request (ethernet_scale, 100,100);
 	gtk_fixed_put (GTK_FIXED (main_container), ethernet_scale, 350, 340);
 	gtk_widget_show (ethernet_scale);
