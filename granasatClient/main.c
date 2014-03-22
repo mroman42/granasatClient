@@ -42,7 +42,7 @@ const int IMAGE_WINDOW_BORDER_WIDTH = 0;
 char* MSG_CPU_TEMP = "CPU Temperature:\t\t %5d ºC";
 char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
 char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
-char* MSG_ETHERNET_LIM = "Ethernet speed:\t %5d Kb/s";
+char* MSG_ETHERNET_LIM = "Ethernet speed:\t %5d Kbps";
 // Location
 
 
@@ -142,9 +142,13 @@ int main (int argc, char* argv[])
 	/////
 	// Draw plot using Cairo.
 	/////
-	GtkWidget* drawing_area = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea1"));
-	gtk_widget_show (drawing_area);
-	g_signal_connect (G_OBJECT (drawing_area), "draw", G_CALLBACK (drawGraph), NULL);
+	GtkWidget* drawing_area1 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea1"));
+	gtk_widget_show (drawing_area1);
+	g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), NULL);
+
+	GtkWidget* drawing_area2 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea2"));
+	gtk_widget_show (drawing_area2);
+	g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), NULL);
 
 	/////
 	// Building
@@ -237,8 +241,29 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
 
 
 static gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
+	int i;
+	int temperatures [] = {10,20,10,35,98,10,20,10,35,98,10,20,10,35,98,10,20,10,35,98,10,20,10,35,98,10,20,10,35,98};
+
+	// Cairo initializing
 	cairo_set_source_rgb(cr, 1, 1, 1);
 	cairo_paint(cr);
+
+	// Axis
+	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+	cairo_move_to (cr, 0.0, 175.0);
+	cairo_line_to (cr, 300.0, 175.0);
+	cairo_move_to (cr, 25.0, 0.0);
+	cairo_line_to (cr, 25.0, 200.0);
+	cairo_stroke (cr);
+
+	/* Link each data point */
+	for (i = 0; i < 30; i ++)
+		cairo_line_to (cr, i*10.0, 175.0-temperatures[i]);
+
+	/* Draw the curve */
+	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
+	cairo_stroke (cr);
+
 
 	return 1;
 }

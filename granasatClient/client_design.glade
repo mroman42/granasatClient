@@ -16,6 +16,7 @@
     </child>
   </object>
   <object class="GtkWindow" id="main_window">
+    <property name="width_request">600</property>
     <property name="can_focus">False</property>
     <child>
       <object class="GtkFixed" id="main_fixed">
@@ -148,6 +149,30 @@
           <packing>
             <property name="x">340</property>
             <property name="y">320</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="magnetometer_label">
+            <property name="width_request">200</property>
+            <property name="height_request">40</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Magnetometer measures:</property>
+          </object>
+          <packing>
+            <property name="x">42</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="accelerometer_label">
+            <property name="width_request">200</property>
+            <property name="height_request">40</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Accelerometer measures:</property>
+          </object>
+          <packing>
+            <property name="x">402</property>
           </packing>
         </child>
       </object>
