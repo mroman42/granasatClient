@@ -85,20 +85,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkScale" id="ethernet_limit_scale">
-            <property name="width_request">100</property>
-            <property name="height_request">37</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="fill_level">1000</property>
-            <property name="round_digits">2</property>
-          </object>
-          <packing>
-            <property name="x">352</property>
-            <property name="y">346</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkImage" id="led_1">
             <property name="width_request">22</property>
             <property name="height_request">22</property>
@@ -148,6 +134,20 @@
           <packing>
             <property name="x">112</property>
             <property name="y">250</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="ethernet_limit_label">
+            <property name="width_request">140</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_right">1</property>
+            <property name="label" translatable="yes">Ethernet speed limit:	??? Kb/s</property>
+          </object>
+          <packing>
+            <property name="x">340</property>
+            <property name="y">320</property>
           </packing>
         </child>
       </object>

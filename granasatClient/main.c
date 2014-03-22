@@ -83,8 +83,6 @@ int main (int argc, char* argv[])
 	GtkWidget* cpu_temperature_label;
 	GtkWidget* innerbox_temperature_label;
 	GtkWidget* upperbox_temperature_label;
-
-	GtkWidget* ethernet_adjustment;
 	GtkWidget* ethernet_scale;
 
 	GtkWidget* image_window;
@@ -126,12 +124,10 @@ int main (int argc, char* argv[])
 
 
 	// Sliders
-	//ethernet_slider = GTK_WIDGET (gtk_builder_get_object (builder, "ethernet_limit_scale"));
-	//gtk_widget_show (ethernet_slider);
-	//gtk_scale_set_draw_value (ethernet_slider, TRUE);
-	ethernet_adjustment = gtk_adjustment_new (50,0,100,1,1,1);
 	ethernet_scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,0,100,1);
-	gtk_range_set_value (ethernet_scale, 50);
+	gtk_range_set_value (ethernet_scale, 5);
+	gtk_widget_set_size_request (ethernet_scale, 100,100);
+	gtk_fixed_put (GTK_FIXED (main_container), ethernet_scale, 350, 340);
 	gtk_widget_show (ethernet_scale);
 
 	/////
