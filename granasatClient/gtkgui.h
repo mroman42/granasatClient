@@ -146,7 +146,7 @@ static inline void add_image_window () {
 /**
  * Creates GUI.
  */
-static void initialize_gtk (int argc, char* argv[], int magnetometer_measures[], int accelerometer_measures[]) {
+static inline void initialize_gtk (int argc, char* argv[], int magnetometer_measures[], int accelerometer_measures[]) {
 	GtkBuilder* builder;
 	GtkWidget* main_window;
 	GtkWidget* main_container;
