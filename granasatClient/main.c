@@ -42,6 +42,7 @@ const int IMAGE_WINDOW_BORDER_WIDTH = 0;
 char* MSG_CPU_TEMP = "CPU Temperature:\t\t %5d ºC";
 char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
 char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
+char* MSG_ETHERNET_LIM = "Ethernet speed:\t %5d Kb/s";
 // Location
 
 
@@ -55,7 +56,7 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value);
 /**
  * Rewrites CPU Temperature.
  */
-gboolean refreshCPUTemperature(GtkLabel* temp_label);
+gboolean refreshCPUTemperature (GtkLabel* temp_label);
 
 /**
  * Rewrites Inner Box Temperature.
@@ -68,10 +69,14 @@ gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label);
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label);
 
 /**
+ * Rewrites Ethernet Limit
+ */
+gboolean refreshEthernetLimit (GtkLabel* ethernet_label);
+
+/**
  * Draws a graph using Cairo.
  */
-void drawGraph();
-
+static gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
 
 int main (int argc, char* argv[])
 {
@@ -84,6 +89,7 @@ int main (int argc, char* argv[])
 	GtkWidget* innerbox_temperature_label;
 	GtkWidget* upperbox_temperature_label;
 	GtkWidget* ethernet_scale;
+	GtkWidget* ethernet_limit_label;
 
 	GtkWidget* image_window;
 	GtkWidget* image_container;
@@ -125,10 +131,20 @@ int main (int argc, char* argv[])
 
 	// Sliders
 	ethernet_scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,0,100,1);
+	ethernet_limit_label = GTK_WIDGET (gtk_builder_get_object (builder, "ethernet_limit_label"));
 	gtk_range_set_value (ethernet_scale, 5);
 	gtk_widget_set_size_request (ethernet_scale, 100,100);
 	gtk_fixed_put (GTK_FIXED (main_container), ethernet_scale, 350, 340);
 	gtk_widget_show (ethernet_scale);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshEthernetLimit, (gpointer) ethernet_limit_label);
+
+
+	/////
+	// Draw plot using Cairo.
+	/////
+	GtkWidget* drawing_area = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea1"));
+	gtk_widget_show (drawing_area);
+	g_signal_connect (G_OBJECT (drawing_area), "draw", G_CALLBACK (drawGraph), NULL);
 
 	/////
 	// Building
@@ -201,6 +217,13 @@ gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
 	return refreshLabel (temperature_label, MSG_UPPERBOX_TEMP, upperbox_temperature);
 }
 
+gboolean refreshEthernetLimit (GtkLabel* ethernet_label) {
+	// Reads Ethernet Limit
+	int ethernet_limit = 20;
+
+	// Refreshes Ethernet label
+	return refreshLabel (ethernet_label, MSG_ETHERNET_LIM, ethernet_limit);
+}
 
 gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
 	// Uses a buffer to print the new value in the text.
@@ -213,6 +236,9 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
 }
 
 
-void drawGraph () {
+static gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
+	cairo_set_source_rgb(cr, 1, 1, 1);
+	cairo_paint(cr);
 
+	return 1;
 }
