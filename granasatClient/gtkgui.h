@@ -21,9 +21,14 @@
 // Files
 #define FILEGLADE "client_design.glade"
 
+
 /**
  * Constants and messages
  */
+extern const int ETHERNET_MAX;
+extern int magnetometer_measures [];
+extern int accelerometer_measures [];
+
 // Windows
 const int REFRESH_INTERVAL;
 const int MAIN_WINDOW_BORDER_WIDTH;
@@ -96,6 +101,21 @@ static inline void add_temperature_labels (GtkBuilder* builder) {
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
 }
 
+/**
+ * Adds ethernet slider.
+ */
+static inline void add_ethernet_slider (GtkBuilder* builder, GtkWidget* main_container) {
+	GtkWidget* ethernet_scale;
+	GtkWidget* ethernet_limit_label;
+
+	ethernet_scale = gtk_scale_new_with_range(GTK_ORIENTATION_HORIZONTAL,0,ETHERNET_MAX,1);
+	ethernet_limit_label = GTK_WIDGET (gtk_builder_get_object (builder, "ethernet_limit_label"));
+	gtk_range_set_value ((GtkRange*) ethernet_scale, 5);
+	gtk_widget_set_size_request (ethernet_scale, 100,100);
+	gtk_fixed_put (GTK_FIXED (main_container), ethernet_scale, 350, 340);
+	gtk_widget_show (ethernet_scale);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshEthernetLimit, (gpointer) ethernet_limit_label);
+}
 
 /**
  * Adds image window.
@@ -121,6 +141,51 @@ static inline void add_image_window () {
 	image = gtk_image_new_from_file("./sample_images/sample1.jpg");
 	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
 	gtk_widget_show(image);
+}
+
+/**
+ * Creates GUI.
+ */
+static void initialize_gtk (int argc, char* argv[], int magnetometer_measures[], int accelerometer_measures[]) {
+	GtkBuilder* builder;
+	GtkWidget* main_window;
+	GtkWidget* main_container;
+
+	// Initialize GTK
+	gtk_init (&argc, &argv);
+	srand(time(NULL));
+
+	/////
+	// Initialize Builder
+	/////
+	builder = gtk_builder_new ();
+	gtk_builder_add_from_file (builder, FILEGLADE, NULL);
+
+	// Main Window and main container
+	main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
+	main_container = GTK_WIDGET (gtk_builder_get_object (builder, "main_fixed"));
+	gtk_widget_show (main_window);
+	gtk_widget_show (main_container);
+
+	// Add widgets.
+	add_temperature_labels (builder);
+	add_ethernet_slider (builder, main_container);
+	add_plots (builder, magnetometer_measures, accelerometer_measures);
+	add_image_window();
+
+	/////
+	// Building
+	/////
+	gtk_builder_connect_signals (builder, NULL);
+	g_object_unref (G_OBJECT (builder));
+	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
+
+
+	// Terminate application when window is destroyed
+	g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
+
+	// GTK event loop.
+	gtk_main();
 }
 
 #endif /* GTKGUI_H_ */
