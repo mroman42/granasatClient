@@ -30,6 +30,28 @@ void error(char *msg) {
   exit(1);
 }
 
+
+// Client/Server on Raspberry
+void sendData( int sockfd, int x ) {
+    int n;
+
+    char buffer[32];
+    sprintf( buffer, "%d\n", x );
+    if ( (n = write( sockfd, buffer, strlen(buffer) ) ) < 0 )
+	error( "ERROR writing to socket" );
+    buffer[n] = '\0';
+}
+
+int getData( int sockfd ) {
+    char buffer[32];
+    int n;
+
+    if ( (n = read(sockfd,buffer,31) ) < 0 )
+	error("ERROR reading from socket");
+    buffer[n] = '\0';
+    return atoi( buffer );
+}
+
 int main (int argc, char* argv[])
 {
 	// Measures
@@ -41,25 +63,36 @@ int main (int argc, char* argv[])
 	// Client/Server on Raspberry.
 	////
 	// Client
-	int sockfd;
-	int portno = 51717;
-    struct sockaddr_in server_address;
+    int sockfd, portno = 51717, n;
+    char serverIp[] = "192.168.0.100";
+    struct sockaddr_in serv_addr;
+    struct hostent *server;
+    char buffer[256];
+    int data;
 
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0) {
+    printf( "contacting %s on port %d\n", serverIp, portno );
+
+    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
         error("ERROR opening socket");
+
+    if (( server = gethostbyname( serverIp ) ) == NULL)
+        error("ERROR, no such host\n");
+
+    bzero( (char *) &serv_addr, sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+    bcopy( (char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
+    serv_addr.sin_port = htons(portno);
+    if ( connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
+        error( "ERROR connecting" );
+
+    for ( n = 0; n < 10; n++ ) {
+    	sendData( sockfd, n );
+    	data = getData( sockfd );
+    	printf("%d ->  %d\n",n, data );
     }
+    sendData( sockfd, -2 );
 
-    printf("using port #%d, socket file descriptor #%d\n", portno, sockfd);
-
-    // Server Adress
-    bzero((char *) &server_address, sizeof(server_address));
-    server_address.sin_family = AF_INET;
-    server_address.sin_addr.s_addr = INADDR_ANY;
-    server_address.sin_port = htons( portno );
-    if (bind(sockfd, (struct sockaddr *) &server_address, sizeof(server_address)) < 0)
-    	error("ERROR on binding");
-    listen(sockfd,5);
+    close( sockfd );
 
 
 	// GTK
@@ -67,3 +100,7 @@ int main (int argc, char* argv[])
 
 	return 0;
 }
+
+
+
+
