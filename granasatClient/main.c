@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <arpa/inet.h>
+#include "packet.h"
 
 // GTK GUI library
 #include "gtkgui.h"
@@ -26,35 +27,35 @@
 const int ETHERNET_MAX = 1000;
 
 void error(char *msg) {
-  perror(msg);
-  exit(1);
+	perror(msg);
+	exit(1);
 }
 
 
 // Client/Server on Raspberry
-void sendData(int sockfd, int x) {
+static int SOCKFD;
+struct packet DATA;
+
+void sendData(int x) {
     int n;
 
     char buffer[32];
     sprintf( buffer, "%d\n", x );
-    if ( (n = write( sockfd, buffer, strlen(buffer) ) ) < 0 )
+    if ( (n = write( SOCKFD, buffer, strlen(buffer) ) ) < 0 )
 	error( "ERROR writing to socket" );
     buffer[n] = '\0';
 }
 
-int getData(int sockfd) {
-    char buffer[32];
+void getPacket(struct packet* data) {
     int n;
-
-    if ((n = read(sockfd,buffer,31) ) < 0)
-	error("ERROR reading from socket");
-    buffer[n] = '\0';
-    return atoi( buffer );
+    if ((n = read(SOCKFD,(char*) data,sizeof(struct packet)) ) < 0)
+    	error("ERROR reading from socket");
 }
 
 int connect_server () {
 	int sockfd, portno = 51717;
-	char serverIp[] = "192.168.0.100";
+	//char serverIp[] = "192.168.0.100"; // Raspberry IP
+	char serverIp[] = "192.168.0.103";
 	struct sockaddr_in serv_addr;
 	struct hostent *server;
 
@@ -74,29 +75,76 @@ int connect_server () {
 	if ( connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
 		error("ERROR connecting");
 
+	printf("Connected\n");
+
 	return sockfd;
+}
+
+void print_data (struct packet* data) {
+	printf("Temperature\tHighByte: %d\n\t\tLowByte: %d\n", data->temp.highByte, data->temp.lowByte);
+}
+
+void read_server (struct packet* data) {
+	sendData(1);
+	getPacket(data);
+	print_data(data);
 }
 
 int main (int argc, char* argv[])
 {
-	// Measures
+	// Measures.
 	int magnetometer_measures []  = {10,20,40,35,13,50,20,16,35,90,17,20,12,35,98,43,20,10,35,78,10,5,10,35,43,34,35,34,23,34};
 	int accelerometer_measures [] = {10,20,10,35,98,10,20,40,35,13,50,20,16,35,90,17,20,12,35,98,43,20,10,35,78,10,5,10,35,43};
 
-	// Client
-    int sockfd = connect_server();
-    int data;
-    printf("Sending 10...\n");
-    sendData(sockfd,10);
-    data = getData(sockfd);
-    printf("got %d\n", data);
-    sendData(sockfd,-2);
 
-	// GTK
-	initialize_gtk (argc, argv, magnetometer_measures, accelerometer_measures);
+    // Initialize GTK.
+    GtkBuilder* builder;
+	GtkWidget* main_window;
+	GtkWidget* main_container;
+
+	gtk_init (&argc, &argv);
+	srand(time(NULL));
+
+	// Initialize Builder.
+	builder = gtk_builder_new ();
+	gtk_builder_add_from_file (builder, FILEGLADE, NULL);
+
+	// Main Window and main container.
+	main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
+	main_container = GTK_WIDGET (gtk_builder_get_object (builder, "main_fixed"));
+	gtk_widget_show (main_window);
+	gtk_widget_show (main_container);
+
+	// Add widgets.
+	add_temperature_labels (builder);
+	add_ethernet_slider (builder, main_container);
+	add_plots (builder, magnetometer_measures, accelerometer_measures);
+	add_image_window();
+
+	// Building.
+	gtk_builder_connect_signals (builder, NULL);
+	g_object_unref (G_OBJECT (builder));
+	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
+
+
+	// Terminate application when window is destroyed.
+	g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
+
+
+
+	// Client
+    SOCKFD = connect_server();
+    struct packet data;
+    g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) read_server, (gpointer) &DATA);
+
+
+	// GTK event loop.
+	gtk_main();
+
 
 	// Close server
-	close(sockfd);
+	sendData(-2);
+	close(SOCKFD);
 
 	return 0;
 }

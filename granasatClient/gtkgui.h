@@ -17,6 +17,7 @@
 // Random numbers
 #include <time.h>
 #include <stdlib.h>
+#include "packet.h"
 
 // Files
 #define FILEGLADE "client_design.glade"
@@ -28,6 +29,7 @@
 extern const int ETHERNET_MAX;
 extern int magnetometer_measures [];
 extern int accelerometer_measures [];
+extern struct packet DATA;
 
 // Windows
 const int REFRESH_INTERVAL;
@@ -143,49 +145,5 @@ static inline void add_image_window () {
 	gtk_widget_show(image);
 }
 
-/**
- * Creates GUI.
- */
-static inline void initialize_gtk (int argc, char* argv[], int magnetometer_measures[], int accelerometer_measures[]) {
-	GtkBuilder* builder;
-	GtkWidget* main_window;
-	GtkWidget* main_container;
-
-	// Initialize GTK
-	gtk_init (&argc, &argv);
-	srand(time(NULL));
-
-	/////
-	// Initialize Builder
-	/////
-	builder = gtk_builder_new ();
-	gtk_builder_add_from_file (builder, FILEGLADE, NULL);
-
-	// Main Window and main container
-	main_window = GTK_WIDGET (gtk_builder_get_object (builder, "main_window"));
-	main_container = GTK_WIDGET (gtk_builder_get_object (builder, "main_fixed"));
-	gtk_widget_show (main_window);
-	gtk_widget_show (main_container);
-
-	// Add widgets.
-	add_temperature_labels (builder);
-	add_ethernet_slider (builder, main_container);
-	add_plots (builder, magnetometer_measures, accelerometer_measures);
-	add_image_window();
-
-	/////
-	// Building
-	/////
-	gtk_builder_connect_signals (builder, NULL);
-	g_object_unref (G_OBJECT (builder));
-	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
-
-
-	// Terminate application when window is destroyed
-	g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
-
-	// GTK event loop.
-	gtk_main();
-}
 
 #endif /* GTKGUI_H_ */

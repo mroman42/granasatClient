@@ -43,8 +43,7 @@ gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label) {
 
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
 	// Reads Inner Box Temperature
-	// TO-DO
-	int upperbox_temperature = rand()/10000000;
+	int upperbox_temperature = DATA.temp.highByte;
 
 	// Refreshes temperature label
 	return refreshLabel (temperature_label, MSG_UPPERBOX_TEMP, upperbox_temperature);
