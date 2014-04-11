@@ -9,10 +9,12 @@
 #define PACKET_H_
 
 
-#define REQ_TEMP	1
-#define REQ_MAGN	2
-#define REQ_ACCE	3
-#define REQ_IMAG	4
+#define REQ_TEMP		1
+#define REQ_MAGN		2
+#define REQ_ACCE		3
+#define REQ_IMAG		4
+#define CTRL_LED_ON		5
+#define CTRL_LED_OFF 	6
 
 struct temperature {
 	signed char highByte;

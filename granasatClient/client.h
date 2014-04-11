@@ -29,6 +29,8 @@ static char SERVER_IP [] = "192.168.0.200"; // Raspberry IP.
 extern const int IMAGE_SIZE;
 extern struct packet DATA;
 
+struct packet DATA;
+
 // Functions.
 
 /**

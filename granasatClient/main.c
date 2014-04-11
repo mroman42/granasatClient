@@ -31,9 +31,6 @@ void error(char *msg) {
 
 
 // Client/Server on Raspberry
-struct packet DATA;
-
-
 void print_data (struct packet* data) {
 	printf("Temperature\tHighByte: %d\n\t\tLowByte: %d\n", data->temp.highByte, data->temp.lowByte);
 }
@@ -68,6 +65,7 @@ int main (int argc, char* argv[])
 
 	// Add widgets.
 	add_temperature_labels (builder);
+	add_terminal (builder);
 	add_ethernet_slider (builder, main_container);
 	add_plots (builder, magnetometer_measures, accelerometer_measures);
 	add_image_window();
@@ -84,15 +82,15 @@ int main (int argc, char* argv[])
 
 	// Client
     connect_server();
-    sendData(42);
+    sendData(CTRL_LED_ON); sendData(4);
     g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) read_server, (gpointer) &DATA);
-
 
 	// GTK event loop.
 	gtk_main();
 
 
 	// Close server
+	sendData(CTRL_LED_OFF); sendData(4);
 	sendData(-1);
 	close(SOCKFD);
 

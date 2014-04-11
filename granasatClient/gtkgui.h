@@ -20,7 +20,7 @@
 #include "packet.h"
 
 // Files
-#define FILEGLADE "client_design.glade"
+#define FILEGLADE "client_design2.glade"
 
 
 /**
@@ -144,6 +144,15 @@ static inline void add_image_window () {
 	image = gtk_image_new_from_file(IMAGE_FILE);
 	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
 	gtk_widget_show(image);
+}
+
+/**
+ * Adds image window.
+ */
+static inline void add_terminal (GtkBuilder* builder) {
+	GtkWidget* terminal;
+	terminal = GTK_WIDGET (gtk_builder_get_object (builder, "terminal1"));
+	gtk_widget_show (terminal);
 }
 
 
