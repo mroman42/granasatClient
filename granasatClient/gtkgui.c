@@ -15,6 +15,7 @@
 const int REFRESH_INTERVAL = 1000;
 const int MAIN_WINDOW_BORDER_WIDTH = 20;
 const int IMAGE_WINDOW_BORDER_WIDTH = 0;
+const char IMAGE_FILE [] = "./images/image_received.data";
 
 // Messages
 char* MSG_CPU_TEMP      = "CPU Temperature:\t\t %5d ºC";

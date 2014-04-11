@@ -110,9 +110,26 @@ void read_server (struct packet* data) {
     FILE* raw_image;
     char string[80];
 
-	sendData(1);
+	// Temperature
+    sendData(REQ_TEMP);
+    if ((read(SOCKFD,(char*) DATA.temp.highByte,sizeof(unsigned char)) ) < 0)
+        	error("ERROR reading Temp.HighByte from socket");
+    if ((read(SOCKFD,(char*) DATA.temp.lowByte,sizeof(unsigned char)) ) < 0)
+            error("ERROR reading Temp.LowByte from socket");
 
+    // Magnetometer
+    sendData(REQ_MAGN);
+    if ((read(SOCKFD,(char*) DATA.magnetometer,sizeof(unsigned char[6])) ) < 0)
+            	error("ERROR reading Magnetometer from socket");
+
+    // Accelerometer
+    sendData(REQ_ACCE);
+    if ((read(SOCKFD,(char*) DATA.accelerometer,sizeof(unsigned char[6])) ) < 0)
+                	error("ERROR reading Accelerometer from socket");
+
+	// Image
 	// Receive the image
+    sendData(REQ_IMAG);
 	int num_bytes_received = getImage(image_stream);
 
 	// Store the image in a file called image_received_n.data

@@ -35,6 +35,7 @@ extern struct packet DATA;
 const int REFRESH_INTERVAL;
 const int MAIN_WINDOW_BORDER_WIDTH;
 const int IMAGE_WINDOW_BORDER_WIDTH;
+const char IMAGE_FILE [30];
 
 // Messages
 char* MSG_CPU_TEMP;
@@ -140,7 +141,7 @@ static inline void add_image_window () {
 	gtk_widget_show(image_container);
 
 	// Show sample image
-	image = gtk_image_new_from_file("./sample_images/sample1.jpg");
+	image = gtk_image_new_from_file(IMAGE_FILE);
 	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
 	gtk_widget_show(image);
 }
