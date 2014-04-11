@@ -9,20 +9,18 @@
 #include "client.h"
 
 
-int connect_server () {
+void connect_server () {
 	int sockfd, portno = 51717;
-	//char serverIp[] = "192.168.0.100"; // Raspberry IP
-	char serverIp[] = "127.0.0.1";
 	struct sockaddr_in serv_addr;
 	struct hostent *server;
 
-	printf("contacting %s on port %d\n", serverIp, portno);
+	printf("contacting %s on port %d\n", SERVER_IP, portno);
 
 	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 		perror("ERROR opening socket");
 
-	if (( server = gethostbyname( serverIp ) ) == NULL)
-		error("ERROR, no such host\n");
+	if (( server = gethostbyname(SERVER_IP) ) == NULL)
+		perror("ERROR, no such host\n");
 
 	bzero( (char *) &serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
@@ -30,40 +28,63 @@ int connect_server () {
 	serv_addr.sin_port = htons(portno);
 
 	if ( connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
-		error("ERROR connecting");
+		perror("ERROR connecting");
 
 	printf("Connected\n");
 
-	return sockfd;
+	SOCKFD = sockfd;
+	printf("Socket FD: %d\n", sockfd);
 }
 
 
-void read_server (struct packet* data) {
+gboolean read_server (struct packet* data) {
 	static int n = 0;
+
 
     unsigned char image_stream[IMAGE_SIZE];
     FILE* raw_image;
     char string[80];
 
+	printf("Reading server...\n");
+
 	// Temperature
+    printf("\tSending temperature request...");
     sendData(REQ_TEMP);
-    if ((read(SOCKFD,(char*) DATA.temp.highByte,sizeof(unsigned char)) ) < 0)
-        	error("ERROR reading Temp.HighByte from socket");
-    if ((read(SOCKFD,(char*) DATA.temp.lowByte,sizeof(unsigned char)) ) < 0)
-            error("ERROR reading Temp.LowByte from socket");
+
+    printf("Receiving temperature...");
+    if ((read(SOCKFD, &DATA.temp.highByte,sizeof(signed char)) ) < 0)
+        	perror("ERROR reading Temp.HighByte from socket");
+    if ((read(SOCKFD, &DATA.temp.lowByte, sizeof(unsigned char)) ) < 0)
+            perror("ERROR reading Temp.LowByte from socket");
+    printf("Temperature received.\n");
 
     // Magnetometer
+    printf("\tSending magnetometer request...");
     sendData(REQ_MAGN);
-    if ((read(SOCKFD,(char*) DATA.magnetometer,sizeof(unsigned char[6])) ) < 0)
-            	error("ERROR reading Magnetometer from socket");
+
+    printf("Receiving magnetometer data...");
+    if ((read(SOCKFD,&DATA.magnetometer,sizeof(unsigned char[6])) ) < 0)
+            	perror("ERROR reading Magnetometer from socket");
+    printf("Magnetometer data: %u,%u,%u,%u,%u,%u\n",
+    	DATA.magnetometer[0],DATA.magnetometer[1],
+    	DATA.magnetometer[2],DATA.magnetometer[3],
+    	DATA.magnetometer[4],DATA.magnetometer[5]);
 
     // Accelerometer
+    printf("\tSending accelerometer request...");
     sendData(REQ_ACCE);
-    if ((read(SOCKFD,(char*) DATA.accelerometer,sizeof(unsigned char[6])) ) < 0)
-                	error("ERROR reading Accelerometer from socket");
+
+    printf("Receiving accelerometer data...");
+    if ((read(SOCKFD,&DATA.accelerometer,sizeof(unsigned char[6])) ) < 0)
+                	perror("ERROR reading Accelerometer from socket");
+    printf("Accelerometer data: %u,%u,%u,%u,%u,%u\n",
+        	DATA.accelerometer[0],DATA.accelerometer[1],
+        	DATA.accelerometer[2],DATA.accelerometer[3],
+        	DATA.accelerometer[4],DATA.accelerometer[5]);
 
 	// Image
 	// Receive the image
+    printf("\tSending image request...");
     sendData(REQ_IMAG);
 	int num_bytes_received = getImage(image_stream);
 
@@ -75,6 +96,8 @@ void read_server (struct packet* data) {
 	// Some debugging information
 	printf("Iteration %d, number of bytes received:\t%d\n", n, num_bytes_received );
 	n++;
+
+	return 1;
 }
 
 
@@ -86,7 +109,7 @@ void sendData(int x) {
     sprintf( buffer, "%d\n", x );
 
     // Sends to the server.
-    if ( (n = write( SOCKFD, buffer, strlen(buffer) ) ) < 0 )
+    if ((n = write(SOCKFD, buffer, strlen(buffer))) < 0 )
     	perror("ERROR writing to socket");
 
     buffer[n] = '\0';

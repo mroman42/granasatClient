@@ -34,7 +34,7 @@ void error(char *msg) {
 struct packet DATA;
 
 
-void print_data1 (struct packet* data) {
+void print_data (struct packet* data) {
 	printf("Temperature\tHighByte: %d\n\t\tLowByte: %d\n", data->temp.highByte, data->temp.lowByte);
 }
 
@@ -83,7 +83,8 @@ int main (int argc, char* argv[])
 
 
 	// Client
-    SOCKFD = connect_server();
+    connect_server();
+    sendData(42);
     g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) read_server, (gpointer) &DATA);
 
 
@@ -92,7 +93,7 @@ int main (int argc, char* argv[])
 
 
 	// Close server
-	sendData(-2);
+	sendData(-1);
 	close(SOCKFD);
 
 	return 0;
