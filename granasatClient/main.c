@@ -186,7 +186,6 @@ int main (int argc, char* argv[])
 
 	// Client
     SOCKFD = connect_server();
-    struct packet data;
     g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) read_server, (gpointer) &DATA);
 
 
