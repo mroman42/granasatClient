@@ -52,13 +52,13 @@ void getPacket(struct packet* data) {
     	error("ERROR reading from socket");
 }
 
-int getImage(int sockfd, unsigned char* image_data) {
+int getImage(unsigned char* image_data) {
 	const int total_bytes = 1280*960;
 	int bytes_received = 0;
 	int n;
 
 	while(bytes_received < total_bytes){
-		if ( (n = read(sockfd,image_data+bytes_received,total_bytes-bytes_received) ) < 0 ){
+		if ( (n = read(SOCKFD,image_data+bytes_received,total_bytes-bytes_received) ) < 0 ){
 			error( ( "ERROR reading from socket") );
 			break;
 		}
@@ -102,9 +102,25 @@ void print_data (struct packet* data) {
 }
 
 void read_server (struct packet* data) {
+    unsigned char image_stream[1280*960];
+    FILE* raw_image;
+    char string[80];
+
+    //
 	sendData(1);
-	getPacket(data);
-	print_data(data);
+
+	//---- Receive the image ----
+	int num_bytes_received = getImage(image_stream);
+
+	//---- Store the image in a file called image_received_n.data ----
+	sprintf(string, "image_received.data");
+	raw_image = fopen(string, "w");
+	fwrite(image_stream, 1, 1280*960, raw_image);
+
+	//---- Some debugging information ----
+	static int n = 0;
+	printf("Iteration %d, number of bytes received:\t%d\n", n, num_bytes_received );
+	n++;
 }
 
 int main (int argc, char* argv[])
@@ -146,7 +162,6 @@ int main (int argc, char* argv[])
 
 	// Terminate application when window is destroyed.
 	g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
-
 
 
 	// Client
