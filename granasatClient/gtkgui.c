@@ -36,7 +36,7 @@ gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
 gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label) {
 	// Reads Inner Box Temperature
 	// TO-DO
-	int innerbox_temperature = rand()/10000000;
+	int innerbox_temperature = DATA.temp.lowByte;
 
 	// Refreshes temperature label
 	return refreshLabel (temperature_label, MSG_INNERBOX_TEMP, innerbox_temperature);

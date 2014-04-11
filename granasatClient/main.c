@@ -8,17 +8,13 @@
 
 // Client libraries
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <netdb.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
 #include <arpa/inet.h>
 #include "packet.h"
+#include "client.h"
 
 // GTK GUI library
 #include "gtkgui.h"
@@ -35,24 +31,7 @@ void error(char *msg) {
 
 
 // Client/Server on Raspberry
-static int SOCKFD;
 struct packet DATA;
-
-void sendData(int x) {
-    int n;
-
-    char buffer[32];
-    sprintf( buffer, "%d\n", x );
-    if ( (n = write( SOCKFD, buffer, strlen(buffer) ) ) < 0 )
-    	error( "ERROR writing to socket" );
-    buffer[n] = '\0';
-}
-
-void getPacket(struct packet* data) {
-    int n;
-    if ((n = read(SOCKFD,(char*) data,sizeof(struct packet)) ) < 0)
-    	error("ERROR reading from socket");
-}
 
 int getImage(unsigned char* image_data) {
 	const int total_bytes = IMAGE_SIZE;
