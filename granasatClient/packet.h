@@ -19,11 +19,15 @@ struct temperature {
 	unsigned char lowByte;
 };
 
+
 struct packet {
     struct temperature temp;
     unsigned char magnetometer[6];
     unsigned char accelerometer[6];
     unsigned char image_data[1280*960];
 };
+
+
+
 
 #endif /* PACKET_H_ */

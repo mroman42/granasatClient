@@ -26,7 +26,6 @@ char* MSG_ETHERNET_LIM  = "Ethernet speed:\t %5d Kbps";
 
 gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
 	// Reads Raspberry CPU Temperature
-	// TO-DO
 	int cpu_temperature = rand()/10000000;
 
 	// Refreshes temperature label
@@ -35,7 +34,6 @@ gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
 
 gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label) {
 	// Reads Inner Box Temperature
-	// TO-DO
 	int innerbox_temperature = DATA.temp.lowByte;
 
 	// Refreshes temperature label
