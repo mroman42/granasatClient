@@ -42,7 +42,7 @@ void sendData(int x) {
     char buffer[32];
     sprintf( buffer, "%d\n", x );
     if ( (n = write( SOCKFD, buffer, strlen(buffer) ) ) < 0 )
-	error( "ERROR writing to socket" );
+    	error( "ERROR writing to socket" );
     buffer[n] = '\0';
 }
 
@@ -52,10 +52,27 @@ void getPacket(struct packet* data) {
     	error("ERROR reading from socket");
 }
 
+int getImage(int sockfd, unsigned char* image_data) {
+	const int total_bytes = 1280*960;
+	int bytes_received = 0;
+	int n;
+
+	while(bytes_received < total_bytes){
+		if ( (n = read(sockfd,image_data+bytes_received,total_bytes-bytes_received) ) < 0 ){
+			error( ( "ERROR reading from socket") );
+			break;
+		}
+		else
+			bytes_received += n;
+	}
+
+	return bytes_received;
+}
+
 int connect_server () {
 	int sockfd, portno = 51717;
 	//char serverIp[] = "192.168.0.100"; // Raspberry IP
-	char serverIp[] = "192.168.0.103";
+	char serverIp[] = "127.0.0.1";
 	struct sockaddr_in serv_addr;
 	struct hostent *server;
 
