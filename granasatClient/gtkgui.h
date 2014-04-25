@@ -83,6 +83,8 @@ gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
 	GtkWidget* drawing_area2 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea2"));
 	gtk_widget_show (drawing_area2);
 	g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), accelerometer_measures);
+
+	//g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) drawGraph, (gpointer) &DATA);
 }
 
 /**
@@ -157,8 +159,8 @@ static inline void add_terminal (GtkBuilder* builder) {
 }
 
 
-void gpio_4_button_pressed_cb(GtkToggleButton *button, gpointer data);
-void gpio_4_button_released_cb(GtkToggleButton *button, gpointer data);
+void gpio_4_button_toggled_cb(GtkToggleButton *button, gpointer data);
+
 
 /**
  * Adds buttons.
@@ -166,7 +168,7 @@ void gpio_4_button_released_cb(GtkToggleButton *button, gpointer data);
 static inline void add_buttons (GtkBuilder* builder) {
 	GtkWidget* gpio_button;
 	gpio_button = GTK_WIDGET (gtk_builder_get_object (builder, "gpio_4_button"));
-	g_signal_connect (GTK_WIDGET(gpio_button), "pressed", G_CALLBACK(gpio_4_button_pressed_cb), NULL);
+	g_signal_connect (GTK_WIDGET(gpio_button), "toggled", G_CALLBACK(gpio_4_button_toggled_cb), NULL);
 	gtk_widget_show (gpio_button);
 }
 

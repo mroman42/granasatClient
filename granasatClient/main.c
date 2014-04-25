@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 #include "packet.h"
 #include "client.h"
+#include "measures.h"
 
 // GTK GUI library
 #include "gtkgui.h"
@@ -22,7 +23,6 @@
 // Constants
 const int ETHERNET_MAX = 1000;
 const int IMAGE_SIZE = 1280*960;
-
 
 void error(char *msg) {
 	perror(msg);
@@ -36,14 +36,8 @@ void print_data (struct packet* data) {
 }
 
 
-
 int main (int argc, char* argv[])
 {
-	// Measures.
-	int magnetometer_measures []  = {10,20,40,35,13,50,20,16,35,90,17,20,12,35,98,43,20,10,35,78,10,5,10,35,43,34,35,34,23,34};
-	int accelerometer_measures [] = {10,20,10,35,98,10,20,40,35,13,50,20,16,35,90,17,20,12,35,98,43,20,10,35,78,10,5,10,35,43};
-
-
     // Initialize GTK.
     GtkBuilder* builder;
 	GtkWidget* main_window;
@@ -70,9 +64,6 @@ int main (int argc, char* argv[])
 	add_buttons(builder);
 
 	// Building.
-	//gtk_builder_connect_signals (builder, NULL);
-	//gtk_builder_add_callback_symbol (builder, "gpio_4_button_pressed_cb", (void*) gpio_4_button_pressed_cb);
-
 	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
 
 

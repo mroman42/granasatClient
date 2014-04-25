@@ -28,6 +28,7 @@ static int SOCKFD;
 static char SERVER_IP [] = "127.0.0.1"; // Self IP.
 extern const int IMAGE_SIZE;
 extern struct packet DATA;
+//extern void add_magnetometer_measure (int);
 
 struct packet DATA;
 

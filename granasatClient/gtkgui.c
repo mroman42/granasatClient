@@ -95,14 +95,15 @@ gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 }
 
 
-void gpio_4_button_pressed_cb (GtkToggleButton *button, gpointer data) {
-	printf("gpio_4_button_pressed_cb");
-	sendData(CTRL_LED_ON);
-	sendData(4);
-}
-
-
-void gpio_4_button_released_cb (GtkToggleButton *button, gpointer data) {
-	sendData(CTRL_LED_OFF);
-	sendData(4);
+void gpio_4_button_toggled_cb (GtkToggleButton *button, gpointer data) {
+	if (gtk_toggle_button_get_active(button)) {
+		printf("GPIO4 Button pressed\n");
+		sendData(CTRL_LED_ON);
+		sendData(4);
+	}
+	else {
+		printf("GPIO4 Button released\n");
+		sendData(CTRL_LED_OFF);
+		sendData(4);
+	}
 }

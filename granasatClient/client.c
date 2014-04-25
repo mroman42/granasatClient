@@ -76,6 +76,8 @@ gboolean read_server (struct packet* data) {
     	DATA.magnetometer[2],DATA.magnetometer[3],
     	DATA.magnetometer[4],DATA.magnetometer[5]);
 
+    add_magnetometer_measure(DATA.magnetometer[0]);
+
     // Accelerometer
     printf("\tSending accelerometer request...");
     sendData(REQ_ACCE);
@@ -139,5 +141,6 @@ int getImage(unsigned char* image_data) {
 
 	return bytes_received;
 }
+
 
 

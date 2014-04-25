@@ -183,7 +183,6 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="receives_default">True</property>
-            <signal name="pressed" handler="gpio_4_button_pressed_cb" swapped="no"/>
           </object>
           <packing>
             <property name="x">630</property>
