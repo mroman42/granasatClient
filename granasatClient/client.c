@@ -16,19 +16,25 @@ void connect_server () {
 
 	printf("contacting %s on port %d\n", SERVER_IP, portno);
 
-	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
 		perror("ERROR opening socket");
+		exit(-1);
+	}
 
-	if (( server = gethostbyname(SERVER_IP) ) == NULL)
+	if (( server = gethostbyname(SERVER_IP) ) == NULL) {
 		perror("ERROR, no such host\n");
+		exit(-1);
+	}
 
 	bzero( (char *) &serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
 	bcopy( (char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
 	serv_addr.sin_port = htons(portno);
 
-	if ( connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
-		perror("ERROR connecting");
+	if ( connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0) {
+		perror("ERROR connecting to server");
+		exit(-1);
+	}
 
 	printf("Connected\n");
 
@@ -133,3 +139,5 @@ int getImage(unsigned char* image_data) {
 
 	return bytes_received;
 }
+
+

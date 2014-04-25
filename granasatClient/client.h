@@ -24,8 +24,8 @@
 
 // Constants
 static int SOCKFD;
-static char SERVER_IP [] = "192.168.0.200"; // Raspberry IP.
-//static char SERVER_IP [] = "127.0.0.1"; // Self IP.
+//static char SERVER_IP [] = "192.168.0.200"; // Raspberry IP.
+static char SERVER_IP [] = "127.0.0.1"; // Self IP.
 extern const int IMAGE_SIZE;
 extern struct packet DATA;
 

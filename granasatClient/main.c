@@ -37,7 +37,6 @@ void print_data (struct packet* data) {
 
 
 
-
 int main (int argc, char* argv[])
 {
 	// Measures.
@@ -65,24 +64,24 @@ int main (int argc, char* argv[])
 
 	// Add widgets.
 	add_temperature_labels (builder);
-	add_terminal (builder);
 	add_ethernet_slider (builder, main_container);
 	add_plots (builder, magnetometer_measures, accelerometer_measures);
 	add_image_window();
+	add_buttons(builder);
 
 	// Building.
-	gtk_builder_connect_signals (builder, NULL);
-	g_object_unref (G_OBJECT (builder));
+	//gtk_builder_connect_signals (builder, NULL);
+	//gtk_builder_add_callback_symbol (builder, "gpio_4_button_pressed_cb", (void*) gpio_4_button_pressed_cb);
+
 	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);
 
 
 	// Terminate application when window is destroyed.
 	g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
-
 	// Client
     connect_server();
-    sendData(CTRL_LED_ON); sendData(4);
+    sendData(CTRL_LED_ON); sendData(27);
     g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) read_server, (gpointer) &DATA);
 
 	// GTK event loop.
@@ -90,7 +89,8 @@ int main (int argc, char* argv[])
 
 
 	// Close server
-	sendData(CTRL_LED_OFF); sendData(4);
+	g_object_unref (G_OBJECT (builder));
+	sendData(CTRL_LED_OFF); sendData(27);
 	sendData(-1);
 	close(SOCKFD);
 

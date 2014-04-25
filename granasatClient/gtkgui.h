@@ -18,9 +18,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include "packet.h"
+#include "client.h"
 
 // Files
-#define FILEGLADE "client_design2.glade"
+#define FILEGLADE "client_design.glade"
 
 
 /**
@@ -154,6 +155,21 @@ static inline void add_terminal (GtkBuilder* builder) {
 	terminal = GTK_WIDGET (gtk_builder_get_object (builder, "terminal1"));
 	gtk_widget_show (terminal);
 }
+
+
+void gpio_4_button_pressed_cb(GtkToggleButton *button, gpointer data);
+void gpio_4_button_released_cb(GtkToggleButton *button, gpointer data);
+
+/**
+ * Adds buttons.
+ */
+static inline void add_buttons (GtkBuilder* builder) {
+	GtkWidget* gpio_button;
+	gpio_button = GTK_WIDGET (gtk_builder_get_object (builder, "gpio_4_button"));
+	g_signal_connect (GTK_WIDGET(gpio_button), "pressed", G_CALLBACK(gpio_4_button_pressed_cb), NULL);
+	gtk_widget_show (gpio_button);
+}
+
 
 
 #endif /* GTKGUI_H_ */
