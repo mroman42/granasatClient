@@ -18,12 +18,12 @@ const int IMAGE_WINDOW_BORDER_WIDTH = 0;
 const char IMAGE_FILE [] = "./images/image_received.data";
 
 // Messages
-char* MSG_CPU_TEMP      = "CPU Temperature:\t\t %5d ºC";
-char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
-char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
+char* MSG_CPU_TEMP      = "CPU Temperature:\t\t %4.3f ºC";
+char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %4.3f ºC";
+char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %4.3f ºC";
 char* MSG_ETHERNET_LIM  = "Ethernet speed:\t %5d Kbps";
-char* MSG_MAGNETOMETER_DATA = "Magnetometer data (Gauss):\n\tX: %5f\n\tY: %5f\n\tZ: %5f";
-char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %5f\n\tY: %5f\n\tZ: %5f";
+char* MSG_MAGNETOMETER_DATA = "Magnetometer data (Gauss):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
+char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
 
 
 gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
@@ -44,8 +44,6 @@ gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label) {
 
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
 	// Reads Inner Box Temperature
-	//int upperbox_temperature = DATA.temp.highByte;
-
 	float upperbox_temperature;
 
 	if(DATA.temp.lowByte == 128 ) {
@@ -54,7 +52,7 @@ gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
 	else {
 		upperbox_temperature = DATA.temp.highByte;
 	}
-
+	upperbox_temperature = 60.5;
 
 	// Refreshes temperature label
 	return refreshLabel (temperature_label, MSG_UPPERBOX_TEMP, upperbox_temperature);
@@ -85,7 +83,7 @@ gboolean refreshEthernetLimit (GtkLabel* ethernet_label) {
 	return refreshLabel (ethernet_label, MSG_ETHERNET_LIM, ethernet_limit);
 }
 
-gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
+gboolean refreshLabel (GtkLabel* label, char* text, float new_value) {
 	// Uses a buffer to print the new value in the text.
 	char buffer[100];
 	sprintf(buffer, text, new_value);

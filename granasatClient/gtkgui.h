@@ -54,7 +54,7 @@ GtkWidget* drawing_area2;
 /**
  * Refreshes a label with given new value.
  */
-gboolean refreshLabel (GtkLabel* label, char* text, int new_value);
+gboolean refreshLabel (GtkLabel* label, char* text, float new_value);
 
 /**
  * Rewrites CPU, inner box and upper box temperatures.
