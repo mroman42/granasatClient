@@ -22,6 +22,8 @@ char* MSG_CPU_TEMP      = "CPU Temperature:\t\t %5d ºC";
 char* MSG_INNERBOX_TEMP = "Inner Box Temperature:\t %5d ºC";
 char* MSG_UPPERBOX_TEMP = "Upper Box Temperature:\t %5d ºC";
 char* MSG_ETHERNET_LIM  = "Ethernet speed:\t %5d Kbps";
+char* MSG_MAGNETOMETER_DATA = "Magnetometer data (Gauss):\n\tX: %5f\n\tY: %5f\n\tZ: %5f";
+char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %5f\n\tY: %5f\n\tZ: %5f";
 
 
 gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
@@ -44,21 +46,38 @@ gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
 	// Reads Inner Box Temperature
 	//int upperbox_temperature = DATA.temp.highByte;
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	float upperbox_temperature;
 
-	if(DATA.temp.lowByte == 128 ){
+	if(DATA.temp.lowByte == 128 ) {
 		upperbox_temperature = DATA.temp.highByte+0.5;
 	}
-	else{
+	else {
 		upperbox_temperature = DATA.temp.highByte;
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Refreshes temperature label
 	return refreshLabel (temperature_label, MSG_UPPERBOX_TEMP, upperbox_temperature);
 }
+
+gboolean refreshMagnetometer (GtkLabel* mag_label) {
+	char buffer[100];
+	sprintf(buffer, MSG_MAGNETOMETER_DATA, MAG[0],MAG[1],MAG[2]);
+	gtk_label_set_text (mag_label, buffer);
+
+	printf("REFRESHMAGNETOMETER\n");
+
+	return 1;
+}
+
+gboolean refreshAccelerometer (GtkLabel* acc_label) {
+	char buffer[100];
+	//sprintf(buffer, MSG_ACCELEROMETER_DATA, ACC[0],ACC[1],ACC[2]);
+	gtk_label_set_text (acc_label, buffer);
+
+	return 1;
+}
+
 
 gboolean refreshEthernetLimit (GtkLabel* ethernet_label) {
 	// Reads Ethernet Limit

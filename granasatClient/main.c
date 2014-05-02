@@ -58,6 +58,7 @@ int main (int argc, char* argv[])
 
 	// Add widgets.
 	add_temperature_labels (builder);
+	add_data_labels (builder);
 	add_ethernet_slider (builder, main_container);
 	add_plots (builder, magnetometer_measures, accelerometer_measures);
 	add_image_window();

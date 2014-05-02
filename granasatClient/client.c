@@ -73,24 +73,15 @@ gboolean read_server (struct packet* data) {
 	if ((read(SOCKFD,&DATA.magnetometer,sizeof(unsigned char[6])) ) < 0)
 				perror("ERROR reading Magnetometer from socket");
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*printf("Magnetometer data: %u,%u,%u,%u,%u,%u\n",
-		DATA.magnetometer[0],DATA.magnetometer[1],
-		DATA.magnetometer[2],DATA.magnetometer[3],
-		DATA.magnetometer[4],DATA.magnetometer[5]);
-		*/
 	int16_t m[3];
 	*m = (int16_t)(DATA.magnetometer[1] | DATA.magnetometer[0] << 8);
-	*(m+1) = (int16_t)(DATA.magnetometer[5] | DATA.magnetometer[4] << 8) ;
-	*(m+2) = (int16_t)(DATA.magnetometer[3] | DATA.magnetometer[2] << 8) ;
+	*(m+1) = (int16_t)(DATA.magnetometer[5] | DATA.magnetometer[4] << 8);
+	*(m+2) = (int16_t)(DATA.magnetometer[3] | DATA.magnetometer[2] << 8);
+	*(MAG+0) = (float) *(m+0)/M_XY_GAIN;
+	*(MAG+1) = (float) *(m+1)/M_XY_GAIN;
+	*(MAG+2) = (float) *(m+2)/M_Z_GAIN;
 
-	float mag[3];
-	*(mag+0) = (float) *(m+0)/M_XY_GAIN;
-	*(mag+1) = (float) *(m+1)/M_XY_GAIN;
-	*(mag+2) = (float) *(m+2)/M_Z_GAIN;
-
-	printf("Magnetometer data (Gauss): X: %4.3f; Y: %4.3f; Z: %4.3f\n", 	mag[0],mag[1],mag[2]);
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	printf("Magnetometer data (Gauss): X: %4.3f; Y: %4.3f; Z: %4.3f\n", MAG[0],MAG[1],MAG[2]);
 
 	// Accelerometer
 	printf("\tSending accelerometer request...");

@@ -40,6 +40,8 @@ extern struct packet DATA;
 //extern void add_magnetometer_measure (int);
 
 struct packet DATA;
+float MAG[3];
+
 
 // Functions.
 

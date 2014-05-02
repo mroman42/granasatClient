@@ -43,7 +43,8 @@ char* MSG_CPU_TEMP;
 char* MSG_INNERBOX_TEMP;
 char* MSG_UPPERBOX_TEMP;
 char* MSG_ETHERNET_LIM;
-
+char* MSG_MAGNETOMETER_DATA;
+char* MSG_ACCELEROMETER_DATA;
 
 
 /**
@@ -57,6 +58,12 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value);
 gboolean refreshCPUTemperature (GtkLabel* temp_label);
 gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label);
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label);
+
+/**
+ * Rewrites magnetometer and accelerometer data.
+ */
+gboolean refreshMagnetometer (GtkLabel* mag_label);
+gboolean refreshAccelerometer (GtkLabel* acc_label);
 
 /**
  * Rewrites Ethernet Limit.
@@ -120,7 +127,7 @@ static inline void add_data_labels (GtkBuilder* builder) {
 	accelerometer_data_label = GTK_WIDGET (gtk_builder_get_object (builder, "accelerometer_data_label"));
 	gtk_widget_show (magnetometer_data_label);
 	gtk_widget_show (accelerometer_data_label);
-	//g_timeout_add ();
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshMagnetometer, (gpointer) magnetometer_data_label);
 }
 
 /**
