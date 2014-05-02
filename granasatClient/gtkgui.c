@@ -84,6 +84,12 @@ gboolean refreshLabel (GtkLabel* label, char* text, float new_value) {
 	return 1;
 }
 
+gboolean refreshImage (GtkWidget* image) {
+	gtk_image_set_from_file(image, IMAGE_FILE);
+
+	return 1;
+}
+
 void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 	float* measures = (float*) user_data;
 

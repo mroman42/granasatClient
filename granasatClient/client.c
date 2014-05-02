@@ -108,7 +108,7 @@ gboolean read_server (struct packet* data) {
 	int num_bytes_received = getImage(image_stream);
 
 	// Store the image in a file called image_received_n.data
-	sprintf(string, "images/image_received_%d.data", n);
+	/*sprintf(string, "images/image_received_%d.data", n);
 	raw_image = fopen(string, "w");
 	fwrite(image_stream, 1, IMAGE_SIZE, raw_image);
 
@@ -123,7 +123,7 @@ gboolean read_server (struct packet* data) {
 		return 0;
 	}
 	else
-		printf("Fork with PID: %d\n",PID);
+		printf("Fork with PID: %d\n",PID);*/
 
 	// Some debugging information
 	printf("Iteration %d, number of bytes received:\t%d\n", n, num_bytes_received );

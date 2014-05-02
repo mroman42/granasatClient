@@ -76,10 +76,17 @@ gboolean refreshAccelerometer (GtkLabel* acc_label);
 gboolean refreshEthernetLimit (GtkLabel* ethernet_label);
 
 /**
+ * New image
+ */
+gboolean refreshImage (GtkWidget* image);
+
+/**
  * Draws a graph using Cairo.
  */
 void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
-//void drawMagnetometer();
+
+
+
 
 
 static inline gboolean send_redraw_signals (GtkBuilder* builder) {
@@ -179,6 +186,9 @@ static inline void add_image_window () {
 	image = gtk_image_new_from_file(IMAGE_FILE); // gtk_image_set_from_file
 	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
 	gtk_widget_show(image);
+
+	// Refresh image
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshImage, (gpointer) image);
 }
 
 /**
