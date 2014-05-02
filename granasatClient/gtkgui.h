@@ -46,6 +46,10 @@ char* MSG_ETHERNET_LIM;
 char* MSG_MAGNETOMETER_DATA;
 char* MSG_ACCELEROMETER_DATA;
 
+// Drawing areas
+GtkWidget* drawing_area1;
+GtkWidget* drawing_area2;
+
 
 /**
  * Refreshes a label with given new value.
@@ -74,25 +78,33 @@ gboolean refreshEthernetLimit (GtkLabel* ethernet_label);
 /**
  * Draws a graph using Cairo.
  */
-gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
+void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
 
 
+
+static inline gboolean send_redraw_signals (GtkBuilder* builder) {
+	//g_signal_emit_by_name(drawing_area1, "draw");
+	//g_signal_emit_by_name(drawing_area2, "draw");
+
+	return 1;
+}
 
 /**
  * Adds the magnetometer and accelerometer drawing areas.
  * @param builder GTK builder.
  */
  static inline void add_plots (GtkBuilder* builder, int* magnetometer_measures, int* accelerometer_measures) {
-	GtkWidget* drawing_area1 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea1"));
+	drawing_area1 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea1"));
 	gtk_widget_show (drawing_area1);
-	g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), magnetometer_measures);
+	g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), MAG);
 
-	GtkWidget* drawing_area2 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea2"));
+	drawing_area2 = GTK_WIDGET (gtk_builder_get_object (builder, "drawingarea2"));
 	gtk_widget_show (drawing_area2);
-	g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), accelerometer_measures);
+	g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), ACC);
 
-	//g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) drawGraph, (gpointer) &DATA);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) send_redraw_signals, (gpointer) builder);
 }
+
 
 /**
  * Write temperature labels.
@@ -128,6 +140,7 @@ static inline void add_data_labels (GtkBuilder* builder) {
 	gtk_widget_show (magnetometer_data_label);
 	gtk_widget_show (accelerometer_data_label);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshMagnetometer, (gpointer) magnetometer_data_label);
+	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshAccelerometer, (gpointer) accelerometer_data_label);
 }
 
 /**

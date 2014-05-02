@@ -65,14 +65,12 @@ gboolean refreshMagnetometer (GtkLabel* mag_label) {
 	sprintf(buffer, MSG_MAGNETOMETER_DATA, MAG[0],MAG[1],MAG[2]);
 	gtk_label_set_text (mag_label, buffer);
 
-	printf("REFRESHMAGNETOMETER\n");
-
 	return 1;
 }
 
 gboolean refreshAccelerometer (GtkLabel* acc_label) {
 	char buffer[100];
-	//sprintf(buffer, MSG_ACCELEROMETER_DATA, ACC[0],ACC[1],ACC[2]);
+	sprintf(buffer, MSG_ACCELEROMETER_DATA, ACC[0],ACC[1],ACC[2]);
 	gtk_label_set_text (acc_label, buffer);
 
 	return 1;
@@ -97,31 +95,34 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
 	return 1;
 }
 
-gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
-	int* measures = (int*) user_data;
-	int i;
+void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
+	float* measures = (float*) user_data;
 
 	// Cairo initializing
 	cairo_set_source_rgb(cr, 1, 1, 1);
 	cairo_paint(cr);
 
 	// Axis
+	const float HEIGHT = 200;
+	const float WIDTH  = 300;
+	const float SIN_60 = 0.8660254037844386;
+
 	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
-	cairo_move_to (cr, 0.0, 175.0);
-	cairo_line_to (cr, 300.0, 175.0);
-	cairo_move_to (cr, 25.0, 0.0);
-	cairo_line_to (cr, 25.0, 200.0);
+	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+	cairo_line_to (cr, WIDTH/2, 0.0);
+	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+	cairo_line_to (cr, WIDTH/2 + 2*HEIGHT/3*SIN_60,HEIGHT);
+	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+	cairo_line_to (cr, WIDTH/2 - 2*HEIGHT/3*SIN_60,HEIGHT);
 	cairo_stroke (cr);
 
-	// Link each data point
-	for (i = 0; i < 30; i ++)
-		cairo_line_to (cr, i*10.0, 175.0-measures[i]);
+	// Vector
+	printf("Measures: %5f,%5f,%5f", measures[0],measures[1],measures[2]);
 
-	// Draw the curve
 	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
+	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+	cairo_line_to (cr, WIDTH/2 + SIN_60*measures[0]*4 -  SIN_60*measures[1]*4 , 2*HEIGHT/3-measures[2]*4);
 	cairo_stroke (cr);
-
-	return 1;
 }
 
 

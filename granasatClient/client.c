@@ -91,24 +91,16 @@ gboolean read_server (struct packet* data) {
 	if ((read(SOCKFD,&DATA.accelerometer,sizeof(unsigned char[6])) ) < 0)
 					perror("ERROR reading Accelerometer from socket");
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*printf("Accelerometer data: %u,%u,%u,%u,%u,%u\n",
-			DATA.accelerometer[0],DATA.accelerometer[1],
-			DATA.aqccelerometer[2],DATA.accelerometer[3],
-			DATA.accelerometer[4],DATA.accelerometer[5]);*/
-
 	int16_t a[3];
 	*a = (int16_t)(DATA.accelerometer[0] | DATA.accelerometer[1] << 8) >> 4;
 	*(a+1) = (int16_t)(DATA.accelerometer[2] | DATA.accelerometer[3] << 8) >> 4;
 	*(a+2) = (int16_t)(DATA.accelerometer[4] | DATA.accelerometer[5] << 8) >> 4;
 
-	float acc[3];
-	*(acc+0) = (float) *(a+0)*A_GAIN;
-	*(acc+1) = (float) *(a+1)*A_GAIN;
-	*(acc+2) = (float) *(a+2)*A_GAIN;
+	*(ACC+0) = (float) *(a+0)*A_GAIN;
+	*(ACC+1) = (float) *(a+1)*A_GAIN;
+	*(ACC+2) = (float) *(a+2)*A_GAIN;
 
-	printf("Accelerometer data (G): X: %4.3f; Y: %4.3f; Z: %4.3f\n", 	acc[0],acc[1],acc[2]);
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	printf("Accelerometer data (G): X: %4.3f; Y: %4.3f; Z: %4.3f\n", ACC[0],ACC[1],ACC[2]);
 
 	// Image
 	// Receive the image

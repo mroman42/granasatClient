@@ -39,8 +39,10 @@ extern const int IMAGE_SIZE;
 extern struct packet DATA;
 //extern void add_magnetometer_measure (int);
 
+// Global data
 struct packet DATA;
 float MAG[3];
+float ACC[3];
 
 
 // Functions.
