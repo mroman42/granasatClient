@@ -125,6 +125,35 @@ void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 	cairo_stroke (cr);
 }
 
+//void drawMagnetometer() {
+//	// Cairo initializing
+//	cairo_t* cr;
+//	cairo_set_source_rgb(cr, 1, 1, 1);
+//	cairo_paint(cr);
+//
+//	// Axis
+//	const float HEIGHT = 200;
+//	const float WIDTH  = 300;
+//	const float SIN_60 = 0.8660254037844386;
+//
+//	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+//	cairo_line_to (cr, WIDTH/2, 0.0);
+//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+//	cairo_line_to (cr, WIDTH/2 + 2*HEIGHT/3*SIN_60,HEIGHT);
+//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+//	cairo_line_to (cr, WIDTH/2 - 2*HEIGHT/3*SIN_60,HEIGHT);
+//	cairo_stroke (cr);
+//
+//	// Vector
+//	printf("Measures: %5f,%5f,%5f", MAG[0],MAG[1],MAG[2]);
+//
+//	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
+//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
+//	cairo_line_to (cr, WIDTH/2 + SIN_60*MAG[0]*4 -  SIN_60*MAG[1]*4 , 2*HEIGHT/3-MAG[2]*4);
+//	cairo_stroke (cr);
+//}
+
 
 void gpio_4_button_toggled_cb (GtkToggleButton *button, gpointer data) {
 	if (gtk_toggle_button_get_active(button)) {

@@ -79,12 +79,12 @@ gboolean refreshEthernetLimit (GtkLabel* ethernet_label);
  * Draws a graph using Cairo.
  */
 void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
-
+//void drawMagnetometer();
 
 
 static inline gboolean send_redraw_signals (GtkBuilder* builder) {
-	//g_signal_emit_by_name(drawing_area1, "draw");
-	//g_signal_emit_by_name(drawing_area2, "draw");
+	gtk_widget_queue_draw(drawing_area1);
+	gtk_widget_queue_draw(drawing_area2);
 
 	return 1;
 }
