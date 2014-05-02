@@ -107,6 +107,22 @@ static inline void add_temperature_labels (GtkBuilder* builder) {
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
 }
 
+
+/**
+ * Write data labels.
+ * @param builder GTK builder.
+ */
+static inline void add_data_labels (GtkBuilder* builder) {
+	GtkWidget* magnetometer_data_label;
+	GtkWidget* accelerometer_data_label;
+
+	magnetometer_data_label = GTK_WIDGET (gtk_builder_get_object  (builder, "magnetometer_data_label"));
+	accelerometer_data_label = GTK_WIDGET (gtk_builder_get_object (builder, "accelerometer_data_label"));
+	gtk_widget_show (magnetometer_data_label);
+	gtk_widget_show (accelerometer_data_label);
+	//g_timeout_add ();
+}
+
 /**
  * Adds ethernet slider.
  */

@@ -94,8 +94,8 @@
             <property name="stock">gtk-media-record</property>
           </object>
           <packing>
-            <property name="x">57</property>
-            <property name="y">250</property>
+            <property name="x">779</property>
+            <property name="y">51</property>
           </packing>
         </child>
         <child>
@@ -107,8 +107,8 @@
             <property name="stock">gtk-media-record</property>
           </object>
           <packing>
-            <property name="x">151</property>
-            <property name="y">250</property>
+            <property name="x">882</property>
+            <property name="y">50</property>
           </packing>
         </child>
         <child>
@@ -120,8 +120,8 @@
             <property name="label" translatable="yes">Raspberry</property>
           </object>
           <packing>
-            <property name="x">20</property>
-            <property name="y">250</property>
+            <property name="x">740</property>
+            <property name="y">67</property>
           </packing>
         </child>
         <child>
@@ -133,8 +133,8 @@
             <property name="label" translatable="yes">Ethernet</property>
           </object>
           <packing>
-            <property name="x">112</property>
-            <property name="y">250</property>
+            <property name="x">844</property>
+            <property name="y">66</property>
           </packing>
         </child>
         <child>
@@ -187,6 +187,39 @@
           <packing>
             <property name="x">630</property>
             <property name="y">343</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="magnetometer_data_label">
+            <property name="width_request">100</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Magnetometer data (Gauss):
+	X:  ??
+	Y:  ??
+	Z:  ??
+</property>
+          </object>
+          <packing>
+            <property name="x">42</property>
+            <property name="y">246</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="accelerometer_data_label">
+            <property name="width_request">100</property>
+            <property name="height_request">20</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Accelerometer data (G):
+	X:  ??
+	Y:  ??
+	Z:  ??</property>
+          </object>
+          <packing>
+            <property name="x">405</property>
+            <property name="y">247</property>
           </packing>
         </child>
       </object>
