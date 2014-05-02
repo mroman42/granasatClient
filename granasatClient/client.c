@@ -8,7 +8,6 @@
 
 #include "client.h"
 
-
 void connect_server () {
 	int sockfd, portno = 51717;
 	struct sockaddr_in serv_addr;
@@ -47,31 +46,31 @@ gboolean read_server (struct packet* data) {
 	static int n = 0;
 
 
-    unsigned char image_stream[IMAGE_SIZE];
-    FILE* raw_image;
-    char string[80];
+	unsigned char image_stream[IMAGE_SIZE];
+	FILE* raw_image;
+	char string[80];
 
 	printf("Reading server...\n");
 
 	// Temperature
-    printf("\tSending temperature request...");
-    sendData(REQ_TEMP);
+	printf("\tSending temperature request...");
+	sendData(REQ_TEMP);
 
-    printf("Receiving temperature...");
-    if ((read(SOCKFD, &DATA.temp.highByte,sizeof(signed char)) ) < 0)
-        	perror("ERROR reading Temp.HighByte from socket");
-    if ((read(SOCKFD, &DATA.temp.lowByte, sizeof(unsigned char)) ) < 0)
-            perror("ERROR reading Temp.LowByte from socket");
-    printf("Temperature received.\n");
+	printf("Receiving temperature...");
+	if ((read(SOCKFD, &DATA.temp.highByte,sizeof(signed char)) ) < 0)
+		perror("ERROR reading Temp.HighByte from socket");
+	if ((read(SOCKFD, &DATA.temp.lowByte, sizeof(unsigned char)) ) < 0)
+		perror("ERROR reading Temp.LowByte from socket");
+	printf("Temperature received.\n");
 
 
-    // Magnetometer
+	// Magnetometer
 	printf("\tSending magnetometer request...");
 	sendData(REQ_MAGN);
 
 	printf("Receiving magnetometer data...");
 	if ((read(SOCKFD,&DATA.magnetometer,sizeof(unsigned char[6])) ) < 0)
-				perror("ERROR reading Magnetometer from socket");
+		perror("ERROR reading Magnetometer from socket");
 
 	int16_t m[3];
 	*m = (int16_t)(DATA.magnetometer[1] | DATA.magnetometer[0] << 8);
@@ -89,7 +88,7 @@ gboolean read_server (struct packet* data) {
 
 	printf("Receiving accelerometer data...");
 	if ((read(SOCKFD,&DATA.accelerometer,sizeof(unsigned char[6])) ) < 0)
-					perror("ERROR reading Accelerometer from socket");
+		perror("ERROR reading Accelerometer from socket");
 
 	int16_t a[3];
 	*a = (int16_t)(DATA.accelerometer[0] | DATA.accelerometer[1] << 8) >> 4;
@@ -104,14 +103,27 @@ gboolean read_server (struct packet* data) {
 
 	// Image
 	// Receive the image
-    printf("\tSending image request...");
-    sendData(REQ_IMAG);
+	printf("\tSending image request...");
+	sendData(REQ_IMAG);
 	int num_bytes_received = getImage(image_stream);
 
 	// Store the image in a file called image_received_n.data
 	sprintf(string, "images/image_received_%d.data", n);
 	raw_image = fopen(string, "w");
 	fwrite(image_stream, 1, IMAGE_SIZE, raw_image);
+
+	//Save the image in jpg format calling to another program
+	pid_t PID = fork();
+
+	char string_write[200];
+	sprintf(string_write, "images/sample%d.jpg", 1);
+
+	if (PID == 0){
+		execl("AuxiliarPrograms/main", "main", string, string_write, (char*) NULL);
+		return 0;
+	}
+	else
+		printf("Fork with PID: %d\n",PID);
 
 	// Some debugging information
 	printf("Iteration %d, number of bytes received:\t%d\n", n, num_bytes_received );
@@ -122,17 +134,17 @@ gboolean read_server (struct packet* data) {
 
 
 void sendData(int x) {
-    char buffer[32];
-    int n;
+	char buffer[32];
+	int n;
 
-    // Prints to a buffer.
-    sprintf( buffer, "%d\n", x );
+	// Prints to a buffer.
+	sprintf( buffer, "%d\n", x );
 
-    // Sends to the server.
-    if ((n = write(SOCKFD, buffer, strlen(buffer))) < 0 )
-    	perror("ERROR writing to socket");
+	// Sends to the server.
+	if ((n = write(SOCKFD, buffer, strlen(buffer))) < 0 )
+		perror("ERROR writing to socket");
 
-    buffer[n] = '\0';
+	buffer[n] = '\0';
 }
 
 

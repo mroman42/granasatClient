@@ -12,7 +12,7 @@
  * Constants and messages
  */
 // Windows
-const int REFRESH_INTERVAL = 1000;
+const int REFRESH_INTERVAL = 50;
 const int MAIN_WINDOW_BORDER_WIDTH = 20;
 const int IMAGE_WINDOW_BORDER_WIDTH = 0;
 const char IMAGE_FILE [] = "./images/sample1.jpg";
@@ -44,7 +44,6 @@ gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
 	else {
 		upperbox_temperature = DATA.temp.highByte;
 	}
-	upperbox_temperature = 60.5;
 
 	// Refreshes temperature label
 	return refreshLabel (temperature_label, MSG_UPPERBOX_TEMP, upperbox_temperature);
