@@ -61,8 +61,8 @@ int main (int argc, char* argv[])
 	add_data_labels (builder);
 	add_ethernet_slider (builder, main_container);
 	add_plots (builder, magnetometer_measures, accelerometer_measures);
-	add_image_window();
-	add_buttons(builder);
+	add_image_window ();
+	add_buttons (builder);
 
 	// Building.
 	gtk_window_set_keep_above ( (GtkWindow *) main_window, TRUE);

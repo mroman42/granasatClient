@@ -112,17 +112,13 @@ static inline gboolean send_redraw_signals (GtkBuilder* builder) {
  */
 static inline void add_temperature_labels (GtkBuilder* builder) {
 	GtkWidget* cpu_temperature_label;
-	GtkWidget* innerbox_temperature_label;
 	GtkWidget* upperbox_temperature_label;
 
 	cpu_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "cpu_temperature_label"));
-	innerbox_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "inner_temperature_label"));
 	upperbox_temperature_label = GTK_WIDGET (gtk_builder_get_object (builder, "upper_temperature_label"));
 	gtk_widget_show (cpu_temperature_label);
-	gtk_widget_show (innerbox_temperature_label);
 	gtk_widget_show (upperbox_temperature_label);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshCPUTemperature, (gpointer) cpu_temperature_label);
-	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshInnerBoxTemperature, (gpointer) innerbox_temperature_label);
 	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshUpperBoxTemperature, (gpointer) upperbox_temperature_label);
 }
 
@@ -180,7 +176,7 @@ static inline void add_image_window () {
 	gtk_widget_show(image_container);
 
 	// Show sample image
-	image = gtk_image_new_from_file(IMAGE_FILE);
+	image = gtk_image_new_from_file(IMAGE_FILE); // gtk_image_set_from_file
 	gtk_fixed_put (GTK_FIXED (image_container), image, 0, 0);
 	gtk_widget_show(image);
 }

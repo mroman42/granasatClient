@@ -15,7 +15,7 @@
 const int REFRESH_INTERVAL = 1000;
 const int MAIN_WINDOW_BORDER_WIDTH = 20;
 const int IMAGE_WINDOW_BORDER_WIDTH = 0;
-const char IMAGE_FILE [] = "./images/image_received.data";
+const char IMAGE_FILE [] = "./images/sample1.jpg";
 
 // Messages
 char* MSG_CPU_TEMP      = "CPU Temperature:\t\t %4.3f ºC";
@@ -32,14 +32,6 @@ gboolean refreshCPUTemperature (GtkLabel* temperature_label) {
 
 	// Refreshes temperature label
 	return refreshLabel (temperature_label, MSG_CPU_TEMP, cpu_temperature);
-}
-
-gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label) {
-	// Reads Inner Box Temperature
-	int innerbox_temperature = DATA.temp.lowByte;
-
-	// Refreshes temperature label
-	return refreshLabel (temperature_label, MSG_INNERBOX_TEMP, innerbox_temperature);
 }
 
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
@@ -115,42 +107,11 @@ void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 	cairo_stroke (cr);
 
 	// Vector
-	printf("Measures: %5f,%5f,%5f", measures[0],measures[1],measures[2]);
-
 	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
 	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
 	cairo_line_to (cr, WIDTH/2 + SIN_60*measures[0]*4 -  SIN_60*measures[1]*4 , 2*HEIGHT/3-measures[2]*4);
 	cairo_stroke (cr);
 }
-
-//void drawMagnetometer() {
-//	// Cairo initializing
-//	cairo_t* cr;
-//	cairo_set_source_rgb(cr, 1, 1, 1);
-//	cairo_paint(cr);
-//
-//	// Axis
-//	const float HEIGHT = 200;
-//	const float WIDTH  = 300;
-//	const float SIN_60 = 0.8660254037844386;
-//
-//	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
-//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
-//	cairo_line_to (cr, WIDTH/2, 0.0);
-//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
-//	cairo_line_to (cr, WIDTH/2 + 2*HEIGHT/3*SIN_60,HEIGHT);
-//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
-//	cairo_line_to (cr, WIDTH/2 - 2*HEIGHT/3*SIN_60,HEIGHT);
-//	cairo_stroke (cr);
-//
-//	// Vector
-//	printf("Measures: %5f,%5f,%5f", MAG[0],MAG[1],MAG[2]);
-//
-//	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
-//	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
-//	cairo_line_to (cr, WIDTH/2 + SIN_60*MAG[0]*4 -  SIN_60*MAG[1]*4 , 2*HEIGHT/3-MAG[2]*4);
-//	cairo_stroke (cr);
-//}
 
 
 void gpio_4_button_toggled_cb (GtkToggleButton *button, gpointer data) {
