@@ -42,7 +42,19 @@ gboolean refreshInnerBoxTemperature (GtkLabel* temperature_label) {
 
 gboolean refreshUpperBoxTemperature (GtkLabel* temperature_label) {
 	// Reads Inner Box Temperature
-	int upperbox_temperature = DATA.temp.highByte;
+	//int upperbox_temperature = DATA.temp.highByte;
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	float upperbox_temperature;
+
+	if(DATA.temp.lowByte == 128 ){
+		upperbox_temperature = DATA.temp.highByte+0.5;
+	}
+	else{
+		upperbox_temperature = DATA.temp.highByte;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Refreshes temperature label
 	return refreshLabel (temperature_label, MSG_UPPERBOX_TEMP, upperbox_temperature);
@@ -65,7 +77,6 @@ gboolean refreshLabel (GtkLabel* label, char* text, int new_value) {
 	// Returning True makes the loop continue
 	return 1;
 }
-
 
 gboolean drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 	int* measures = (int*) user_data;

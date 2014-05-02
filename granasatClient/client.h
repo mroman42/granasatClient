@@ -22,6 +22,15 @@
 #include <netdb.h>
 #include "packet.h"
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Gain value depends of FS and GN value (view at function enableLSM303() at sensor.c)
+#define A_GAIN 0.004    	//[G/LSB] FS=10
+#define M_XY_GAIN 1100   	//[LSB/Gauss] GN=001
+#define M_Z_GAIN 980	//[LSB/Gauss] GN=001
+#define T_GAIN 8	//[LSB/ºC]
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 // Constants
 static int SOCKFD;
 //static char SERVER_IP [] = "192.168.0.200"; // Raspberry IP.

@@ -39,7 +39,7 @@ void connect_server () {
 	printf("Connected\n");
 
 	SOCKFD = sockfd;
-	printf("Socket FD: %d\n", sockfd);
+	printf("Socket FD: %d\n", SOCKFD);
 }
 
 
@@ -64,31 +64,60 @@ gboolean read_server (struct packet* data) {
             perror("ERROR reading Temp.LowByte from socket");
     printf("Temperature received.\n");
 
+
     // Magnetometer
-    printf("\tSending magnetometer request...");
-    sendData(REQ_MAGN);
+	printf("\tSending magnetometer request...");
+	sendData(REQ_MAGN);
 
-    printf("Receiving magnetometer data...");
-    if ((read(SOCKFD,&DATA.magnetometer,sizeof(unsigned char[6])) ) < 0)
-            	perror("ERROR reading Magnetometer from socket");
-    printf("Magnetometer data: %u,%u,%u,%u,%u,%u\n",
-    	DATA.magnetometer[0],DATA.magnetometer[1],
-    	DATA.magnetometer[2],DATA.magnetometer[3],
-    	DATA.magnetometer[4],DATA.magnetometer[5]);
+	printf("Receiving magnetometer data...");
+	if ((read(SOCKFD,&DATA.magnetometer,sizeof(unsigned char[6])) ) < 0)
+				perror("ERROR reading Magnetometer from socket");
 
-    add_magnetometer_measure(DATA.magnetometer[0]);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*printf("Magnetometer data: %u,%u,%u,%u,%u,%u\n",
+		DATA.magnetometer[0],DATA.magnetometer[1],
+		DATA.magnetometer[2],DATA.magnetometer[3],
+		DATA.magnetometer[4],DATA.magnetometer[5]);
+		*/
+	int16_t m[3];
+	*m = (int16_t)(DATA.magnetometer[1] | DATA.magnetometer[0] << 8);
+	*(m+1) = (int16_t)(DATA.magnetometer[5] | DATA.magnetometer[4] << 8) ;
+	*(m+2) = (int16_t)(DATA.magnetometer[3] | DATA.magnetometer[2] << 8) ;
 
-    // Accelerometer
-    printf("\tSending accelerometer request...");
-    sendData(REQ_ACCE);
+	float mag[3];
+	*(mag+0) = (float) *(m+0)/M_XY_GAIN;
+	*(mag+1) = (float) *(m+1)/M_XY_GAIN;
+	*(mag+2) = (float) *(m+2)/M_Z_GAIN;
 
-    printf("Receiving accelerometer data...");
-    if ((read(SOCKFD,&DATA.accelerometer,sizeof(unsigned char[6])) ) < 0)
-                	perror("ERROR reading Accelerometer from socket");
-    printf("Accelerometer data: %u,%u,%u,%u,%u,%u\n",
-        	DATA.accelerometer[0],DATA.accelerometer[1],
-        	DATA.accelerometer[2],DATA.accelerometer[3],
-        	DATA.accelerometer[4],DATA.accelerometer[5]);
+	printf("Magnetometer data (Gauss): X: %4.3f; Y: %4.3f; Z: %4.3f\n", 	mag[0],mag[1],mag[2]);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// Accelerometer
+	printf("\tSending accelerometer request...");
+	sendData(REQ_ACCE);
+
+	printf("Receiving accelerometer data...");
+	if ((read(SOCKFD,&DATA.accelerometer,sizeof(unsigned char[6])) ) < 0)
+					perror("ERROR reading Accelerometer from socket");
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*printf("Accelerometer data: %u,%u,%u,%u,%u,%u\n",
+			DATA.accelerometer[0],DATA.accelerometer[1],
+			DATA.aqccelerometer[2],DATA.accelerometer[3],
+			DATA.accelerometer[4],DATA.accelerometer[5]);*/
+
+	int16_t a[3];
+	*a = (int16_t)(DATA.accelerometer[0] | DATA.accelerometer[1] << 8) >> 4;
+	*(a+1) = (int16_t)(DATA.accelerometer[2] | DATA.accelerometer[3] << 8) >> 4;
+	*(a+2) = (int16_t)(DATA.accelerometer[4] | DATA.accelerometer[5] << 8) >> 4;
+
+	float acc[3];
+	*(acc+0) = (float) *(a+0)*A_GAIN;
+	*(acc+1) = (float) *(a+1)*A_GAIN;
+	*(acc+2) = (float) *(a+2)*A_GAIN;
+
+	printf("Accelerometer data (G): X: %4.3f; Y: %4.3f; Z: %4.3f\n", 	acc[0],acc[1],acc[2]);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Image
 	// Receive the image
@@ -141,6 +170,3 @@ int getImage(unsigned char* image_data) {
 
 	return bytes_received;
 }
-
-
-
