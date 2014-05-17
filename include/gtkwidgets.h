@@ -12,6 +12,10 @@
 
 #include <gtk/gtk.h>
 
+/**
+ * Main Window
+ */
 GtkWidget* add_main_window ();
+
 
 #endif

@@ -11,6 +11,7 @@
 #define GTKGUI_H
 
 #include <gtk/gtk.h>
+#include "gtkwidgets.h"
 
 /**
  * Initializes GTK-GUI.

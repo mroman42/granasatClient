@@ -10,4 +10,5 @@
 
 GtkWidget* add_main_window () {
     
+    return 0;
 }
