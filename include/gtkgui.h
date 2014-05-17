@@ -1,5 +1,5 @@
 /**
- * main.c
+ * gtkgui.h
  * granaSAT.Client
  *
  *  Created on: May 17, 2014
@@ -11,5 +11,12 @@
 #define GTKGUI_H
 
 #include <gtk/gtk.h>
+
+/**
+ * Initializes GTK-GUI.
+ * @param argc Number of arguments.
+ * @param argv Arguments.
+ */
+void gtk_initialize (int argc, char* argv[]);
 
 #endif
