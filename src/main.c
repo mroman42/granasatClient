@@ -11,7 +11,7 @@
 
 int main (int argc, char* argv[]) {
     // Initialize GTK.
-    gtk_init(&argc, &argv);
+    gtk_initialize(argc, argv);
 
     return 0;
 }

@@ -11,7 +11,7 @@
 
 void gtk_initialize (int argc, char* argv[]) {
     // Initialization
-    gtk_init(argc, argv);
+    gtk_init(&argc, &argv);
 
     // GTK main loop
     gtk_main();
