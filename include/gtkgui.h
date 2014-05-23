@@ -13,7 +13,7 @@
 #include <gtk/gtk.h>
 #include "gtkwidgets.h"
 
-#define FILEGLADE "glade/design.glade"
+#define FILEGLADE "glade/design2.glade"
 
 /**
  * Initializes GTK-GUI.
