@@ -15,12 +15,24 @@
 
 #define FILEGLADE "glade/design2.glade"
 
+static GtkBuilder* builder = NULL;
+
 /**
  * Initializes GTK-GUI.
  * @param argc Number of arguments.
  * @param argv Arguments.
  */
-void gtk_initialize (int argc, char* argv[]);
+static void gtk_initialize (int argc, char* argv[]) {
+    // Initialization
+    gtk_init(&argc, &argv);
+    gtk_builder_initialize();
+
+    // Adding widgets
+    add_main_window();
+
+    // GTK main loop
+    gtk_main();
+}
 
 /**
  * Initializes GTK builder.
