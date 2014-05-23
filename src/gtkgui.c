@@ -8,6 +8,7 @@
 
 #include <gtkgui.h>
 
+static GtkBuilder* builder;
 
 void gtk_initialize (int argc, char* argv[]) {
     // Initialization

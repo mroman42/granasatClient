@@ -15,8 +15,6 @@
 
 #define FILEGLADE "glade/design.glade"
 
-static GtkBuilder* builder;
-
 /**
  * Initializes GTK-GUI.
  * @param argc Number of arguments.
