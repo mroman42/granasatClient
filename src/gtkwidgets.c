@@ -6,9 +6,9 @@
  *      Author: Mario Román
  */
 
-#include <gtkwidgets.h>
+#include "gtkwidgets.h"
 
 GtkWidget* add_main_window () {
-    
+
     return 0;
 }
