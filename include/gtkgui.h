@@ -15,7 +15,7 @@
 
 #define FILEGLADE "glade/design2.glade"
 
-static GtkBuilder* builder = NULL;
+GtkBuilder* builder = NULL;
 
 static void gtk_initialize (int argc, char* argv[]);
 static void gtk_builder_initialize () ;
