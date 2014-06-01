@@ -17,6 +17,9 @@
 
 static GtkBuilder* builder = NULL;
 
+static void gtk_initialize (int argc, char* argv[]);
+static void gtk_builder_initialize () ;
+
 /**
  * Initializes GTK-GUI.
  * @param argc Number of arguments.
@@ -37,6 +40,8 @@ static void gtk_initialize (int argc, char* argv[]) {
 /**
  * Initializes GTK builder.
  */
- void gtk_builder_initialize ();
-
+static void gtk_builder_initialize () {
+     builder = gtk_builder_new();
+     gtk_builder_add_from_file(builder, FILEGLADE, NULL);
+ }
 #endif

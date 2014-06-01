@@ -18,7 +18,12 @@
 /**
  * Main Window
  */
-GtkWidget* add_main_window ();
+GtkWidget* add_main_window (){
+    GtkWidget* main_window = GTK_WIDGET(gtk_builder_get_object(builder,"main_window"));
+    gtk_widget_show(main_window);
+    
+    return main_window;
+}
 
 
 #endif
