@@ -29,8 +29,7 @@ static void gtk_initialize (int argc, char* argv[]) {
     gtk_builder_initialize();
 
     // Adding widgets
-    add_main_window();
-    //add_main_notebook();
+    add_all_widgets();
     
     // GTK main loop
     gtk_main();
@@ -44,7 +43,7 @@ static void gtk_builder_initialize () {
      
      GError* err = NULL;
      if (gtk_builder_add_from_file(builder, FILEGLADE, &err) == 0)
-         printf("%s",err->message);
+         printf("ERROR: %s\n",err->message);
 }
 
 
