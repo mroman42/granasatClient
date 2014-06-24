@@ -13,12 +13,10 @@
 #include <gtk/gtk.h>
 #include "gtkwidgets.h"
 
-#define FILEGLADE "glade/design2.glade"
-
-GtkBuilder* builder = NULL;
+#define FILEGLADE "glade/design.glade"
 
 static void gtk_initialize (int argc, char* argv[]);
-static void gtk_builder_initialize () ;
+static void gtk_builder_initialize ();
 
 /**
  * Initializes GTK-GUI.
@@ -32,7 +30,8 @@ static void gtk_initialize (int argc, char* argv[]) {
 
     // Adding widgets
     add_main_window();
-
+    //add_main_notebook();
+    
     // GTK main loop
     gtk_main();
 }
@@ -42,6 +41,11 @@ static void gtk_initialize (int argc, char* argv[]) {
  */
 static void gtk_builder_initialize () {
      builder = gtk_builder_new();
-     gtk_builder_add_from_file(builder, FILEGLADE, NULL);
- }
+     
+     GError* err = NULL;
+     if (gtk_builder_add_from_file(builder, FILEGLADE, &err) == 0)
+         printf("%s",err->message);
+}
+
+
 #endif
