@@ -12,6 +12,7 @@
 
 #include <gtk/gtk.h>
 #include "gtkwidgets.h"
+#include "gtkrefresh.h"
 
 #define FILEGLADE "glade/design.glade"
 
@@ -31,6 +32,9 @@ static void gtk_initialize (int argc, char* argv[]) {
     // Adding widgets
     add_all_widgets();
     
+    // Adding timeouts
+    add_timeouts();
+
     // GTK main loop
     gtk_main();
 }

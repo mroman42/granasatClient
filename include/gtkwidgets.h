@@ -15,8 +15,17 @@
 #include "gtkgui.h"
 
 // Widget references
-static GtkBuilder* builder = NULL;
+static GtkBuilder* builder;
+static GtkLabel*   magnetometer_label;
+static GtkLabel*   accelerometer_label;
 
+// Messages
+char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
+char* MSG_INNERBOX_TEMP      = "Inner Box Temperature:\t %4.3f ºC";
+char* MSG_UPPERBOX_TEMP      = "Upper Box Temperature:\t %4.3f ºC";
+char* MSG_ETHERNET_LIM       = "Ethernet speed:\t %5d Kbps";
+char* MSG_MAGNETOMETER_DATA  = "Magnetometer data (Gauss):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
+char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
 
 /**
  * Adds a widget given its name.
@@ -53,12 +62,12 @@ static GtkWidget* add_status_container (){
     return add_widget("status_fixed");
 }
 
-static GtkWidget* add_magnetometer_label (){
-    return add_widget("label_magnetometer");
+static GtkLabel* add_magnetometer_label (){
+    return magnetometer_label = GTK_LABEL(add_widget("label_magnetometer"));
 }
 
-static GtkWidget* add_accelerometer_label (){
-    return add_widget("label_accelerometer");
+static GtkLabel* add_accelerometer_label (){
+    return accelerometer_label = GTK_LABEL(add_widget("label_accelerometer"));
 }
 
 /**

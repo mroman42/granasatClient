@@ -10,4 +10,7 @@
 #ifndef DATA_H
 #define DATA_H
 
+static float MAG[3];
+static float ACC[3];
+
 #endif
