@@ -10,9 +10,11 @@
 #ifndef GTKGUI_H
 #define GTKGUI_H
 
+#include <stdlib.h>
 #include <gtk/gtk.h>
 #include "gtkwidgets.h"
 #include "gtkrefresh.h"
+
 
 #define FILEGLADE "glade/design.glade"
 
@@ -46,8 +48,10 @@ static void gtk_builder_initialize () {
      builder = gtk_builder_new();
      
      GError* err = NULL;
-     if (gtk_builder_add_from_file(builder, FILEGLADE, &err) == 0)
-         printf("ERROR: %s\n",err->message);
+     if (gtk_builder_add_from_file(builder, FILEGLADE, &err) == 0) {
+         printf("ERROR in gtk_builder_initialize: %s\n",err->message);
+	     exit(-1);
+     }
 }
 
 

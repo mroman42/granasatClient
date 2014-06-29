@@ -8,7 +8,6 @@
 
 #include <gtkgui.h>
 
-
 int main (int argc, char* argv[]) {
     // Initialize GTK.
     gtk_initialize(argc, argv);

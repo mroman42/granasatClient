@@ -13,6 +13,7 @@
 #include <gtk/gtk.h>
 #include "gtkwidgets.h"
 #include "data.h"
+#include "client.h"
 
 // Constants
 const int REFRESH_INTERVAL = 50;

@@ -73,7 +73,7 @@ static GtkLabel* add_accelerometer_label (){
 /**
  * Adding all widgets
  */
-static void add_all_widgets(){
+static void add_all_widgets() {
     add_main_window();
     add_main_notebook();
     add_measures_container();
