@@ -23,13 +23,20 @@
 
 // Connection data
 static bool CONNECTED = false;
-static int SOCKFD = 0;
+static int  SOCKFD = 0;
 static char SERVER_IP [] = "127.0.0.1";
 
 // Functions
 static bool connect_server();
 static void check_connection();
 
+
+static void check_connection() {
+    if (!CONNECTED) {
+        printf("Not connected to server. Checking connection.\n");
+        CONNECTED = connect_server();
+    }
+}
 
 static bool connect_server () {
     /* This code is adapted from: */
