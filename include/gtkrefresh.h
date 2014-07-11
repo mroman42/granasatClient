@@ -16,8 +16,8 @@
 #include "client.h"
 
 // Constants
-const int REFRESH_INTERVAL = 50;
-
+const int REFRESH_INTERVAL_DATA = 50;
+const int REFRESH_INTERVAL_CONNECTION = 1000;
 
 static void add_timeouts();
 static gboolean checkServer();
@@ -27,11 +27,11 @@ static gboolean refreshAccelerometer();
 
 static void add_timeouts() {
     // Client timeouts
-    g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) checkServer, NULL);    
+    g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
 
     // Data timeouts
-    g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshMagnetometer, NULL);
-	g_timeout_add (REFRESH_INTERVAL, (GSourceFunc) refreshAccelerometer, NULL);
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshMagnetometer, NULL);
+	g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshAccelerometer, NULL);
 }
 
 static gboolean checkServer() {

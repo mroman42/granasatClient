@@ -20,6 +20,8 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <netdb.h>
+#include "log.h"
+
 
 // Connection data
 static bool CONNECTED = false;
@@ -33,7 +35,7 @@ static void check_connection();
 
 static void check_connection() {
     if (!CONNECTED) {
-        printf("Not connected to server. Checking connection.\n");
+        printlog("Not connected to server. Checking connection.");
         CONNECTED = connect_server();
     }
 }
