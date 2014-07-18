@@ -17,12 +17,14 @@
 
 // Constants
 const int REFRESH_INTERVAL_DATA = 50;
+const int REFRESH_INTERVAL_REDRAW = 100;
 const int REFRESH_INTERVAL_CONNECTION = 1000;
 
 static void add_timeouts();
 static gboolean checkServer();
 static gboolean refreshMagnetometer();
 static gboolean refreshAccelerometer();
+static gboolean send_redraw_signals();
 
 
 static void add_timeouts() {
@@ -32,7 +34,11 @@ static void add_timeouts() {
     // Data timeouts
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshMagnetometer, NULL);
 	g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshAccelerometer, NULL);
+
+    // Redraw timeouts
+    g_timeout_add (REFRESH_INTERVAL_REDRAW, (GSourceFunc) send_redraw_signals, NULL);
 }
+
 
 static gboolean checkServer() {
     check_connection();
@@ -46,12 +52,17 @@ static gboolean refreshMagnetometer() {
 	return 1;
 }
 
-static gboolean refreshAccelerometer () {
+static gboolean refreshAccelerometer() {
     char buffer[100];
     sprintf(buffer, MSG_ACCELEROMETER_DATA, ACC[0],ACC[1],ACC[2]);
     gtk_label_set_text (accelerometer_label, buffer);
-
     return 1;
+}
+
+static gboolean send_redraw_signals() {
+	gtk_widget_queue_draw(drawing_area1);
+	gtk_widget_queue_draw(drawing_area2);
+	return 1;
 }
 
 #endif
