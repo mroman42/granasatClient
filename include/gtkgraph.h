@@ -17,12 +17,6 @@
 
 
 static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
-static void add_plots (GtkBuilder* builder, int* magnetometer_measures, int* accelerometer_measures);
-
-
-static void add_plots (GtkBuilder* builder, int* magnetometer_measures, int* accelerometer_measures) {
-	
-}
 
 static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
     // Measures
