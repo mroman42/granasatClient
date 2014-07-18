@@ -18,6 +18,8 @@
 static GtkBuilder* builder;
 static GtkLabel*   magnetometer_label;
 static GtkLabel*   accelerometer_label;
+static GtkWidget*  drawing_area1;
+static GtkWidget*  drawing_area2;
 
 // Messages
 char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
@@ -70,6 +72,14 @@ static GtkLabel* add_accelerometer_label (){
     return accelerometer_label = GTK_LABEL(add_widget("label_accelerometer"));
 }
 
+static GtkWidget* add_drawing_area1 (){
+    return drawing_area1 = add_widget("drawingarea1");
+}
+
+static GtkWidget* add_drawing_area2 (){
+    return drawing_area2 = add_widget("drawingarea2");
+}
+
 /**
  * Adding all widgets
  */
@@ -81,6 +91,8 @@ static void add_all_widgets() {
     add_status_container();
     add_magnetometer_label();
     add_accelerometer_label ();
+    add_drawing_area1();
+    add_drawing_area2();        
 }
 
 #endif

@@ -31,14 +31,14 @@
 	Z:	??</property>
               </object>
               <packing>
-                <property name="x">10</property>
-                <property name="y">250</property>
+                <property name="x">20</property>
+                <property name="y">239</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label_accelerometer">
-                <property name="width_request">-1</property>
-                <property name="height_request">-1</property>
+                <property name="width_request">161</property>
+                <property name="height_request">68</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Accelerometer data (G):
@@ -47,8 +47,33 @@
 	Z:	??</property>
               </object>
               <packing>
-                <property name="x">310</property>
-                <property name="y">250</property>
+                <property name="x">339</property>
+                <property name="y">241</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="drawingarea1">
+                <property name="width_request">300</property>
+                <property name="height_request">200</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_right">152</property>
+              </object>
+              <packing>
+                <property name="x">19</property>
+                <property name="y">21</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="drawingarea2">
+                <property name="width_request">300</property>
+                <property name="height_request">200</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="x">339</property>
+                <property name="y">23</property>
               </packing>
             </child>
           </object>
