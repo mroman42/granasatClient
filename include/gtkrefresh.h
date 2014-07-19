@@ -24,7 +24,8 @@ static void add_timeouts();
 static gboolean checkServer();
 static gboolean refreshMagnetometer();
 static gboolean refreshAccelerometer();
-static gboolean send_redraw_signals();
+static gboolean sendRedrawSignals();
+static gboolean refreshConnectionLabel();
 
 
 static void add_timeouts() {
@@ -35,8 +36,11 @@ static void add_timeouts() {
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshMagnetometer, NULL);
 	g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshAccelerometer, NULL);
 
+    // Status timeouts
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshConnectionLabel, NULL);
+
     // Redraw timeouts
-    g_timeout_add (REFRESH_INTERVAL_REDRAW, (GSourceFunc) send_redraw_signals, NULL);
+    g_timeout_add (REFRESH_INTERVAL_REDRAW, (GSourceFunc) sendRedrawSignals, NULL);
 }
 
 
@@ -59,10 +63,14 @@ static gboolean refreshAccelerometer() {
     return 1;
 }
 
-static gboolean send_redraw_signals() {
+static gboolean sendRedrawSignals() {
 	gtk_widget_queue_draw(drawing_area1);
 	gtk_widget_queue_draw(drawing_area2);
 	return 1;
+}
+
+static gboolean refreshConnectionLabel() {
+    return 1;
 }
 
 #endif

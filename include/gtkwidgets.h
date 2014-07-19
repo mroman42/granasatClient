@@ -20,6 +20,7 @@ static GtkLabel*   magnetometer_label;
 static GtkLabel*   accelerometer_label;
 static GtkWidget*  drawing_area1;
 static GtkWidget*  drawing_area2;
+static GtkLabel*   status_connected_label;
 
 // Messages
 char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
@@ -41,43 +42,47 @@ static GtkWidget* add_widget(char* name) {
 /**
  * Widgets
  */
-static GtkWidget* add_main_window (){
+static GtkWidget* add_main_window() {
     GtkWidget* main_window = add_widget("main_window");
     g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
     return main_window;
 }
 
 
-static GtkWidget* add_main_notebook (){
+static GtkWidget* add_main_notebook() {
     return add_widget("main_notebook");
 }
 
-static GtkWidget* add_measures_container (){
+static GtkWidget* add_measures_container() {
     return add_widget("measures_fixed");
 }
 
-static GtkWidget* add_startracker_container (){
+static GtkWidget* add_startracker_container() {
     return add_widget("startracker_fixed");
 }
 
-static GtkWidget* add_status_container (){
+static GtkWidget* add_status_container() {
     return add_widget("status_fixed");
 }
 
-static GtkLabel* add_magnetometer_label (){
+static GtkLabel* add_magnetometer_label() {
     return magnetometer_label = GTK_LABEL(add_widget("label_magnetometer"));
 }
 
-static GtkLabel* add_accelerometer_label (){
+static GtkLabel* add_accelerometer_label() {
     return accelerometer_label = GTK_LABEL(add_widget("label_accelerometer"));
 }
 
-static GtkWidget* add_drawing_area1 (){
+static GtkWidget* add_drawing_area1() {
     return drawing_area1 = add_widget("drawingarea1");
 }
 
-static GtkWidget* add_drawing_area2 (){
+static GtkWidget* add_drawing_area2() {
     return drawing_area2 = add_widget("drawingarea2");
+}
+
+static GtkLabel* add_status_connected_label() {
+    return status_connected_label = GTK_LABEL(add_widget("label_status_connected"));
 }
 
 /**
@@ -92,7 +97,8 @@ static void add_all_widgets() {
     add_magnetometer_label();
     add_accelerometer_label ();
     add_drawing_area1();
-    add_drawing_area2();        
+    add_drawing_area2();
+    add_status_connected_label();     
 }
 
 #endif
