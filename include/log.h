@@ -20,7 +20,6 @@ static void printtime();
 static void printlog(const char* msg) {
     printtime();
     printf("%s",msg);
-    printf("\n");
 }
 
 static void printtime() {

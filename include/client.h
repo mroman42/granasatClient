@@ -35,7 +35,7 @@ static void check_connection();
 
 static void check_connection() {
     if (!CONNECTED) {
-        printlog("Not connected to server. Checking connection.");
+        printlog("Not connected to server. Checking connection.\n");
         CONNECTED = connect_server();
     }
 }
@@ -49,6 +49,7 @@ static bool connect_server () {
 	struct sockaddr_in serv_addr;
 	struct hostent *server;
 
+    printlog("");
 	printf("Contacting %s on port %d\n", SERVER_IP, portno);
 
 	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {

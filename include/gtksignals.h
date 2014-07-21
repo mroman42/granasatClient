@@ -16,10 +16,22 @@
 #include "gtkgraph.h"
 #include "data.h"
 
+static void catalog_toggled (GtkToggleButton *button, gpointer data);
+
+
 static void connect_all_signals (){
     // Draw signals
     g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), MAG);
     g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), ACC);
+
+    // Star Tracker signals
+    g_signal_connect (G_OBJECT (radiobutton_catalog_1), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(1));
+}
+
+
+static void catalog_toggled (GtkToggleButton *button, gpointer data) {
+    if (gtk_toggle_button_get_active(button))
+        printf("Catalog1_toggled: %d", GPOINTER_TO_INT(data));
 }
 
 #endif

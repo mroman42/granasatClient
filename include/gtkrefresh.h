@@ -70,6 +70,10 @@ static gboolean sendRedrawSignals() {
 }
 
 static gboolean refreshConnectionLabel() {
+    if (CONNECTED)
+        gtk_label_set_text (status_connected_label, MSG_CONNECTION_ON);
+    else
+        gtk_label_set_text (status_connected_label, MSG_CONNECTION_OFF);
     return 1;
 }
 

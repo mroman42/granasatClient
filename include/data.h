@@ -10,7 +10,11 @@
 #ifndef DATA_H
 #define DATA_H
 
+// Measures
 static float MAG[3];
 static float ACC[3];
+
+// Star Tracker
+static int magnitude;
 
 #endif

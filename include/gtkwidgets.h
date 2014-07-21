@@ -22,6 +22,8 @@ static GtkWidget*  drawing_area1;
 static GtkWidget*  drawing_area2;
 static GtkLabel*   status_connected_label;
 
+static GtkWidget*  radiobutton_catalog_1;
+
 // Messages
 char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
 char* MSG_INNERBOX_TEMP      = "Inner Box Temperature:\t %4.3f ºC";
@@ -29,6 +31,8 @@ char* MSG_UPPERBOX_TEMP      = "Upper Box Temperature:\t %4.3f ºC";
 char* MSG_ETHERNET_LIM       = "Ethernet speed:\t %5d Kbps";
 char* MSG_MAGNETOMETER_DATA  = "Magnetometer data (Gauss):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
 char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
+char* MSG_CONNECTION_ON      = "Raspberry: Connected";
+char* MSG_CONNECTION_OFF     = "Raspberry: Not Connected";
 
 /**
  * Adds a widget given its name.
@@ -85,6 +89,17 @@ static GtkLabel* add_status_connected_label() {
     return status_connected_label = GTK_LABEL(add_widget("label_status_connected"));
 }
 
+static GtkWidget* add_catalog_size_group() {
+    radiobutton_catalog_1 = add_widget("radiobutton_catalog1");
+    add_widget("radiobutton_catalog2");
+    add_widget("radiobutton_catalog3");
+    add_widget("radiobutton_catalog4");
+    add_widget("radiobutton_catalog5");
+    add_widget("radiobutton_catalog6");
+    return radiobutton_catalog_1;
+}
+
+
 /**
  * Adding all widgets
  */
@@ -98,7 +113,8 @@ static void add_all_widgets() {
     add_accelerometer_label ();
     add_drawing_area1();
     add_drawing_area2();
-    add_status_connected_label();     
+    add_status_connected_label();
+    add_catalog_size_group();    
 }
 
 #endif
