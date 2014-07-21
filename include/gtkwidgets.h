@@ -28,6 +28,7 @@ static GtkWidget*  radiobutton_catalog_3;
 static GtkWidget*  radiobutton_catalog_4;
 static GtkWidget*  radiobutton_catalog_5;
 static GtkWidget*  radiobutton_catalog_6;
+static GtkWidget*  spin_unitary_vectors;
 
 // Messages
 char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
@@ -104,6 +105,9 @@ static GtkWidget* add_catalog_size_group() {
     return radiobutton_catalog_1;
 }
 
+static GtkWidget* add_spin_vectors() {
+    return spin_unitary_vectors = add_widget("spin_vectors");
+}
 
 /**
  * Adding all widgets
@@ -119,7 +123,8 @@ static void add_all_widgets() {
     add_drawing_area1();
     add_drawing_area2();
     add_status_connected_label();
-    add_catalog_size_group();    
+    add_catalog_size_group();
+    add_spin_vectors();
 }
 
 #endif
