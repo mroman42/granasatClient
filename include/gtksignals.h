@@ -30,8 +30,11 @@ static void connect_all_signals (){
 
 
 static void catalog_toggled (GtkToggleButton *button, gpointer data) {
-    if (gtk_toggle_button_get_active(button))
-        printf("Catalog1_toggled: %d", GPOINTER_TO_INT(data));
+    if (gtk_toggle_button_get_active(button)) {
+        int cat_number = GPOINTER_TO_INT(data);
+        magnitude = cat_number;
+        printf("Catalog1_toggled: %d", cat_number);
+    }
 }
 
 #endif

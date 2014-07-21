@@ -23,6 +23,11 @@ static GtkWidget*  drawing_area2;
 static GtkLabel*   status_connected_label;
 
 static GtkWidget*  radiobutton_catalog_1;
+static GtkWidget*  radiobutton_catalog_2;
+static GtkWidget*  radiobutton_catalog_3;
+static GtkWidget*  radiobutton_catalog_4;
+static GtkWidget*  radiobutton_catalog_5;
+static GtkWidget*  radiobutton_catalog_6;
 
 // Messages
 char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
@@ -91,11 +96,11 @@ static GtkLabel* add_status_connected_label() {
 
 static GtkWidget* add_catalog_size_group() {
     radiobutton_catalog_1 = add_widget("radiobutton_catalog1");
-    add_widget("radiobutton_catalog2");
-    add_widget("radiobutton_catalog3");
-    add_widget("radiobutton_catalog4");
-    add_widget("radiobutton_catalog5");
-    add_widget("radiobutton_catalog6");
+    radiobutton_catalog_2 = add_widget("radiobutton_catalog2");
+    radiobutton_catalog_3 = add_widget("radiobutton_catalog3");
+    radiobutton_catalog_4 = add_widget("radiobutton_catalog4");
+    radiobutton_catalog_5 = add_widget("radiobutton_catalog5");
+    radiobutton_catalog_6 = add_widget("radiobutton_catalog6");
     return radiobutton_catalog_1;
 }
 
