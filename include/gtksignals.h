@@ -26,15 +26,17 @@ static void connect_all_signals (){
 
     // Star Tracker signals
     g_signal_connect (G_OBJECT (radiobutton_catalog_1), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(1));
+    g_signal_connect (G_OBJECT (radiobutton_catalog_2), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(2));
+    g_signal_connect (G_OBJECT (radiobutton_catalog_3), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(3));
+    g_signal_connect (G_OBJECT (radiobutton_catalog_4), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(4));
+    g_signal_connect (G_OBJECT (radiobutton_catalog_5), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(5));
+    g_signal_connect (G_OBJECT (radiobutton_catalog_6), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(6));
 }
 
 
 static void catalog_toggled (GtkToggleButton *button, gpointer data) {
-    if (gtk_toggle_button_get_active(button)) {
-        int cat_number = GPOINTER_TO_INT(data);
-        magnitude = cat_number;
-        printf("Catalog1_toggled: %d", cat_number);
-    }
+    if (gtk_toggle_button_get_active(button))
+        set_magnitude(GPOINTER_TO_INT(data));
 }
 
 #endif

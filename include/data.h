@@ -10,11 +10,19 @@
 #ifndef DATA_H
 #define DATA_H
 
+#include "log.h"
+
 // Measures
 static float MAG[3];
 static float ACC[3];
 
 // Star Tracker
-static int magnitude;
+static int CATALOG;
+static void set_magnitude(int new_magnitude) {
+    CATALOG = new_magnitude;
+    printlog("");
+    printf("Using star tracker catalog: %d\n", new_magnitude);
+}
+
 
 #endif
