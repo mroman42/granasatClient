@@ -17,6 +17,7 @@
 #include "data.h"
 
 static void catalog_toggled (GtkToggleButton *button, gpointer data);
+static void spin_vectors_changed (GtkSpinButton *button, gpointer data);
 
 
 static void connect_all_signals (){
@@ -31,12 +32,17 @@ static void connect_all_signals (){
     g_signal_connect (G_OBJECT (radiobutton_catalog_4), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(4));
     g_signal_connect (G_OBJECT (radiobutton_catalog_5), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(5));
     g_signal_connect (G_OBJECT (radiobutton_catalog_6), "clicked", G_CALLBACK (catalog_toggled), GINT_TO_POINTER(6));
-}
 
+    g_signal_connect (G_OBJECT (spin_unitary_vectors), "value_changed", G_CALLBACK (spin_vectors_changed), NULL);
+}
 
 static void catalog_toggled (GtkToggleButton *button, gpointer data) {
     if (gtk_toggle_button_get_active(button))
         set_magnitude(GPOINTER_TO_INT(data));
+}
+
+static void spin_vectors_changed (GtkSpinButton *button, gpointer data) {
+    set_unitary_vectors(gtk_spin_button_get_value_as_int(button));
 }
 
 #endif
