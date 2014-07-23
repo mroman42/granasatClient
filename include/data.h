@@ -33,5 +33,16 @@ static void set_unitary_vectors(int new_vectors) {
     printf("(Star Tracker) Using %d unitary vectors\n", new_vectors);
 }
 
+static void set_magnetometer(float x, float y, float z) {
+    MAG[0] = x;
+    MAG[1] = y;
+    MAG[2] = z;
+}
+
+static void set_accelerometer(float x, float y, float z) {
+    ACC[0] = x;
+    ACC[1] = y;
+    ACC[2] = z;
+}    
 
 #endif

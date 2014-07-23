@@ -47,7 +47,8 @@ static void add_timeouts() {
 
 
 static gboolean readData() {
-    read_data_packet();
+    if (CONNECTED)
+        read_data_packet();
     return 1;
 }
 

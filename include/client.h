@@ -55,10 +55,45 @@ static void check_connection() {
 }
 
 static void read_data_packet() {
-    uint8_t read_packet[12];
-    
-    if ((read(SOCKET_SMALL_DATA, read_packet, sizeof(uint8_t[12]))) < 0)
-	    perror("ERROR reading packet from socket");
+    // Reading protocol
+    #define A_GAIN     0.004    //[G/LSB] FS=10
+    #define M_XY_GAIN  1100   	//[LSB/Gauss] GN=001
+    #define M_Z_GAIN   980	    //[LSB/Gauss] GN=001
+    #define T_GAIN     8	    //[LSB/ºC]
+    static int n_bytes = 12;
+    static int bytes_sent = 0;
+    uint8_t packet[12];
+    int n;
+
+    if (bytes_sent < n_bytes) {
+        if ((n = read(SOCKET_SMALL_DATA, packet + bytes_sent, n_bytes - bytes_sent)) < 0)
+            perror("ERROR writing to socket");
+        else
+            bytes_sent += n;
+    }
+
+    if (bytes_sent == n_bytes) {
+        bytes_sent = 0;
+
+        int16_t m[3];
+	    *(m+0) = (int16_t)(packet[1] | packet[0] << 8);
+	    *(m+1) = (int16_t)(packet[5] | packet[4] << 8);
+	    *(m+2) = (int16_t)(packet[3] | packet[2] << 8);
+	    *(m+0) = (float) *(m+0)/M_XY_GAIN;
+	    *(m+1) = (float) *(m+1)/M_XY_GAIN;
+	    *(m+2) = (float) *(m+2)/M_Z_GAIN;
+        
+        int16_t a[3];
+        *(a+0) = (int16_t)(packet[6] | packet[7] << 8) >> 4;
+        *(a+1) = (int16_t)(packet[8] | packet[9] << 8) >> 4;
+        *(a+2) = (int16_t)(packet[10] | packet[11] << 8) >> 4;
+        *(a+0) = (float) *(a+0)*A_GAIN;
+        *(a+1) = (float) *(a+1)*A_GAIN;
+        *(a+2) = (float) *(a+2)*A_GAIN;
+
+        set_magnetometer(m[0],m[1],m[2]);
+        set_accelerometer(a[0],a[1],a[2]);
+    }
 }
 
 static bool connect_server () {
