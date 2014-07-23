@@ -41,9 +41,8 @@ static char SERVER_IP [] = "192.168.0.200";
 // Functions
 static bool connect_server();
 static void check_connection();
-
-// Reading data
 static void read_data_packet();
+static void disconnect_server();
 
 
 static void check_connection() {
@@ -51,6 +50,12 @@ static void check_connection() {
     if (!CONNECTED) {
         printlog("Not connected to server. Checking connection.\n");
         CONNECTED = connect_server();
+    }
+}
+
+static void disconnect_server() {
+    if (CONNECTED) {
+        CONNECTED = false;
     }
 }
 
@@ -66,8 +71,11 @@ static void read_data_packet() {
     int n;
 
     if (bytes_sent < n_bytes) {
-        if ((n = read(SOCKET_SMALL_DATA, packet + bytes_sent, n_bytes - bytes_sent)) < 0)
-            perror("ERROR writing to socket");
+        if ((n = recv(SOCKET_SMALL_DATA, packet + bytes_sent, n_bytes - bytes_sent, MSG_DONTWAIT)) < 0)  {
+            perror("ERROR reading socket");
+            disconnect_server();
+            return;
+        }
         else
             bytes_sent += n;
     }

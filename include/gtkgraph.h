@@ -41,6 +41,7 @@ static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 	cairo_stroke (cr);
 
 	// Vector
+	// ?????????
 	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
 	cairo_move_to (cr, WIDTH/2, 2*HEIGHT/3);
 	cairo_line_to (cr, WIDTH/2 + SIN_60*measures[0]*4 -  SIN_60*measures[1]*4 , 2*HEIGHT/3-measures[2]*4);
