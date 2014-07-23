@@ -20,6 +20,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <netdb.h>
+#include <errno.h>
 #include "log.h"
 
 // Connection Ports
@@ -72,9 +73,14 @@ static void read_data_packet() {
 
     if (bytes_sent < n_bytes) {
         if ((n = recv(SOCKET_SMALL_DATA, packet + bytes_sent, n_bytes - bytes_sent, MSG_DONTWAIT)) < 0)  {
-            perror("ERROR reading socket");
-            disconnect_server();
-            return;
+            if (errno != EAGAIN) {
+                perror("ERROR reading socket");
+                disconnect_server();
+                return;
+            }
+            else {
+                //printf("Non-blocking reading\n");
+            }
         }
         else
             bytes_sent += n;
