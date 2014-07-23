@@ -26,11 +26,13 @@ static gboolean refreshMagnetometer();
 static gboolean refreshAccelerometer();
 static gboolean sendRedrawSignals();
 static gboolean refreshConnectionLabel();
+static gboolean readData();
 
 
 static void add_timeouts() {
     // Client timeouts
     g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
 
     // Data timeouts
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshMagnetometer, NULL);
@@ -43,6 +45,11 @@ static void add_timeouts() {
     g_timeout_add (REFRESH_INTERVAL_REDRAW, (GSourceFunc) sendRedrawSignals, NULL);
 }
 
+
+static gboolean readData() {
+    read_data_packet();
+    return 1;
+}
 
 static gboolean checkServer() {
     check_connection();

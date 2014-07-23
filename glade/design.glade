@@ -267,13 +267,13 @@
             <child>
               <object class="GtkSpinButton" id="spin_threshold">
                 <property name="width_request">104</property>
-                <property name="height_request">42</property>
+                <property name="height_request">29</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
               </object>
               <packing>
-                <property name="x">172</property>
-                <property name="y">264</property>
+                <property name="x">168</property>
+                <property name="y">176</property>
               </packing>
             </child>
             <child>

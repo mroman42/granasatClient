@@ -12,6 +12,7 @@
 
 #include "log.h"
 
+
 // Measures
 static float MAG[3];
 static float ACC[3];
