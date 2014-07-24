@@ -16,7 +16,7 @@
 
 #define MSG_SET_STARS     20    // (+ int)
 #define MSG_SET_CATALOG   21    // (+ int)
-#define MSG_SET_THRESHOLD 22    // (+ int)
+#define MSG_SET_PX_THRESH 22    // (+ int)
 
 
 

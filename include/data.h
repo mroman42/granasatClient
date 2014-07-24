@@ -19,18 +19,18 @@ static float ACC[3];
 // Star Tracker
 static int CATALOG;
 static int UNIT_VECTORS;
-
+static int PIXEL_THRESHOLD;
 
 // Sending to server
 // Defined in client.h
 static void send_magnitude();
+static void send_threshold();
 static void send_unitaryVectors();
 
 
 static void set_magnitude(int new_magnitude) {
     CATALOG = new_magnitude;
     send_magnitude();
-
     printlog("");
     printf("(Star Tracker) Using star tracker catalog: %d\n", new_magnitude);
 }
@@ -40,6 +40,13 @@ static void set_unitary_vectors(int new_vectors) {
     send_unitaryVectors();
     printlog("");
     printf("(Star Tracker) Using %d unitary vectors\n", new_vectors);
+}
+
+static void set_threshold(int threshold) {
+    PIXEL_THRESHOLD = threshold;
+    send_threshold();
+    printlog("");
+    printf("(Star Tracker) Using %d as threshold\n", threshold);
 }
 
 static void set_magnetometer(float x, float y, float z) {

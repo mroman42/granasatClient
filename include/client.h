@@ -114,6 +114,18 @@ static void send_unitaryVectors() {
     }
 }
 
+static void send_threshold() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending threshold: %d\n", CATALOG);
+
+        send_msg(MSG_SET_PX_THRESH);
+        send_int(PIXEL_THRESHOLD);
+
+        printlog("[Client] Threshold sent\n");
+    }
+}
+
 static void send_all() {
     send_magnitude();
     send_unitaryVectors();
