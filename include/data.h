@@ -17,9 +17,9 @@ static float MAG[3];
 static float ACC[3];
 
 // Star Tracker
-static int CATALOG;
-static int UNIT_VECTORS;
-static int PIXEL_THRESHOLD;
+static int CATALOG = 4;
+static int UNIT_VECTORS = 5;
+static int PIXEL_THRESHOLD = 100;
 
 // Sending to server
 // Defined in client.h

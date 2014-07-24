@@ -282,7 +282,12 @@
                 <property name="height_request">29</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="max_length">3</property>
+                <property name="input_purpose">number</property>
                 <property name="adjustment">adjustment_threshold</property>
+                <property name="snap_to_ticks">True</property>
+                <property name="numeric">True</property>
+                <property name="value">100</property>
               </object>
               <packing>
                 <property name="x">168</property>
