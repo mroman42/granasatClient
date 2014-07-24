@@ -30,23 +30,23 @@ static void send_unitaryVectors();
 
 static void set_magnitude(int new_magnitude) {
     CATALOG = new_magnitude;
-    send_magnitude();
     printlog("");
-    printf("(Star Tracker) Using star tracker catalog: %d\n", new_magnitude);
+    printf("[Star Tracker] Using star tracker catalog: %d\n", new_magnitude);
+    send_magnitude();
 }
 
 static void set_unitary_vectors(int new_vectors) {
     UNIT_VECTORS = new_vectors;
-    send_unitaryVectors();
     printlog("");
-    printf("(Star Tracker) Using %d unitary vectors\n", new_vectors);
+    printf("[Star Tracker] Using %d unitary vectors\n", new_vectors);
+    send_unitaryVectors();
 }
 
 static void set_threshold(int threshold) {
     PIXEL_THRESHOLD = threshold;
-    send_threshold();
     printlog("");
-    printf("(Star Tracker) Using %d as threshold\n", threshold);
+    printf("[Star Tracker] Using %d as threshold\n", threshold);
+    send_threshold();
 }
 
 static void set_magnetometer(float x, float y, float z) {

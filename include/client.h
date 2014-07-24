@@ -72,7 +72,10 @@ static void disconnect_server() {
 
 static void send_msg(char msg) {
     if (CONNECTED) {
-        if (write(SOCKET_COMMANDS, &msg, 1) < 0) {
+        char buffer[1];
+        buffer[0] = msg;
+
+        if (write(SOCKET_COMMANDS, buffer, 1) < 0) {
             perror("ERROR writing socket");
             disconnect_server();
             return;
