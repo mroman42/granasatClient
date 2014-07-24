@@ -91,23 +91,27 @@ static void send_int(int msg) {
 }
 
 static void send_magnitude() {
-    printlog("");
-    printf("[Client] Sending magnitude: %d\n", CATALOG);
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending magnitude: %d\n", CATALOG);
 
-    send_msg(MSG_SET_CATALOG);
-    send_int(CATALOG);
+        send_msg(MSG_SET_CATALOG);
+        send_int(CATALOG);
 
-    printlog("[Client] Magnitude sent\n");
+        printlog("[Client] Magnitude sent\n");
+    }
 }
 
 static void send_unitaryVectors() {
-    printlog("");
-    printf("[Client] Sending stars: %d\n", CATALOG);
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending stars: %d\n", CATALOG);
 
-    send_msg(MSG_SET_STARS);
-    send_int(UNIT_VECTORS);
+        send_msg(MSG_SET_STARS);
+        send_int(UNIT_VECTORS);
 
-    printlog("[Client] Stars sent\n");
+        printlog("[Client] Stars sent\n");
+    }
 }
 
 static void send_all() {

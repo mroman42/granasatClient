@@ -133,6 +133,7 @@
                     <property name="xalign">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
+                    <property name="group">radiobutton_catalog4</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -149,7 +150,7 @@
                     <property name="xalign">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <property name="group">radiobutton_catalog1</property>
+                    <property name="group">radiobutton_catalog4</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -166,7 +167,7 @@
                     <property name="xalign">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <property name="group">radiobutton_catalog1</property>
+                    <property name="group">radiobutton_catalog4</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -183,7 +184,6 @@
                     <property name="xalign">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <property name="group">radiobutton_catalog1</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -200,7 +200,7 @@
                     <property name="xalign">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <property name="group">radiobutton_catalog1</property>
+                    <property name="group">radiobutton_catalog4</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -217,7 +217,7 @@
                     <property name="xalign">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
-                    <property name="group">radiobutton_catalog1</property>
+                    <property name="group">radiobutton_catalog4</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -265,7 +265,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="spin_threshold">
+              <object class="GtkSpinButton" id="spin_b">
                 <property name="width_request">104</property>
                 <property name="height_request">29</property>
                 <property name="visible">True</property>
@@ -277,7 +277,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="spinbutton2">
+              <object class="GtkSpinButton" id="spin_threshold">
                 <property name="width_request">104</property>
                 <property name="height_request">29</property>
                 <property name="visible">True</property>
