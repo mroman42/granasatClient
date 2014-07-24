@@ -105,7 +105,7 @@ static void send_magnitude() {
 static void send_unitaryVectors() {
     if (CONNECTED) {
         printlog("");
-        printf("[Client] Sending stars: %d\n", CATALOG);
+        printf("[Client] Sending stars: %d\n", UNIT_VECTORS);
 
         send_msg(MSG_SET_STARS);
         send_int(UNIT_VECTORS);
@@ -130,6 +130,7 @@ static void send_all() {
     send_magnitude();
     send_unitaryVectors();
 }
+
 
 static void read_data_packet() {
     // Reading protocol
