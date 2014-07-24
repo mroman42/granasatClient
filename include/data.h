@@ -12,7 +12,6 @@
 
 #include "log.h"
 
-
 // Measures
 static float MAG[3];
 static float ACC[3];
@@ -21,8 +20,19 @@ static float ACC[3];
 static int CATALOG;
 static int UNIT_VECTORS;
 
+
+// Sending to server
+// Defined in client.h
+static void send_magnitude();
+
+
+
 static void set_magnitude(int new_magnitude) {
+    // Setting magnitude
     CATALOG = new_magnitude;
+    send_magnitude();
+
+    // Writing new magnitude in log
     printlog("");
     printf("(Star Tracker) Using star tracker catalog: %d\n", new_magnitude);
 }
