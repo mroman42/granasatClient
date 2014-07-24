@@ -24,21 +24,20 @@ static int UNIT_VECTORS;
 // Sending to server
 // Defined in client.h
 static void send_magnitude();
-
+static void send_unitaryVectors();
 
 
 static void set_magnitude(int new_magnitude) {
-    // Setting magnitude
     CATALOG = new_magnitude;
     send_magnitude();
 
-    // Writing new magnitude in log
     printlog("");
     printf("(Star Tracker) Using star tracker catalog: %d\n", new_magnitude);
 }
 
 static void set_unitary_vectors(int new_vectors) {
     UNIT_VECTORS = new_vectors;
+    send_unitaryVectors();
     printlog("");
     printf("(Star Tracker) Using %d unitary vectors\n", new_vectors);
 }
