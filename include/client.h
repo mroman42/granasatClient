@@ -26,10 +26,8 @@
 #include "data.h"
 
 
-// Connection Ports
-#define PORT_COMMANDS     51717
-#define PORT_BIG_DATA     51717
-#define PORT_SMALL_DATA   51717
+// Connection Sockets
+
 #define SOCKET_COMMANDS   SOCKFD1
 #define SOCKET_BIG_DATA   SOCKFD2
 #define SOCKET_SMALL_DATA SOCKFD3

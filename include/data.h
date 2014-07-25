@@ -20,6 +20,10 @@ static float ACC[3];
 static int CATALOG = 4;
 static int UNIT_VECTORS = 5;
 static int PIXEL_THRESHOLD = 100;
+static int ROI = 3;
+static int POINTS = 1;
+static float ERROR = 2.50;
+
 
 // Sending to server
 // Defined in client.h
@@ -49,9 +53,31 @@ static void set_threshold(int threshold) {
     send_threshold();
 }
 
+static void set_roi(int roi) {
+    ROI = roi;
+    printlog("");
+    printf("[Star Tracker] Using %d as ROI\n", roi);
+    send_roi();
+}
+
+static void set_points(int points) {
+    POINTS = points;
+    printlog("");
+    printf("[Star Tracker] Using %d points\n", points);
+    send_points();
+}
+
+static void set_error(float error) {
+    ERROR = error;
+    printlog("");
+    printf("[Star Tracker] Using %d as error\n", error);
+    send_error();
+}
+
+
 static void set_magnetometer(float x, float y, float z) {
     printlog("");
-    printf("[Data] Magnetometer measures: %f,%f,%f\n", x,y,z);
+    printf("[Data] Magnetometer measures:  %f,%f,%f\n", x,y,z);
     MAG[0] = x;
     MAG[1] = y;
     MAG[2] = z;

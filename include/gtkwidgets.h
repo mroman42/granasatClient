@@ -30,6 +30,9 @@ static GtkWidget*  radiobutton_catalog_5;
 static GtkWidget*  radiobutton_catalog_6;
 static GtkWidget*  spin_unitary_vectors;
 static GtkWidget*  spin_threshold;
+static GtkWidget*  spin_roi;
+static GtkWidget*  spin_points;
+static GtkWidget*  spin_error;
 
 // Messages
 char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
@@ -114,6 +117,18 @@ static GtkWidget* add_spin_threshold() {
     return spin_threshold = add_widget("spin_threshold");
 }
 
+static GtkWidget* add_spin_roi() {
+    return spin_roi = add_widget("spin_roi");
+}
+
+static GtkWidget* add_spin_points() {
+    return spin_points = add_widget("spin_points");
+}
+
+static GtkWidget* add_spin_error() {
+    return spin_error = add_widget("spin_error");
+}
+
 /*
    Adds all widgets
  */
@@ -131,6 +146,9 @@ static void add_all_widgets() {
     add_catalog_size_group();
     add_spin_vectors();
     add_spin_threshold();
+    add_spin_roi();
+    add_spin_points();
+    add_spin_error();
 }
 
 #endif
