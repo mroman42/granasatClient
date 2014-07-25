@@ -191,6 +191,13 @@ static void read_data_packet() {
     }
 }
 
+/*
+    Creates a socket and connects to it.
+    Parameters:
+        portno - Port number
+    Returns:
+        the socket file descriptor
+ */
 static int connect_socket(int portno) {
     int sockfd;
     struct hostent *server;
@@ -216,26 +223,25 @@ static int connect_socket(int portno) {
         return false;
     }
 
+    printlog("");
     printf("Socket connected. File descriptor: %d\n", sockfd);
     return sockfd;
 }
 
+/*
+    Connects to the server using three sockets.
+ */
 static bool connect_server () {
     /* This code is adapted from: */
     /*   http://cs.smith.edu/dftwiki/index.php/Tutorial:_Client/Server_on_the_Raspberry_Pi */
 
     // Using three sockets in three diferent ports
-    const int portno1 = 51717;
-    const int portno2 = 51718;
-    const int portno3 = 51719;
-
     printlog("");
-	printf("Contacting %s on ports %d,%d,%d\n", SERVER_IP, portno1,portno2,portno3);
+	printf("Contacting %s on ports %d,%d,%d\n", SERVER_IP, PORT_COMMANDS,PORT_BIG_DATA,PORT_SMALL_DATA);
 
-    // Sockets
-    SOCKFD1 = connect_socket(portno1);
-    SOCKFD2 = connect_socket(portno1);
-    SOCKFD3 = connect_socket(portno1);
+    SOCKFD1 = connect_socket(PORT_COMMANDS);
+    SOCKFD2 = connect_socket(PORT_BIG_DATA);
+    SOCKFD3 = connect_socket(PORT_SMALL_DATA);
 
     printf("Connected\n");
 
