@@ -2,19 +2,33 @@
 <!-- Generated with glade 3.16.1 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
+  <object class="GtkAdjustment" id="adjustment_error">
+    <property name="upper">100</property>
+    <property name="value">2.5</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_points">
+    <property name="lower">1</property>
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_roi">
+    <property name="lower">3</property>
+    <property name="upper">101</property>
+    <property name="value">3</property>
+    <property name="step_increment">2</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="adjustment_threshold">
     <property name="upper">255</property>
     <property name="value">100</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkWindow" id="image_window">
-    <property name="can_focus">False</property>
-    <child>
-      <placeholder/>
-    </child>
-  </object>
-  <object class="GtkAdjustment" id="vectors_adjustment">
+  <object class="GtkAdjustment" id="adjustment_vectors">
     <property name="lower">3</property>
     <property name="upper">20</property>
     <property name="value">5</property>
@@ -240,7 +254,7 @@
                 <property name="valign">center</property>
                 <property name="max_length">2</property>
                 <property name="input_purpose">number</property>
-                <property name="adjustment">vectors_adjustment</property>
+                <property name="adjustment">adjustment_vectors</property>
                 <property name="snap_to_ticks">True</property>
                 <property name="numeric">True</property>
                 <property name="value">1</property>
@@ -265,15 +279,19 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="spin_b">
+              <object class="GtkSpinButton" id="spin_roi">
                 <property name="width_request">104</property>
                 <property name="height_request">29</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_roi</property>
+                <property name="snap_to_ticks">True</property>
+                <property name="numeric">True</property>
+                <property name="value">3</property>
               </object>
               <packing>
-                <property name="x">168</property>
-                <property name="y">176</property>
+                <property name="x">164</property>
+                <property name="y">183</property>
               </packing>
             </child>
             <child>
@@ -305,6 +323,79 @@
               <packing>
                 <property name="x">171</property>
                 <property name="y">90</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label3">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">ROI</property>
+                <property name="ellipsize">start</property>
+              </object>
+              <packing>
+                <property name="x">168</property>
+                <property name="y">160</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label4">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Error</property>
+              </object>
+              <packing>
+                <property name="x">164</property>
+                <property name="y">226</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="spin_error">
+                <property name="width_request">118</property>
+                <property name="height_request">29</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_error</property>
+                <property name="climb_rate">0.01</property>
+                <property name="digits">2</property>
+                <property name="snap_to_ticks">True</property>
+                <property name="numeric">True</property>
+                <property name="value">2.5</property>
+              </object>
+              <packing>
+                <property name="x">160</property>
+                <property name="y">249</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label5">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Points</property>
+              </object>
+              <packing>
+                <property name="x">339</property>
+                <property name="y">18</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="spin_points">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="progress_pulse_step">0.080000000000000002</property>
+                <property name="adjustment">adjustment_points</property>
+                <property name="value">1</property>
+              </object>
+              <packing>
+                <property name="x">335</property>
+                <property name="y">41</property>
               </packing>
             </child>
           </object>
@@ -377,5 +468,11 @@
     <widgets>
       <widget name="radiobutton_catalog1"/>
     </widgets>
+  </object>
+  <object class="GtkWindow" id="image_window">
+    <property name="can_focus">False</property>
+    <child>
+      <placeholder/>
+    </child>
   </object>
 </interface>
