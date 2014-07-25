@@ -47,6 +47,7 @@ static bool connect_server();
 static void check_connection();
 static void read_data_packet();
 static void disconnect_server();
+static void close_sockets();
 static void send_msg(char msg);
 static void send_int(int msg);
 static void send_all();
@@ -67,15 +68,20 @@ static void check_connection() {
 static void disconnect_server() {
     if (CONNECTED) {
         CONNECTED = false;
+        close_sockets();
     }
+}
+
+static void close_sockets() {
+    printlog("Disconnecting. Closing sockets.\n");
+    close(SOCKFD1);
+    close(SOCKFD2);  
+    close(SOCKFD3); 
 }
 
 static void send_msg(char msg) {
     if (CONNECTED) {
-        char buffer[1];
-        buffer[0] = msg;
-
-        if (write(SOCKET_COMMANDS, buffer, 1) < 0) {
+        if (write(SOCKET_COMMANDS, &msg, 1) < 0) {
             perror("ERROR writing socket");
             disconnect_server();
             return;
@@ -185,29 +191,15 @@ static void read_data_packet() {
     }
 }
 
-static bool connect_server () {
-    /* This code is adapted from: */
-    /*   http://cs.smith.edu/dftwiki/index.php/Tutorial:_Client/Server_on_the_Raspberry_Pi */
+static int connect_socket(int portno) {
+    int sockfd;
+    struct hostent *server;
+    struct sockaddr_in serv_addr;
 
-    // Using three sockets in three diferent ports
-	int sockfd1;
-    int sockfd2;
-    int sockfd3;
-    int portno1 = 51717;
-    int portno2 = 51718;
-    int portno3 = 51719;
-	struct sockaddr_in serv_addr;
-	struct hostent *server;
-
-    printlog("");
-	printf("Contacting %s on ports %d,%d,%d\n", SERVER_IP, portno1,portno2,portno3);
-
-
-    // Socket 1
-	if ((sockfd1 = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-		perror("ERROR opening socket");
-		return false;
-	}
+    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        perror("ERROR opening socket");
+        return false;
+    }
 
     if ((server = gethostbyname(SERVER_IP)) == NULL) {
         perror("ERROR, no such host\n");
@@ -217,69 +209,37 @@ static bool connect_server () {
     bzero((char *) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     bcopy((char *) server->h_addr, (char *)& serv_addr.sin_addr.s_addr, server->h_length);
-    serv_addr.sin_port = htons(portno1);
+    serv_addr.sin_port = htons(portno);
 
-    if (connect(sockfd1, (struct sockaddr*)& serv_addr, sizeof(serv_addr)) < 0) {
+    if (connect(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0) {
         perror("ERROR connecting to server");
         return false;
     }
 
-    printf("Socket file descriptor 1: %d\n", sockfd1);
+    printf("Socket connected. File descriptor: %d\n", sockfd);
+    return sockfd;
+}
 
+static bool connect_server () {
+    /* This code is adapted from: */
+    /*   http://cs.smith.edu/dftwiki/index.php/Tutorial:_Client/Server_on_the_Raspberry_Pi */
 
-    // Socket 2
-    if ((sockfd2 = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("ERROR opening socket");
-        return false;
-    }
+    // Using three sockets in three diferent ports
+    const int portno1 = 51717;
+    const int portno2 = 51718;
+    const int portno3 = 51719;
 
-    if ((server = gethostbyname(SERVER_IP)) == NULL) {
-        perror("ERROR, no such host\n");
-        return false;
-    }
+    printlog("");
+	printf("Contacting %s on ports %d,%d,%d\n", SERVER_IP, portno1,portno2,portno3);
 
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    bcopy((char *) server->h_addr, (char *)& serv_addr.sin_addr.s_addr, server->h_length);
-    serv_addr.sin_port = htons(portno2);
+    // Sockets
+    SOCKFD1 = connect_socket(portno1);
+    SOCKFD2 = connect_socket(portno1);
+    SOCKFD3 = connect_socket(portno1);
 
-    if (connect(sockfd2, (struct sockaddr*)& serv_addr, sizeof(serv_addr)) < 0) {
-        perror("ERROR connecting to server");
-        return false;
-    }
-
-    printf("Socket file descriptor 2: %d\n", sockfd2);
-
-
-    // Socket 3
-    if ((sockfd3 = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("ERROR opening socket");
-        return false;
-    }
-
-    if ((server = gethostbyname(SERVER_IP)) == NULL) {
-        perror("ERROR, no such host\n");
-        return false;
-    }
-
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    bcopy((char *) server->h_addr, (char *)& serv_addr.sin_addr.s_addr, server->h_length);
-    serv_addr.sin_port = htons(portno3);
-
-    if (connect(sockfd3, (struct sockaddr*)& serv_addr, sizeof(serv_addr)) < 0) {
-        perror("ERROR connecting to server");
-        return false;
-    }
-
-    printf("Socket file descriptor 3: %d\n", sockfd3);
     printf("Connected\n");
 
-    SOCKFD1 = sockfd1;
-    SOCKFD2 = sockfd2;
-    SOCKFD3 = sockfd3;
-
-    return true;
+    return SOCKFD1 && SOCKFD2 && SOCKFD3;
 }
 
 

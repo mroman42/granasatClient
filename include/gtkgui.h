@@ -43,6 +43,9 @@ static void gtk_initialize (int argc, char* argv[]) {
 
     // GTK main loop
     gtk_main();
+
+    // Exiting GTK
+    
 }
 
 /**
