@@ -11,6 +11,6 @@
 int main (int argc, char* argv[]) {
     // Initialize GTK.
     gtk_initialize(argc, argv);
-
+    printf("GTK closed\n");
     return 0;
 }

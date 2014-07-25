@@ -114,8 +114,8 @@ static GtkWidget* add_spin_threshold() {
     return spin_threshold = add_widget("spin_threshold");
 }
 
-/**
- * Adding all widgets
+/*
+   Adds all widgets
  */
 static void add_all_widgets() {
     add_main_window();

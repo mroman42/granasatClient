@@ -32,20 +32,17 @@ static void gtk_initialize (int argc, char* argv[]) {
     gtk_init(&argc, &argv);
     gtk_builder_initialize();
 
-    // Adding widgets
+    // Adds widgets
     add_all_widgets();
     
-    // Adding timeouts
+    // Adds timeouts
     add_timeouts();
 
-    // Connecting signals
+    // Connects signals
     connect_all_signals();
 
     // GTK main loop
     gtk_main();
-
-    // Exiting GTK
-    
 }
 
 /**
