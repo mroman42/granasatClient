@@ -50,12 +50,16 @@ static void set_threshold(int threshold) {
 }
 
 static void set_magnetometer(float x, float y, float z) {
+    printlog("");
+    printf("[Data] Magnetometer measures: %f,%f,%f", x,y,z);
     MAG[0] = x;
     MAG[1] = y;
     MAG[2] = z;
 }
 
 static void set_accelerometer(float x, float y, float z) {
+    printlog("");
+    printf("[Data] Accelerometer measures: %f,%f,%f", x,y,z);
     ACC[0] = x;
     ACC[1] = y;
     ACC[2] = z;

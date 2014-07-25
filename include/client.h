@@ -27,11 +27,11 @@
 
 
 // Connection Ports
-#define PORT_COMMANDS 51717
-#define PORT_BIG_DATA 51718
-#define PORT_SMALL_DATA 51719
-#define SOCKET_COMMANDS SOCKFD1
-#define SOCKET_BIG_DATA SOCKFD2
+#define PORT_COMMANDS     51717
+#define PORT_BIG_DATA     51717
+#define PORT_SMALL_DATA   51717
+#define SOCKET_COMMANDS   SOCKFD1
+#define SOCKET_BIG_DATA   SOCKFD2
 #define SOCKET_SMALL_DATA SOCKFD3
 
 // Connection data
@@ -53,18 +53,25 @@ static void send_int(int msg);
 static void send_all();
 
 
+/*
+    Checks the connection to the server and 
+    reconnects if it is not already connected.
+    Resends all the data if the connection is succesful.
+*/
 static void check_connection() {
-    // It will try to connect if it is not already connected
     if (!CONNECTED) {
         printlog("Not connected to server. Checking connection.\n");
         CONNECTED = connect_server();
     
-        if (CONNECTED) {
+        if (CONNECTED)
             send_all();
-        }
     }
 }
 
+/*
+    Closes all the sockets and sets the connection
+    as 'disconnected'.
+ */
 static void disconnect_server() {
     if (CONNECTED) {
         CONNECTED = false;
@@ -72,11 +79,17 @@ static void disconnect_server() {
     }
 }
 
+/*
+    Closes the three sockets.
+ */
 static void close_sockets() {
     printlog("Disconnecting. Closing sockets.\n");
     close(SOCKFD1);
     close(SOCKFD2);  
-    close(SOCKFD3); 
+    close(SOCKFD3);
+    SOCKFD1 = 0;
+    SOCKFD2 = 0;
+    SOCKFD3 = 0;
 }
 
 static void send_msg(char msg) {
