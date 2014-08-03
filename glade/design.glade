@@ -497,7 +497,7 @@
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Brightness</property>
+                <property name="label" translatable="yes">Brightness:</property>
               </object>
               <packing>
                 <property name="x">33</property>
@@ -523,11 +523,11 @@
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Gamma</property>
+                <property name="label" translatable="yes">Gamma:</property>
               </object>
               <packing>
-                <property name="x">180</property>
-                <property name="y">22</property>
+                <property name="x">188</property>
+                <property name="y">25</property>
               </packing>
             </child>
             <child>
@@ -536,7 +536,7 @@
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Gain</property>
+                <property name="label" translatable="yes">Gain:</property>
               </object>
               <packing>
                 <property name="x">349</property>
@@ -549,7 +549,7 @@
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Exposure value</property>
+                <property name="label" translatable="yes">Exposure value:</property>
               </object>
               <packing>
                 <property name="x">190</property>
