@@ -68,64 +68,34 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <child>
-          <object class="GtkFixed" id="measures_fixed">
+          <object class="GtkFixed" id="status_fixed">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkLabel" id="label_magnetometer">
-                <property name="width_request">192</property>
-                <property name="height_request">68</property>
+              <object class="GtkLabel" id="label_status_connected">
+                <property name="width_request">200</property>
+                <property name="height_request">20</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Magnetometer data (Gauss):
-	X:	??
-	Y: 	??
-	Z:	??</property>
+                <property name="label" translatable="yes">Raspberry: Not connected</property>
+                <property name="ellipsize">start</property>
               </object>
               <packing>
-                <property name="x">20</property>
-                <property name="y">239</property>
+                <property name="x">22</property>
+                <property name="y">17</property>
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label_accelerometer">
-                <property name="width_request">161</property>
-                <property name="height_request">68</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Accelerometer data (G):
-	X:	??
-	Y:	??
-	Z:	??</property>
-              </object>
-              <packing>
-                <property name="x">339</property>
-                <property name="y">241</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkDrawingArea" id="drawingarea1">
-                <property name="width_request">300</property>
+              <object class="GtkTextView" id="textview_log">
+                <property name="width_request">400</property>
                 <property name="height_request">200</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_right">152</property>
+                <property name="can_focus">True</property>
+                <property name="editable">False</property>
               </object>
               <packing>
-                <property name="x">19</property>
-                <property name="y">21</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkDrawingArea" id="drawingarea2">
-                <property name="width_request">300</property>
-                <property name="height_request">200</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-              </object>
-              <packing>
-                <property name="x">339</property>
-                <property name="y">23</property>
+                <property name="x">39</property>
+                <property name="y">60</property>
               </packing>
             </child>
           </object>
@@ -134,9 +104,202 @@
           <object class="GtkLabel" id="label_page1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Measures</property>
+            <property name="label" translatable="yes">Main</property>
           </object>
           <packing>
+            <property name="tab_fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="camera_fixed">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="label_brightness">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Brightness:</property>
+              </object>
+              <packing>
+                <property name="x">33</property>
+                <property name="y">25</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="spin_brightness">
+                <property name="width_request">104</property>
+                <property name="height_request">29</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_brightness</property>
+              </object>
+              <packing>
+                <property name="x">34</property>
+                <property name="y">47</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_gamma">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Gamma:</property>
+              </object>
+              <packing>
+                <property name="x">188</property>
+                <property name="y">25</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_gain">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Gain:</property>
+              </object>
+              <packing>
+                <property name="x">349</property>
+                <property name="y">24</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_exposure_value">
+                <property name="width_request">101</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Exposure value:</property>
+              </object>
+              <packing>
+                <property name="x">190</property>
+                <property name="y">118</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="spin_gamma">
+                <property name="width_request">104</property>
+                <property name="height_request">29</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_gamma</property>
+                <property name="value">100</property>
+              </object>
+              <packing>
+                <property name="x">188</property>
+                <property name="y">48</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="spin_gain">
+                <property name="width_request">104</property>
+                <property name="height_request">29</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_gain</property>
+                <property name="value">260</property>
+              </object>
+              <packing>
+                <property name="x">349</property>
+                <property name="y">47</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="spin_exposure_value">
+                <property name="width_request">104</property>
+                <property name="height_request">29</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_exposure_value</property>
+                <property name="value">200</property>
+              </object>
+              <packing>
+                <property name="x">189</property>
+                <property name="y">146</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="box_exposure_mode_selection">
+                <property name="width_request">108</property>
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label_exposure_mode">
+                    <property name="width_request">102</property>
+                    <property name="height_request">30</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes">Exposure mode:</property>
+                    <property name="lines">0</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkRadioButton" id="radiobutton_exp1">
+                    <property name="label" translatable="yes">Manual</property>
+                    <property name="width_request">100</property>
+                    <property name="height_request">20</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkRadioButton" id="radiobutton_exp3">
+                    <property name="label" translatable="yes">Aperture Priority</property>
+                    <property name="width_request">100</property>
+                    <property name="height_request">20</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                    <property name="group">radiobutton_exp1</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="x">33</property>
+                <property name="y">120</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child type="tab">
+          <object class="GtkLabel" id="label_page2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Camera</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
             <property name="tab_fill">False</property>
           </packing>
         </child>
@@ -426,53 +589,6 @@
             </child>
           </object>
           <packing>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child type="tab">
-          <object class="GtkLabel" id="label_page2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Star Tracker</property>
-          </object>
-          <packing>
-            <property name="position">1</property>
-            <property name="tab_fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkFixed" id="status_fixed">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkLabel" id="label_status_connected">
-                <property name="width_request">200</property>
-                <property name="height_request">20</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Raspberry: Not connected</property>
-                <property name="ellipsize">start</property>
-              </object>
-              <packing>
-                <property name="x">22</property>
-                <property name="y">17</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkTextView" id="textview_log">
-                <property name="width_request">400</property>
-                <property name="height_request">200</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="editable">False</property>
-              </object>
-              <packing>
-                <property name="x">39</property>
-                <property name="y">60</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
             <property name="position">2</property>
           </packing>
         </child>
@@ -480,7 +596,7 @@
           <object class="GtkLabel" id="label_page3">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Status</property>
+            <property name="label" translatable="yes">Star Tracker</property>
           </object>
           <packing>
             <property name="position">2</property>
@@ -488,182 +604,9 @@
           </packing>
         </child>
         <child>
-          <object class="GtkFixed" id="camera_fixed">
+          <object class="GtkFixed" id="horizon_fixed">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <child>
-              <object class="GtkLabel" id="label_brightness">
-                <property name="width_request">100</property>
-                <property name="height_request">20</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Brightness:</property>
-              </object>
-              <packing>
-                <property name="x">33</property>
-                <property name="y">25</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="spin_brightness">
-                <property name="width_request">104</property>
-                <property name="height_request">29</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="adjustment">adjustment_brightness</property>
-              </object>
-              <packing>
-                <property name="x">34</property>
-                <property name="y">47</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_gamma">
-                <property name="width_request">100</property>
-                <property name="height_request">20</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Gamma:</property>
-              </object>
-              <packing>
-                <property name="x">188</property>
-                <property name="y">25</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_gain">
-                <property name="width_request">100</property>
-                <property name="height_request">20</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Gain:</property>
-              </object>
-              <packing>
-                <property name="x">349</property>
-                <property name="y">24</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_exposure_value">
-                <property name="width_request">101</property>
-                <property name="height_request">20</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Exposure value:</property>
-              </object>
-              <packing>
-                <property name="x">190</property>
-                <property name="y">118</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="spin_gamma">
-                <property name="width_request">104</property>
-                <property name="height_request">29</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="adjustment">adjustment_gamma</property>
-                <property name="value">100</property>
-              </object>
-              <packing>
-                <property name="x">188</property>
-                <property name="y">48</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="spin_gain">
-                <property name="width_request">104</property>
-                <property name="height_request">29</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="adjustment">adjustment_gain</property>
-                <property name="value">260</property>
-              </object>
-              <packing>
-                <property name="x">349</property>
-                <property name="y">47</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkSpinButton" id="spin_exposure_value">
-                <property name="width_request">104</property>
-                <property name="height_request">29</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="adjustment">adjustment_exposure_value</property>
-                <property name="value">200</property>
-              </object>
-              <packing>
-                <property name="x">189</property>
-                <property name="y">146</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox" id="box_exposure_mode_selection">
-                <property name="width_request">108</property>
-                <property name="height_request">80</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkLabel" id="label_exposure_mode">
-                    <property name="width_request">102</property>
-                    <property name="height_request">30</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Exposure mode:</property>
-                    <property name="lines">0</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="radiobutton_exp1">
-                    <property name="label" translatable="yes">Manual</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">20</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="xalign">0</property>
-                    <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkRadioButton" id="radiobutton_exp3">
-                    <property name="label" translatable="yes">Aperture Priority</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">20</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="xalign">0</property>
-                    <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
-                    <property name="group">radiobutton_exp1</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="x">33</property>
-                <property name="y">120</property>
-              </packing>
-            </child>
           </object>
           <packing>
             <property name="position">3</property>
@@ -673,10 +616,87 @@
           <object class="GtkLabel" id="label_page4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Camera</property>
+            <property name="label" translatable="yes">Horizon Sensor</property>
           </object>
           <packing>
             <property name="position">3</property>
+            <property name="tab_fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="measures_fixed">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="label_magnetometer">
+                <property name="width_request">192</property>
+                <property name="height_request">68</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Magnetometer data (Gauss):
+	X:	??
+	Y: 	??
+	Z:	??</property>
+              </object>
+              <packing>
+                <property name="x">20</property>
+                <property name="y">239</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_accelerometer">
+                <property name="width_request">161</property>
+                <property name="height_request">68</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Accelerometer data (G):
+	X:	??
+	Y:	??
+	Z:	??</property>
+              </object>
+              <packing>
+                <property name="x">339</property>
+                <property name="y">241</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="drawingarea1">
+                <property name="width_request">300</property>
+                <property name="height_request">200</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_right">152</property>
+              </object>
+              <packing>
+                <property name="x">19</property>
+                <property name="y">21</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkDrawingArea" id="drawingarea2">
+                <property name="width_request">300</property>
+                <property name="height_request">200</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="x">339</property>
+                <property name="y">23</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child type="tab">
+          <object class="GtkLabel" id="label_page55">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Measures</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
             <property name="tab_fill">False</property>
           </packing>
         </child>
