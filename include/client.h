@@ -90,6 +90,10 @@ static void close_sockets() {
     SOCKFD3 = 0;
 }
 
+
+/**
+ *   SENDING MESSAGES
+ */
 static void send_msg(char msg) {
     if (CONNECTED) {
         if (write(SOCKET_COMMANDS, &msg, 1) < 0) {
@@ -137,7 +141,7 @@ static void send_unitaryVectors() {
 static void send_threshold() {
     if (CONNECTED) {
         printlog("");
-        printf("[Client] Sending threshold: %d\n", CATALOG);
+        printf("[Client] Sending threshold: %d\n", PIXEL_THRESHOLD);
 
         send_msg(MSG_SET_PX_THRESH);
         send_int(PIXEL_THRESHOLD);
@@ -146,12 +150,102 @@ static void send_threshold() {
     }
 }
 
-static void send_all() {
-    send_magnitude();
-    send_unitaryVectors();
+static void send_roi() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending ROI: %d\n", ROI);
+
+        send_msg(MSG_SET_ROI);
+        send_int(ROI);
+
+        printlog("[Client] ROI sent\n");
+    }
+}
+
+static void send_points() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending points: %d\n", POINTS);
+
+        send_msg(MSG_SET_POINTS);
+        send_int(POINTS);
+
+        printlog("[Client] Points sent\n");
+    }
+}
+
+static void send_gain() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending gain: %d\n", GAIN);
+
+        send_msg(MSG_SET_GAIN);
+        send_int(GAIN);
+
+        printlog("[Client] Gain sent\n");
+    }
+}
+
+static void send_error() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending error: %f\n", ERROR);
+
+        send_msg(MSG_SET_ERROR);
+        send_int(ERROR);
+
+        printlog("[Client] Error sent\n");
+    }
 }
 
 
+static void send_brightness() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending brightness: %d\n", BRIGHTNESS);
+
+        send_msg(MSG_SET_BRIGHTNESS);
+        send_int(BRIGHTNESS);
+
+        printlog("[Client] Brightness sent\n");
+    }
+}
+
+static void send_gamma() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending gamma: %d\n", GAMMA);
+
+        send_msg(MSG_SET_GAMMA);
+        send_int(GAMMA);
+
+        printlog("[Client] Gamma sent\n");
+    }
+}
+
+static void send_expvalue() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending exposure value: %d\n", EXPVALUE);
+
+        send_msg(MSG_SET_EXP_VAL);
+        send_int(EXPVALUE);
+
+        printlog("[Client] Exposure value sent\n");
+    }
+}
+
+static void send_all() {
+    send_magnitude();
+    send_unitaryVectors();
+    send_threshold();
+    send_brightness();
+    send_gamma();
+    send_expvalue();
+}
+
+
+// READING
 static void read_data_packet() {
     // Reading protocol
     #define A_GAIN     0.004    //[G/LSB] FS=10

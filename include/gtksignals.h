@@ -16,9 +16,18 @@
 #include "gtkgraph.h"
 #include "data.h"
 
-static void catalog_toggled (GtkToggleButton *button, gpointer data);
-static void spin_vectors_changed (GtkSpinButton *button, gpointer data);
-static void spin_threshold_changed (GtkSpinButton *button, gpointer data);
+static void catalog_toggled         (GtkToggleButton *button, gpointer data);
+static void spin_vectors_changed    (GtkSpinButton *button, gpointer data);
+static void spin_threshold_changed  (GtkSpinButton *button, gpointer data);
+static void spin_roi_changed        (GtkSpinButton *button, gpointer data);
+static void spin_points_changed     (GtkSpinButton *button, gpointer data);
+static void spin_error_changed      (GtkSpinButton *button, gpointer data);
+static void spin_brightness_changed (GtkSpinButton *button, gpointer data);
+static void spin_gamma_changed      (GtkSpinButton *button, gpointer data);
+static void spin_gain_changed       (GtkSpinButton *button, gpointer data);
+static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data);
+
+
 
 static void connect_all_signals (){
     // Draw signals
@@ -67,7 +76,7 @@ static void spin_points_changed (GtkSpinButton *button, gpointer data) {
 }
 
 static void spin_error_changed (GtkSpinButton *button, gpointer data) {
-    set_error(gtk_spin_button_get_value_as_float(button));
+    set_error(gtk_spin_button_get_value(button));
 }
 
 static void spin_brightness_changed (GtkSpinButton *button, gpointer data) {

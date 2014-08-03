@@ -24,14 +24,28 @@ static int ROI = 3;
 static int POINTS = 1;
 static float ERROR = 2.50;
 
+// Camera
+static int BRIGHTNESS = 0;
+static int GAMMA = 100;
+static int GAIN = 260;
+static int EXPVALUE = 200;
+
 
 // Sending to server
 // Defined in client.h
 static void send_magnitude();
 static void send_threshold();
 static void send_unitaryVectors();
+static void send_roi();
+static void send_points();
+static void send_error();
+static void send_roi();
+static void send_brightness();
+static void send_gamma();
+static void send_gain();
+static void send_expvalue();
 
-
+// Setting variables
 static void set_magnitude(int new_magnitude) {
     CATALOG = new_magnitude;
     printlog("");
@@ -70,10 +84,37 @@ static void set_points(int points) {
 static void set_error(float error) {
     ERROR = error;
     printlog("");
-    printf("[Star Tracker] Using %d as error\n", error);
+    printf("[Star Tracker] Using %f as error\n", error);
     send_error();
 }
 
+static void set_brightness(int bright) {
+    BRIGHTNESS = bright;
+    printlog("");
+    printf("[Camera] Brightness changed to %d", bright);
+    send_brightness();
+}
+
+static void set_gamma(int gamma) {
+    GAMMA = gamma;
+    printlog("");
+    printf("[Camera] Gamma changed to %d", gamma);
+    send_gamma();
+}
+
+static void set_gain(int gain) {
+    GAIN = gain;
+    printlog("");
+    printf("[Camera] Gain changed to %d", gain);
+    send_gain();
+}
+
+static void set_exposure_value(int expvalue) {
+    EXPVALUE = expvalue;
+    printlog("");
+    printf("[Camera] Exposure value changed to %d", expvalue);
+    send_expvalue();
+}
 
 static void set_magnetometer(float x, float y, float z) {
     printlog("");
