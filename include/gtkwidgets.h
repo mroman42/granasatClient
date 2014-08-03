@@ -14,14 +14,15 @@
 #include <glib.h>
 #include "gtkgui.h"
 
-// Widget references
+// WIDGET REFERENCES
+// General
 static GtkBuilder* builder;
 static GtkLabel*   magnetometer_label;
 static GtkLabel*   accelerometer_label;
 static GtkWidget*  drawing_area1;
 static GtkWidget*  drawing_area2;
 static GtkLabel*   status_connected_label;
-
+// Star Tracker tab
 static GtkWidget*  radiobutton_catalog_1;
 static GtkWidget*  radiobutton_catalog_2;
 static GtkWidget*  radiobutton_catalog_3;
@@ -33,6 +34,12 @@ static GtkWidget*  spin_threshold;
 static GtkWidget*  spin_roi;
 static GtkWidget*  spin_points;
 static GtkWidget*  spin_error;
+// Camera tab
+static GtkWidget*  spin_brightness;
+static GtkWidget*  spin_gamma;
+static GtkWidget*  spin_gain;
+static GtkWidget*  spin_exposure_value;
+
 
 // Messages
 char* MSG_CPU_TEMP           = "CPU Temperature:\t\t %4.3f ºC";
@@ -127,6 +134,22 @@ static GtkWidget* add_spin_points() {
 
 static GtkWidget* add_spin_error() {
     return spin_error = add_widget("spin_error");
+}
+
+static GtkWidget* add_spin_brightness() {
+    return spin_brightness = add_widget("spin_brightness");
+}
+
+static GtkWidget* add_spin_gamma() {
+    return spin_gamma = add_widget("spin_gamma");
+}
+
+static GtkWidget* add_spin_gain() {
+    return spin_gain = add_widget("spin_gain");
+}
+
+static GtkWidget* add_spin_exposure_value() {
+    return spin_exposure_value = add_widget("spin_exposure_value");
 }
 
 /*
