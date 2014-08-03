@@ -2,8 +2,20 @@
 <!-- Generated with glade 3.16.1 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
+  <object class="GtkAdjustment" id="adjustment_binthres">
+    <property name="upper">230</property>
+    <property name="value">50</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="adjustment_brightness">
     <property name="upper">63</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_cannythres">
+    <property name="upper">460</property>
+    <property name="value">100</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
@@ -46,6 +58,12 @@
     <property name="upper">101</property>
     <property name="value">3</property>
     <property name="step_increment">2</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_speedlimit">
+    <property name="upper">1024</property>
+    <property name="value">512</property>
+    <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment_threshold">
@@ -205,16 +223,17 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="spinbutton1">
-                <property name="width_request">104</property>
-                <property name="height_request">29</property>
+              <object class="GtkScale" id="scale2">
+                <property name="width_request">100</property>
+                <property name="height_request">80</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="margin_right">2</property>
+                <property name="adjustment">adjustment_speedlimit</property>
+                <property name="round_digits">1</property>
               </object>
               <packing>
-                <property name="x">46</property>
-                <property name="y">58</property>
+                <property name="x">50</property>
+                <property name="y">47</property>
               </packing>
             </child>
           </object>
@@ -726,6 +745,76 @@
           <object class="GtkFixed" id="horizon_fixed">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <child>
+              <object class="GtkScale" id="scale_binthres">
+                <property name="width_request">100</property>
+                <property name="height_request">50</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_binthres</property>
+                <property name="round_digits">1</property>
+              </object>
+              <packing>
+                <property name="x">55</property>
+                <property name="y">102</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label8">
+                <property name="width_request">110</property>
+                <property name="height_request">25</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Binary threshold</property>
+              </object>
+              <packing>
+                <property name="x">36</property>
+                <property name="y">77</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label9">
+                <property name="width_request">100</property>
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Parameters</property>
+                <attributes>
+                  <attribute name="font-desc" value="Ubuntu Medium 12"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="x">26</property>
+                <property name="y">7</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label10">
+                <property name="width_request">100</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Canny filter threshold</property>
+              </object>
+              <packing>
+                <property name="x">40</property>
+                <property name="y">167</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScale" id="scale1">
+                <property name="width_request">100</property>
+                <property name="height_request">50</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="adjustment">adjustment_cannythres</property>
+                <property name="round_digits">1</property>
+              </object>
+              <packing>
+                <property name="x">54</property>
+                <property name="y">191</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="position">3</property>
