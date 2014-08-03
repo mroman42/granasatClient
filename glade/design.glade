@@ -316,7 +316,7 @@
                 <property name="value">3</property>
               </object>
               <packing>
-                <property name="x">164</property>
+                <property name="x">168</property>
                 <property name="y">183</property>
               </packing>
             </child>
@@ -381,7 +381,7 @@
             <child>
               <object class="GtkSpinButton" id="spin_error">
                 <property name="width_request">118</property>
-                <property name="height_request">26</property>
+                <property name="height_request">29</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="adjustment">adjustment_error</property>
@@ -392,8 +392,8 @@
                 <property name="value">2.5</property>
               </object>
               <packing>
-                <property name="x">160</property>
-                <property name="y">249</property>
+                <property name="x">168</property>
+                <property name="y">248</property>
               </packing>
             </child>
             <child>
@@ -500,8 +500,8 @@
                 <property name="label" translatable="yes">Brightness</property>
               </object>
               <packing>
-                <property name="x">28</property>
-                <property name="y">22</property>
+                <property name="x">33</property>
+                <property name="y">25</property>
               </packing>
             </child>
             <child>
@@ -513,8 +513,8 @@
                 <property name="adjustment">adjustment_brightness</property>
               </object>
               <packing>
-                <property name="x">30</property>
-                <property name="y">48</property>
+                <property name="x">34</property>
+                <property name="y">47</property>
               </packing>
             </child>
             <child>
@@ -541,19 +541,6 @@
               <packing>
                 <property name="x">349</property>
                 <property name="y">24</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="label_exposure_mode">
-                <property name="width_request">105</property>
-                <property name="height_request">20</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Exposure mode</property>
-              </object>
-              <packing>
-                <property name="x">31</property>
-                <property name="y">121</property>
               </packing>
             </child>
             <child>
@@ -598,18 +585,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="spin_exposure_mode">
-                <property name="width_request">104</property>
-                <property name="height_request">29</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-              </object>
-              <packing>
-                <property name="x">31</property>
-                <property name="y">148</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkSpinButton" id="spin_exposure_value">
                 <property name="width_request">104</property>
                 <property name="height_request">29</property>
@@ -621,6 +596,72 @@
               <packing>
                 <property name="x">189</property>
                 <property name="y">146</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="box_exposure_mode_selection">
+                <property name="width_request">108</property>
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label_exposure_mode">
+                    <property name="width_request">102</property>
+                    <property name="height_request">30</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes">Exposure mode:</property>
+                    <property name="lines">0</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkRadioButton" id="radiobutton_exp1">
+                    <property name="label" translatable="yes">Manual</property>
+                    <property name="width_request">100</property>
+                    <property name="height_request">20</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkRadioButton" id="radiobutton_exp3">
+                    <property name="label" translatable="yes">Aperture Priority</property>
+                    <property name="width_request">100</property>
+                    <property name="height_request">20</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="xalign">0</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                    <property name="group">radiobutton_exp1</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="x">33</property>
+                <property name="y">120</property>
               </packing>
             </child>
           </object>
