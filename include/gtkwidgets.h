@@ -22,6 +22,9 @@ static GtkLabel*   accelerometer_label;
 static GtkWidget*  drawing_area1;
 static GtkWidget*  drawing_area2;
 static GtkLabel*   status_connected_label;
+// Main
+static GtkWidget*  button_shutdown;
+static GtkWidget*  button_restart;
 // Star Tracker tab
 static GtkWidget*  radiobutton_catalog_1;
 static GtkWidget*  radiobutton_catalog_2;
@@ -152,6 +155,14 @@ static GtkWidget* add_spin_exposure_value() {
     return spin_exposure_value = add_widget("spin_exposure_value");
 }
 
+static GtkWidget* add_button_shotudown() {
+    return button_shutdown = add_widget("button_shutdown");
+}
+
+static GtkWidget* add_button_restart() {
+    return button_restart = add_widget("button_restart");
+}
+
 /*
    Adds all widgets
  */
@@ -176,6 +187,8 @@ static void add_all_widgets() {
     add_spin_gamma();
     add_spin_gain();
     add_spin_exposure_value();
+    add_button_restart();
+    add_button_shotudown();
 }
 
 #endif

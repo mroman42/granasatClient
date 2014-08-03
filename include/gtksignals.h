@@ -26,10 +26,14 @@ static void spin_brightness_changed (GtkSpinButton *button, gpointer data);
 static void spin_gamma_changed      (GtkSpinButton *button, gpointer data);
 static void spin_gain_changed       (GtkSpinButton *button, gpointer data);
 static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data);
-
-
+static void button_shutdown_clicked (GtkButton *button, gpointer data);
+static void button_restart_clicked  (GtkButton *button, gpointer data);
 
 static void connect_all_signals (){
+    // Main signals
+    g_signal_connect (G_OBJECT (button_shutdown), "clicked", G_CALLBACK (button_shutdown_clicked), NULL);
+    g_signal_connect (G_OBJECT (button_restart),  "clicked", G_CALLBACK (button_restart_clicked),  NULL);
+
     // Draw signals
     g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), MAG);
     g_signal_connect (G_OBJECT (drawing_area2), "draw", G_CALLBACK (drawGraph), ACC);
@@ -95,5 +99,12 @@ static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data) {
     set_exposure_value(gtk_spin_button_get_value_as_int(button));
 }
 
+static void button_shutdown_clicked (GtkButton *button, gpointer data) {
+    send_shutdown();
+}
+
+static void button_restart_clicked  (GtkButton *button, gpointer data) {
+    send_restart();
+}
 
 #endif

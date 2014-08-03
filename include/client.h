@@ -244,6 +244,20 @@ static void send_all() {
     send_expvalue();
 }
 
+// COMMANDS
+static void send_shutdown() {
+    if (CONNECTED) {
+        send_msg(MSG_END);
+        printlog("[Client] Shutdown signal sent");
+    }
+}
+
+static void send_restart() {
+    if (CONNECTED) {
+        send_msg(MSG_RESTART);
+        printlog("[Client] Restart signal sent");
+    }
+}
 
 // READING
 static void read_data_packet() {

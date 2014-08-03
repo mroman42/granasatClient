@@ -593,7 +593,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label1">
+              <object class="GtkLabel" id="label_stars">
                 <property name="name">label_unitary_vectors</property>
                 <property name="width_request">100</property>
                 <property name="height_request">20</property>
@@ -641,7 +641,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label2">
+              <object class="GtkLabel" id="label_pxthreshold">
                 <property name="width_request">101</property>
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
@@ -654,7 +654,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label3">
+              <object class="GtkLabel" id="label_roi">
                 <property name="width_request">100</property>
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
@@ -668,7 +668,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label4">
+              <object class="GtkLabel" id="label_error">
                 <property name="width_request">100</property>
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
@@ -699,7 +699,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label5">
+              <object class="GtkLabel" id="label_points">
                 <property name="width_request">100</property>
                 <property name="height_request">20</property>
                 <property name="visible">True</property>
