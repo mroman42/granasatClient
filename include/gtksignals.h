@@ -37,6 +37,12 @@ static void connect_all_signals (){
     g_signal_connect (G_OBJECT (spin_roi),             "value_changed", G_CALLBACK (spin_roi_changed),       NULL);
     g_signal_connect (G_OBJECT (spin_points),          "value_changed", G_CALLBACK (spin_points_changed),    NULL);
     g_signal_connect (G_OBJECT (spin_error),           "value_changed", G_CALLBACK (spin_error_changed),     NULL);
+
+    // Camera signals
+    g_signal_connect (G_OBJECT (spin_brightness),      "value_changed", G_CALLBACK (spin_brightness_changed),    NULL);
+    g_signal_connect (G_OBJECT (spin_gamma),           "value_changed", G_CALLBACK (spin_gamma_changed),         NULL);
+    g_signal_connect (G_OBJECT (spin_gain),            "value_changed", G_CALLBACK (spin_gain_changed),          NULL);
+    g_signal_connect (G_OBJECT (spin_exposure_value),  "value_changed", G_CALLBACK (spin_exposure_value_changed),NULL);
 }
 
 static void catalog_toggled (GtkToggleButton *button, gpointer data) {
@@ -63,5 +69,22 @@ static void spin_points_changed (GtkSpinButton *button, gpointer data) {
 static void spin_error_changed (GtkSpinButton *button, gpointer data) {
     set_error(gtk_spin_button_get_value_as_float(button));
 }
+
+static void spin_brightness_changed (GtkSpinButton *button, gpointer data) {
+    set_brightness(gtk_spin_button_get_value_as_int(button));
+}
+
+static void spin_gamma_changed (GtkSpinButton *button, gpointer data) {
+    set_gamma(gtk_spin_button_get_value_as_int(button));
+}
+
+static void spin_gain_changed (GtkSpinButton *button, gpointer data) {
+    set_gain(gtk_spin_button_get_value_as_int(button));
+}
+
+static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data) {
+    set_exposure_value(gtk_spin_button_get_value_as_int(button));
+}
+
 
 #endif

@@ -172,6 +172,10 @@ static void add_all_widgets() {
     add_spin_roi();
     add_spin_points();
     add_spin_error();
+    add_spin_brightness();
+    add_spin_gamma();
+    add_spin_gain();
+    add_spin_exposure_value()
 }
 
 #endif
