@@ -16,7 +16,7 @@
 #include "client.h"
 
 // Constants
-const int REFRESH_INTERVAL_DATA = 50;
+const int REFRESH_INTERVAL_DATA = 10;
 const int REFRESH_INTERVAL_REDRAW = 100;
 const int REFRESH_INTERVAL_CONNECTION = 1000;
 
