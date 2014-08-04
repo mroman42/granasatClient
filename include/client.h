@@ -98,8 +98,11 @@ static void close_sockets() {
  *   SENDING MESSAGES
  */
 static void check_ping() {
-    if (send(SOCKET_COMMANDS, 0, 1, MSG_NOSIGNAL) < 0) {
-        perror("ERROR writing socket");
+    char zero;
+    bzero(&zero,1);
+
+    if (send(SOCKET_COMMANDS, &zero, 1, MSG_NOSIGNAL) < 0) {
+        perror("ERROR sending a ping to socket");
         disconnect_server();
     } 
 }
@@ -107,7 +110,7 @@ static void check_ping() {
 static void send_msg(char msg) {
     if (CONNECTED) {
         if (write(SOCKET_COMMANDS, &msg, 1) < 0) {
-            perror("ERROR writing socket");
+            perror("ERROR writing command to socket");
             disconnect_server();
             return;
         }
@@ -117,7 +120,7 @@ static void send_msg(char msg) {
 static void send_int(int msg) {
     if (CONNECTED) {
         if (write(SOCKET_COMMANDS, &msg, sizeof(int)) < 0) {
-            perror("ERROR writing socket");
+            perror("ERROR writing integer to socket");
             disconnect_server();
             return;
         }
