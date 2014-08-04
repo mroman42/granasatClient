@@ -37,12 +37,13 @@ static bool CONNECTED = false;
 static int  SOCKFD1 = 0;
 static int  SOCKFD2 = 0;
 static int  SOCKFD3 = 0;
-//static char SERVER_IP [] = "127.0.0.1";
-static char SERVER_IP [] = "192.168.0.200";
+static char SERVER_IP [] = "127.0.0.1";
+//static char SERVER_IP [] = "192.168.0.200";
 
 // Functions
 static bool connect_server();
 static void check_connection();
+static void check_ping();
 static void read_data_packet();
 static void disconnect_server();
 static void close_sockets();
@@ -57,6 +58,8 @@ static void send_all();
     Resends all the data if the connection is succesful.
 */
 static void check_connection() {
+    check_ping();
+
     if (!CONNECTED) {
         printlog("Not connected to server. Checking connection.\n");
         CONNECTED = connect_server();
@@ -94,6 +97,13 @@ static void close_sockets() {
 /**
  *   SENDING MESSAGES
  */
+static void check_ping() {
+    if (send(SOCKET_COMMANDS, 0, 1, MSG_NOSIGNAL) < 0) {
+        perror("ERROR writing socket");
+        disconnect_server();
+    } 
+}
+
 static void send_msg(char msg) {
     if (CONNECTED) {
         if (write(SOCKET_COMMANDS, &msg, 1) < 0) {
@@ -248,14 +258,16 @@ static void send_all() {
 static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
-        printlog("[Client] Shutdown signal sent");
+        printlog("[Client] Shutdown signal sent. Disconnecting");
+        disconnect_server();
     }
 }
 
 static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
-        printlog("[Client] Restart signal sent");
+        printlog("[Client] Restart signal sent. Disconnecting");
+        disconnect_server();
     }
 }
 
