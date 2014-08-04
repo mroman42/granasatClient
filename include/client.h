@@ -368,6 +368,7 @@ static int connect_socket(int portno) {
 static bool connect_server () {
     /* This code is adapted from: */
     /*   http://cs.smith.edu/dftwiki/index.php/Tutorial:_Client/Server_on_the_Raspberry_Pi */
+    disconnect_server();
     bool connected = false;
 
     // Using three sockets in three diferent ports
@@ -379,7 +380,7 @@ static bool connect_server () {
     SOCKFD3 = connect_socket(PORT_SMALL_DATA);
     connected = SOCKFD1 && SOCKFD2 && SOCKFD3;
 
-    if (connected) printf("Connected\n");
+    if (connected) printlog("Connected\n");
 
     return connected;
 }
