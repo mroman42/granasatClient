@@ -22,6 +22,7 @@ static GtkLabel*   accelerometer_label;
 static GtkWidget*  drawing_area1;
 static GtkWidget*  drawing_area2;
 static GtkLabel*   status_connected_label;
+static GtkWidget*  scale_speed;
 // Main
 static GtkWidget*  button_shutdown;
 static GtkWidget*  button_restart;
@@ -42,6 +43,9 @@ static GtkWidget*  spin_brightness;
 static GtkWidget*  spin_gamma;
 static GtkWidget*  spin_gain;
 static GtkWidget*  spin_exposure_value;
+// Horizon Sensor
+static GtkWidget*  scale_binthres;
+static GtkWidget*  scale_canny;
 
 
 // Messages
@@ -163,6 +167,18 @@ static GtkWidget* add_button_restart() {
     return button_restart = add_widget("button_restart");
 }
 
+static GtkWidget* add_scale_speed() {
+    return scale_speed = add_widget("scale_speed");
+}
+
+static GtkWidget* add_scale_binthres() {
+    return scale_binthres = add_widget("scale_binthres");
+}
+
+static GtkWidget* add_scale_canny() {
+    return scale_canny = add_widget("scale_canny");
+}
+
 /*
    Adds all widgets
  */
@@ -189,6 +205,9 @@ static void add_all_widgets() {
     add_spin_exposure_value();
     add_button_restart();
     add_button_shotudown();
+    add_scale_speed();
+    add_scale_binthres();
+    add_scale_canny();
 }
 
 #endif

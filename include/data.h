@@ -12,6 +12,9 @@
 
 #include "log.h"
 
+// Status
+static int SPEED = 0;
+
 // Measures
 static float MAG[3];
 static float ACC[3];
@@ -30,6 +33,9 @@ static int GAMMA = 100;
 static int GAIN = 260;
 static int EXPVALUE = 200;
 
+// Horizon Sensor
+static int BIN_TH = 50;
+static int CANNY_TH = 100;
 
 // Sending to server
 // Defined in client.h
@@ -44,6 +50,8 @@ static void send_brightness();
 static void send_gamma();
 static void send_gain();
 static void send_expvalue();
+static void send_binthres();
+static void send_canny();
 
 // Setting variables
 static void set_magnitude(int new_magnitude) {
@@ -91,29 +99,43 @@ static void set_error(float error) {
 static void set_brightness(int bright) {
     BRIGHTNESS = bright;
     printlog("");
-    printf("[Camera] Brightness changed to %d", bright);
+    printf("[Camera] Brightness changed to %d\n", bright);
     send_brightness();
 }
 
 static void set_gamma(int gamma) {
     GAMMA = gamma;
     printlog("");
-    printf("[Camera] Gamma changed to %d", gamma);
+    printf("[Camera] Gamma changed to %d\n", gamma);
     send_gamma();
 }
 
 static void set_gain(int gain) {
     GAIN = gain;
     printlog("");
-    printf("[Camera] Gain changed to %d", gain);
+    printf("[Camera] Gain changed to %d\n", gain);
     send_gain();
 }
 
 static void set_exposure_value(int expvalue) {
     EXPVALUE = expvalue;
     printlog("");
-    printf("[Camera] Exposure value changed to %d", expvalue);
+    printf("[Camera] Exposure value changed to %d\n", expvalue);
     send_expvalue();
+}
+
+static void set_binthres(int binthres) {
+    BIN_TH = binthres;
+    printlog("");
+    printf("[Horizon Sensor] Binary threshold change to %d\n", binthres);
+    send_binthres();
+}
+
+static void set_canny(int canny) {
+    CANNY_TH = canny;
+    printlog("");
+    printf("[Horizon Sensor] Canny threshold change to %d\n", canny);
+    send_canny();
 }
 
 static void set_magnetometer(float x, float y, float z) {

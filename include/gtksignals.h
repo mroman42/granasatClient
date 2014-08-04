@@ -28,6 +28,8 @@ static void spin_gain_changed       (GtkSpinButton *button, gpointer data);
 static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data);
 static void button_shutdown_clicked (GtkButton *button, gpointer data);
 static void button_restart_clicked  (GtkButton *button, gpointer data);
+static void scale_binthres_value_changed (GtkRange *range, gpointer data);
+static void scale_canny_value_changed (GtkRange *range, gpointer data);
 
 static void connect_all_signals (){
     // Main signals
@@ -56,6 +58,10 @@ static void connect_all_signals (){
     g_signal_connect (G_OBJECT (spin_gamma),           "value_changed", G_CALLBACK (spin_gamma_changed),         NULL);
     g_signal_connect (G_OBJECT (spin_gain),            "value_changed", G_CALLBACK (spin_gain_changed),          NULL);
     g_signal_connect (G_OBJECT (spin_exposure_value),  "value_changed", G_CALLBACK (spin_exposure_value_changed),NULL);
+
+    // Horizon Sensor signals
+    g_signal_connect (G_OBJECT (scale_binthres), "value_changed", G_CALLBACK (scale_binthres_value_changed), NULL);
+    g_signal_connect (G_OBJECT (scale_canny),    "value_changed", G_CALLBACK (scale_canny_value_changed),    NULL);
 }
 
 static void catalog_toggled (GtkToggleButton *button, gpointer data) {
@@ -105,6 +111,14 @@ static void button_shutdown_clicked (GtkButton *button, gpointer data) {
 
 static void button_restart_clicked  (GtkButton *button, gpointer data) {
     send_restart();
+}
+
+static void scale_binthres_value_changed (GtkRange *range, gpointer data) {
+    set_binthres(gtk_range_get_value(range));
+}
+
+static void scale_canny_value_changed (GtkRange *range, gpointer data) {
+    set_canny(gtk_range_get_value(range));
 }
 
 #endif

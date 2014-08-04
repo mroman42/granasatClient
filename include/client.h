@@ -248,6 +248,30 @@ static void send_expvalue() {
     }
 }
 
+static void send_binthres() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending binary threshold: %d\n", BIN_TH);
+
+        send_msg(MSG_SET_BIN_TH);
+        send_int(BIN_TH);
+
+        printlog("[Client] Binary threshold sent\n");
+    }
+}
+
+static void send_canny() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending canny threshold: %d\n", CANNY_TH);
+
+        send_msg(MSG_SET_CANNY_TH);
+        send_int(CANNY_TH);
+
+        printlog("[Client] Canny threshold sent\n");
+    }
+}
+
 static void send_all() {
     send_magnitude();
     send_unitaryVectors();
@@ -255,6 +279,8 @@ static void send_all() {
     send_brightness();
     send_gamma();
     send_expvalue();
+    send_binthres();
+    send_canny();
 }
 
 // COMMANDS
