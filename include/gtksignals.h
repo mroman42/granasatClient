@@ -17,6 +17,7 @@
 #include "data.h"
 
 static void catalog_toggled         (GtkToggleButton *button, gpointer data);
+static void altitude_toggled        (GtkToggleButton *button, gpointer data);
 static void spin_vectors_changed    (GtkSpinButton *button, gpointer data);
 static void spin_threshold_changed  (GtkSpinButton *button, gpointer data);
 static void spin_roi_changed        (GtkSpinButton *button, gpointer data);
@@ -35,6 +36,9 @@ static void connect_all_signals (){
     // Main signals
     g_signal_connect (G_OBJECT (button_shutdown), "clicked", G_CALLBACK (button_shutdown_clicked), NULL);
     g_signal_connect (G_OBJECT (button_restart),  "clicked", G_CALLBACK (button_restart_clicked),  NULL);
+    g_signal_connect (G_OBJECT (radiobutton_altitude1), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(1));
+    g_signal_connect (G_OBJECT (radiobutton_altitude2), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(2));
+    g_signal_connect (G_OBJECT (radiobutton_altitude3), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(3));
 
     // Draw signals
     g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), MAG);
@@ -67,6 +71,11 @@ static void connect_all_signals (){
 static void catalog_toggled (GtkToggleButton *button, gpointer data) {
     if (gtk_toggle_button_get_active(button))
         set_magnitude(GPOINTER_TO_INT(data));
+}
+
+static void altitude_toggled (GtkToggleButton *button, gpointer data) {
+    if (gtk_toggle_button_get_active(button))
+        set_mode(GPOINTER_TO_INT(data));
 }
 
 static void spin_vectors_changed (GtkSpinButton *button, gpointer data) {

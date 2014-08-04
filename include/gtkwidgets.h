@@ -26,6 +26,9 @@ static GtkWidget*  scale_speed;
 // Main
 static GtkWidget*  button_shutdown;
 static GtkWidget*  button_restart;
+static GtkWidget*  radiobutton_altitude1;
+static GtkWidget*  radiobutton_altitude2;
+static GtkWidget*  radiobutton_altitude3;
 // Star Tracker tab
 static GtkWidget*  radiobutton_catalog_1;
 static GtkWidget*  radiobutton_catalog_2;
@@ -123,6 +126,13 @@ static GtkWidget* add_catalog_size_group() {
     return radiobutton_catalog_1;
 }
 
+static GtkWidget* add_altitude_size_group() {
+    radiobutton_altitude1 = add_widget("radiobutton_altitude1");
+    radiobutton_altitude2 = add_widget("radiobutton_altitude2");
+    radiobutton_altitude3 = add_widget("radiobutton_altitude3");
+    return radiobutton_altitude1;
+}
+
 static GtkWidget* add_spin_vectors() {
     return spin_unitary_vectors = add_widget("spin_vectors");
 }
@@ -208,6 +218,7 @@ static void add_all_widgets() {
     add_scale_speed();
     add_scale_binthres();
     add_scale_canny();
+    add_altitude_size_group();
 }
 
 #endif

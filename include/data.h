@@ -14,6 +14,7 @@
 
 // Status
 static int SPEED = 0;
+static int MODE = 1;
 
 // Measures
 static float MAG[3];
@@ -52,6 +53,7 @@ static void send_gain();
 static void send_expvalue();
 static void send_binthres();
 static void send_canny();
+static void send_mode();
 
 // Setting variables
 static void set_magnitude(int new_magnitude) {
@@ -152,6 +154,13 @@ static void set_accelerometer(float x, float y, float z) {
     ACC[0] = x;
     ACC[1] = y;
     ACC[2] = z;
-}    
+}
+
+static void set_mode(int mode) {
+    MODE = mode;
+    printlog("");
+    printf("Altitude determination mode changed\n");
+    send_mode();
+}
 
 #endif

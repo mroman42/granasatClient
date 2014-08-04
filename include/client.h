@@ -272,6 +272,20 @@ static void send_canny() {
     }
 }
 
+static void send_mode() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending altitude determination mode");
+
+        switch (MODE) {
+            case 1: send_msg(MSG_SET_MODE_AUTO);
+            case 2: send_msg(MSG_SET_MODE_STAR);
+            case 3: send_msg(MSG_SET_MODE_HORI);
+        }
+        printlog("[Client] Altitude determination mode sent\n");        
+    }
+}
+
 static void send_all() {
     send_magnitude();
     send_unitaryVectors();
@@ -281,6 +295,7 @@ static void send_all() {
     send_expvalue();
     send_binthres();
     send_canny();
+    send_mode();
 }
 
 // COMMANDS
