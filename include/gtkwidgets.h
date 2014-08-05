@@ -76,11 +76,13 @@ static GtkWidget* add_widget(char* name) {
 static GtkWidget* add_main_window() {
     GtkWidget* main_window = add_widget("main_window");
     g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
+    gtk_window_set_keep_above((GtkWindow *) main_window, TRUE);
     return main_window;
 }
 
 static GtkWidget* add_image_window() {
     GtkWidget* image_window = add_widget("image_window");
+    gtk_window_set_title (GTK_WINDOW (image_window), "Images");
     return image_window;
 }
 
@@ -197,8 +199,8 @@ static GtkWidget* add_scale_canny() {
    Adds all widgets
  */
 static void add_all_widgets() {
-    add_main_window();
     add_image_window();
+    add_main_window();
     add_main_notebook();
     add_measures_container();
     add_startracker_container();
