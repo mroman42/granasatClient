@@ -276,12 +276,13 @@ static void send_mode() {
     if (CONNECTED) {
         printlog("");
         printf("[Client] Sending altitude determination mode");
-
+        
         switch (MODE) {
             case 1: send_msg(MSG_SET_MODE_AUTO); break;
             case 2: send_msg(MSG_SET_MODE_STAR); break;
             case 3: send_msg(MSG_SET_MODE_HORI); break;
         }
+        
         printlog("[Client] Altitude determination mode sent\n");        
     }
 }
@@ -363,6 +364,32 @@ static void read_data_packet() {
 
         set_magnetometer(m[0],m[1],m[2]);
         set_accelerometer(a[0],a[1],a[2]);
+    }
+}
+
+static void read_image() {
+    static int n_bytes = 960*1280;
+    static int bytes_sent = 0;
+    int n = 0;
+
+    if (bytes_sent < n_bytes) {
+        if ((n = recv(SOCKET_BIG_DATA, IMAGE_STREAM+bytes_sent, n_bytes-bytes_sent, MSG_DONTWAIT)) < 0)  {
+            if (errno != EAGAIN) {
+                perror("ERROR reading socket");
+                disconnect_server();
+                return;
+            }
+            else {
+                //printf("Non-blocking reading\n");
+            }
+        }
+        else
+            bytes_sent += n;
+    }
+
+    // If the image is complete, write and transform it
+    if (bytes_sent == n_bytes) {
+        set_image();
     }
 }
 

@@ -10,6 +10,9 @@
 #ifndef DATA_H
 #define DATA_H
 
+#include <images.h>
+#include <stdio.h>
+#include <stdint.h>
 #include "log.h"
 
 // Status
@@ -29,6 +32,7 @@ static int POINTS = 1;
 static float ERROR = 2.50;
 
 // Camera
+static uint8_t IMAGE_STREAM[960*1280];
 static int BRIGHTNESS = 0;
 static int GAMMA = 100;
 static int GAIN = 260;
@@ -161,6 +165,11 @@ static void set_mode(int mode) {
     printlog("");
     printf("Altitude determination mode changed\n");
     send_mode();
+}
+
+static void set_image() {
+    write_image_to_file("image.raw");
+    transform_image("image.bmp");
 }
 
 #endif

@@ -20,7 +20,7 @@ OBJECTS= $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 # Flags usados al compilar y enlazar
 CC=gcc
 INCLUDES=-I./include -I/usr/include/gtk-3.0 -I/usr/include/glib-2.0 -I/usr/include/cairo
-FLAGS=-O0 -g3 -Wall -fmessage-length=0 `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
+FLAGS=-O0 -g3 -Wall -fmessage-length=0 `pkg-config --cflags --libs gtk+-3.0 opencv` -export-dynamic
 
 
 
