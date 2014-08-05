@@ -27,7 +27,6 @@
 
 
 // Connection Sockets
-
 #define SOCKET_COMMANDS   SOCKFD1
 #define SOCKET_BIG_DATA   SOCKFD2
 #define SOCKET_SMALL_DATA SOCKFD3
@@ -415,7 +414,7 @@ static void read_imagebmp() {
 
     // If the image is complete, write and transform it
     if (bytes_sent == n_bytes) {
-        set_image();
+        set_imagebmp();
     }
 }
 

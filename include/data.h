@@ -34,9 +34,9 @@ static int POINTS = 1;
 static float ERROR = 2.50;
 
 // Camera
-#define IMAGEBMP_SIZE 1
-static uint8_t IMAGE_STREAM[960*1280];
-static uint8_t IMAGEBMP_STREAM[IMAGEBMP_SIZE];
+#define IMAGEBMP_SIZE 100
+static uint8_t IMAGE_STREAM [960*1280];
+static uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 static int BRIGHTNESS = 0;
 static int GAMMA = 100;
 static int GAIN = 260;
@@ -173,6 +173,11 @@ static void set_mode(int mode) {
 
 static void set_image() {
     write_image_to_file("image.raw");
+    //transform_image("image.bmp");
+}
+
+static void set_imagebmp() {
+    write_bmp_to_file("image.bmp");
     //transform_image("image.bmp");
 }
 

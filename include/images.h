@@ -23,6 +23,11 @@ static void write_image_to_file (char* filename) {
     fwrite(IMAGE_STREAM, 1, 960*1280, raw_img);
 }
 
+static void write_bmp_to_file (char* filename) {
+    FILE* raw_img = fopen(filename, "w");
+    fwrite(IMAGEBMP_STREAM, 1, IMAGEBMP_SIZE, raw_img);
+}
+
 /*
 static void transform_image(char* filename) {
 	IplImage* cv_image = cvCreateImage(cvSize(1280,960),8,1);
