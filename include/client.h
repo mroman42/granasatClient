@@ -393,6 +393,34 @@ static void read_image() {
     }
 }
 
+static void read_imagebmp() {
+    static int n_bytes = IMAGEBMP_SIZE;
+    static int bytes_sent = 0;
+    int n = 0;
+
+    if (bytes_sent < n_bytes) {
+        if ((n = recv(SOCKET_BIG_DATA, IMAGEBMP_STREAM+bytes_sent, n_bytes-bytes_sent, MSG_DONTWAIT)) < 0)  {
+            if (errno != EAGAIN) {
+                perror("ERROR reading socket");
+                disconnect_server();
+                return;
+            }
+            else {
+                //printf("Non-blocking reading\n");
+            }
+        }
+        else
+            bytes_sent += n;
+    }
+
+    // If the image is complete, write and transform it
+    if (bytes_sent == n_bytes) {
+        set_image();
+    }
+}
+
+
+
 /*
     Creates a socket and connects to it.
     Parameters:
