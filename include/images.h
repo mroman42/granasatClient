@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <cv.h>
-#include <highgui.h>
+//#include <highgui.h>
 #include <data.h>
 
 static uint8_t IMAGE_STREAM[960*1280];
@@ -23,6 +23,7 @@ static void write_image_to_file (char* filename) {
     fwrite(IMAGE_STREAM, 1, 960*1280, raw_img);
 }
 
+/*
 static void transform_image(char* filename) {
 	IplImage* cv_image = cvCreateImage(cvSize(1280,960),8,1);
 	cvSetZero(cv_image);
@@ -37,5 +38,6 @@ static void transform_image(char* filename) {
 	
 	cvSaveImage(filename, cv_image, NULL);
 }
+*/
 
 #endif

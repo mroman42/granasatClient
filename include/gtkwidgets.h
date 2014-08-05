@@ -79,6 +79,10 @@ static GtkWidget* add_main_window() {
     return main_window;
 }
 
+static GtkWidget* add_image_window() {
+    GtkWidget* image_window = add_widget("image_window");
+    return image_window;
+}
 
 static GtkWidget* add_main_notebook() {
     return add_widget("main_notebook");
@@ -194,6 +198,7 @@ static GtkWidget* add_scale_canny() {
  */
 static void add_all_widgets() {
     add_main_window();
+    add_image_window();
     add_main_notebook();
     add_measures_container();
     add_startracker_container();

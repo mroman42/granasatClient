@@ -169,7 +169,7 @@ static void set_mode(int mode) {
 
 static void set_image() {
     write_image_to_file("image.raw");
-    transform_image("image.bmp");
+    //transform_image("image.bmp");
 }
 
 #endif
