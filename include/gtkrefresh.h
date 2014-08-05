@@ -30,7 +30,7 @@ static gboolean refreshConnectionLabel();
 static gboolean readData();
 static gboolean readImage();
 static gboolean readImageBmp();
-
+static gboolean refreshImage();
 
 static void add_timeouts() {
     // Client timeouts
@@ -38,6 +38,7 @@ static void add_timeouts() {
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
     //g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImage, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImageBmp, NULL);
+    g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) refreshImage, NULL);
 
     // Data timeouts
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshMagnetometer, NULL);
@@ -55,6 +56,11 @@ static void add_timeouts() {
 static gboolean readData() {
     if (CONNECTED)
         read_data_packet();
+    return 1;
+}
+
+static gboolean refreshImage() {
+    gtk_image_set_from_file((GtkImage*) image, IMAGE_FILE);
     return 1;
 }
 

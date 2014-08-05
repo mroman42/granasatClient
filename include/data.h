@@ -15,6 +15,8 @@
 #include <stdint.h>
 #include "log.h"
 
+#define IMAGE_FILE "images/sample1.jpg"
+
 // Status
 //static int SPEED = 0;
 static int MODE = 1;
