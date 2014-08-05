@@ -35,8 +35,8 @@ static float ERROR = 2.50;
 
 // Camera
 #define IMAGEBMP_SIZE 100
-static uint8_t IMAGE_STREAM [960*1280];
-static uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
+uint8_t IMAGE_STREAM [960*1280];
+uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 static int BRIGHTNESS = 0;
 static int GAMMA = 100;
 static int GAIN = 260;

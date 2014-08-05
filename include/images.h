@@ -16,7 +16,9 @@
 //#include <highgui.h>
 #include <data.h>
 
-static uint8_t IMAGE_STREAM[960*1280];
+#define IMAGEBMP_SIZE 100
+extern uint8_t IMAGE_STREAM [960*1280];
+extern uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 
 static void write_image_to_file (char* filename) {
     FILE* raw_img = fopen(filename, "w");
