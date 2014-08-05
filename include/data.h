@@ -34,7 +34,7 @@ static int POINTS = 1;
 static float ERROR = 2.50;
 
 // Camera
-#define IMAGEBMP_SIZE 100
+#define IMAGEBMP_SIZE 1229878
 uint8_t IMAGE_STREAM [960*1280];
 uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 static int BRIGHTNESS = 0;

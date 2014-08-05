@@ -16,7 +16,7 @@
 //#include <highgui.h>
 #include <data.h>
 
-#define IMAGEBMP_SIZE 100
+#define IMAGEBMP_SIZE 1229878
 extern uint8_t IMAGE_STREAM [960*1280];
 extern uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 
