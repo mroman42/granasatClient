@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <cv.h>
+//#include <cv.h>
 //#include <highgui.h>
 #include <data.h>
 
