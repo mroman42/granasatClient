@@ -16,21 +16,21 @@
 #include "gtkgraph.h"
 #include "data.h"
 
-static void catalog_toggled         (GtkToggleButton *button, gpointer data);
-static void altitude_toggled        (GtkToggleButton *button, gpointer data);
-static void spin_vectors_changed    (GtkSpinButton *button, gpointer data);
-static void spin_threshold_changed  (GtkSpinButton *button, gpointer data);
-static void spin_roi_changed        (GtkSpinButton *button, gpointer data);
-static void spin_points_changed     (GtkSpinButton *button, gpointer data);
-static void spin_error_changed      (GtkSpinButton *button, gpointer data);
-static void spin_brightness_changed (GtkSpinButton *button, gpointer data);
-static void spin_gamma_changed      (GtkSpinButton *button, gpointer data);
-static void spin_gain_changed       (GtkSpinButton *button, gpointer data);
+static void catalog_toggled             (GtkToggleButton *button, gpointer data);
+static void altitude_toggled            (GtkToggleButton *button, gpointer data);
+static void spin_vectors_changed        (GtkSpinButton *button, gpointer data);
+static void spin_threshold_changed      (GtkSpinButton *button, gpointer data);
+static void spin_roi_changed            (GtkSpinButton *button, gpointer data);
+static void spin_points_changed         (GtkSpinButton *button, gpointer data);
+static void spin_error_changed          (GtkSpinButton *button, gpointer data);
+static void spin_brightness_changed     (GtkSpinButton *button, gpointer data);
+static void spin_gamma_changed          (GtkSpinButton *button, gpointer data);
+static void spin_gain_changed           (GtkSpinButton *button, gpointer data);
 static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data);
-static void button_shutdown_clicked (GtkButton *button, gpointer data);
-static void button_restart_clicked  (GtkButton *button, gpointer data);
-static void scale_binthres_value_changed (GtkRange *range, gpointer data);
-static void scale_canny_value_changed (GtkRange *range, gpointer data);
+static void button_shutdown_clicked     (GtkButton *button, gpointer data);
+static void button_restart_clicked      (GtkButton *button, gpointer data);
+static void scale_binthres_value_changed(GtkRange *range, gpointer data);
+static void scale_canny_value_changed   (GtkRange *range, gpointer data);
 
 static void connect_all_signals (){
     // Main signals

@@ -13,7 +13,7 @@
 #include "log.h"
 
 // Status
-static int SPEED = 0;
+//static int SPEED = 0;
 static int MODE = 1;
 
 // Measures

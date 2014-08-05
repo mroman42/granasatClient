@@ -278,9 +278,9 @@ static void send_mode() {
         printf("[Client] Sending altitude determination mode");
 
         switch (MODE) {
-            case 1: send_msg(MSG_SET_MODE_AUTO);
-            case 2: send_msg(MSG_SET_MODE_STAR);
-            case 3: send_msg(MSG_SET_MODE_HORI);
+            case 1: send_msg(MSG_SET_MODE_AUTO); break;
+            case 2: send_msg(MSG_SET_MODE_STAR); break;
+            case 3: send_msg(MSG_SET_MODE_HORI); break;
         }
         printlog("[Client] Altitude determination mode sent\n");        
     }
