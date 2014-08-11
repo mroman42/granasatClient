@@ -13,8 +13,9 @@ BIN=./bin
 
 # Macros para identificar el ejecutable y los archivos objeto.
 EXECUTABLE= $(BIN)/granasatClient
+EXECUTABLE2= $(BIN)/imageConvert
 HEADERS= $(wildcard $(INCLUDE)/*.h)
-SOURCES= $(wildcard $(SRC)/*.c)
+SOURCES= $(filter-out $(SRC)/imageconvert.c, $(wildcard $(SRC)/*.c))
 OBJECTS= $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
 # Flags usados al compilar y enlazar
@@ -27,11 +28,14 @@ FLAGS=-O0 -g3 -Wall -fmessage-length=0 `pkg-config --cflags --libs gtk+-3.0 open
 
 
 # El objetivo global es el ejecutable.
-all: $(EXECUTABLE)
+all: $(EXECUTABLE) $(EXECUTABLE2)
 
 # Generación del ejecutable a partir de ficheros objeto.
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) -o $@ $(OBJECTS) $(INCLUDES) $(FLAGS)
+
+$(EXECUTABLE2): $(SRC)/imageconvert.c
+	$(CC) -o $@ $(SRC)/imageconvert.c $(FLAGS)
 
 # Generación de ficheros objeto.
 $(OBJ)/%.o: $(SRC)/%.c $(HEADERS)

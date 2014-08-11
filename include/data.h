@@ -64,13 +64,24 @@ static void send_canny();
 static void send_mode();
 static void send_speed();
 
+
+
 // Setting variables
-static void set_magnitude(int new_magnitude) {
-    CATALOG = new_magnitude;
+static void set_value(int* value, int* VALUE, char* msg, void (*send)()) {
+    (*VALUE) = (*value);
     printlog("");
-    printf("[Star Tracker] Using star tracker catalog: %d\n", new_magnitude);
-    send_magnitude();
+    printf(msg, (*value));
+    (*send)();
 }
+
+static void set_magnitude(int new_magnitude) { set_value(&new_magnitude, &CATALOG, "[Star Tracker] Using star tracker catalog: %d\n", send_magnitude); }
+
+// static void set_magnitude(int new_magnitude) {
+//     CATALOG = new_magnitude;
+//     printlog("");
+//     printf("[Star Tracker] Using star tracker catalog: %d\n", new_magnitude);
+//     send_magnitude();
+// }
 
 static void set_unitary_vectors(int new_vectors) {
     UNIT_VECTORS = new_vectors;
