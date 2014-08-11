@@ -60,7 +60,7 @@ static void check_connection() {
     check_ping();
 
     if (!CONNECTED) {
-        printlog("Not connected to server. Checking connection.\n");
+        printlog(LCLIENT,"Not connected to server. Checking connection.\n");
         CONNECTED = connect_server();
     
         if (CONNECTED)
@@ -83,7 +83,7 @@ static void disconnect_server() {
     Closes the three sockets.
  */
 static void close_sockets() {
-    printlog("Disconnecting. Closing sockets.\n");
+    printlog(LCLIENT, "Disconnecting. Closing sockets.\n");
     close(SOCKFD1);
     close(SOCKFD2);  
     close(SOCKFD3);
@@ -128,140 +128,140 @@ static void send_int(int msg) {
 
 static void send_magnitude() {
     if (CONNECTED) {
-        printlog("[Client] Sending magnitude: %d\n", CATALOG);
+        printlog(LCLIENT, "[Client] Sending magnitude: %d\n", CATALOG);
 
         send_msg(MSG_SET_CATALOG);
         send_int(CATALOG);
 
-        printlog("[Client] Magnitude sent\n");
+        printlog(LCLIENT, "[Client] Magnitude sent\n");
     }
 }
 
 static void send_unitaryVectors() {
     if (CONNECTED) {
-        printlog("[Client] Sending stars: %d\n", UNIT_VECTORS);
+        printlog(LCLIENT, "[Client] Sending stars: %d\n", UNIT_VECTORS);
 
         send_msg(MSG_SET_STARS);
         send_int(UNIT_VECTORS);
 
-        printlog("[Client] Stars sent\n");
+        printlog(LCLIENT, "[Client] Stars sent\n");
     }
 }
 
 static void send_threshold() {
     if (CONNECTED) {
-        printlog("[Client] Sending threshold: %d\n", PIXEL_THRESHOLD);
+        printlog(LCLIENT, "[Client] Sending threshold: %d\n", PIXEL_THRESHOLD);
 
         send_msg(MSG_SET_PX_THRESH);
         send_int(PIXEL_THRESHOLD);
 
-        printlog("[Client] Threshold sent\n");
+        printlog(LCLIENT, "[Client] Threshold sent\n");
     }
 }
 
 static void send_roi() {
     if (CONNECTED) {
-        printlog("[Client] Sending ROI: %d\n", ROI);
+        printlog(LCLIENT, "[Client] Sending ROI: %d\n", ROI);
 
         send_msg(MSG_SET_ROI);
         send_int(ROI);
 
-        printlog("[Client] ROI sent\n");
+        printlog(LCLIENT, "[Client] ROI sent\n");
     }
 }
 
 static void send_points() {
     if (CONNECTED) {
-        printlog("[Client] Sending points: %d\n", POINTS);
+        printlog(LCLIENT, "[Client] Sending points: %d\n", POINTS);
 
         send_msg(MSG_SET_POINTS);
         send_int(POINTS);
 
-        printlog("[Client] Points sent\n");
+        printlog(LCLIENT, "[Client] Points sent\n");
     }
 }
 
 static void send_gain() {
     if (CONNECTED) {
-        printlog("[Client] Sending gain: %d\n", GAIN);
+        printlog(LCLIENT, "[Client] Sending gain: %d\n", GAIN);
 
         send_msg(MSG_SET_GAIN);
         send_int(GAIN);
 
-        printlog("[Client] Gain sent\n");
+        printlog(LCLIENT, "[Client] Gain sent\n");
     }
 }
 
 static void send_error() {
     if (CONNECTED) {
-        printlog("[Client] Sending error: %f\n", ERROR);
+        printlog(LCLIENT, "[Client] Sending error: %f\n", ERROR);
 
         send_msg(MSG_SET_ERROR);
         send_int(ERROR);
 
-        printlog("[Client] Error sent\n");
+        printlog(LCLIENT, "[Client] Error sent\n");
     }
 }
 
 
 static void send_brightness() {
     if (CONNECTED) {
-        printlog("[Client] Sending brightness: %d\n", BRIGHTNESS);
+        printlog(LCLIENT, "[Client] Sending brightness: %d\n", BRIGHTNESS);
 
         send_msg(MSG_SET_BRIGHTNESS);
         send_int(BRIGHTNESS);
 
-        printlog("[Client] Brightness sent\n");
+        printlog(LCLIENT, "[Client] Brightness sent\n");
     }
 }
 
 static void send_gamma() {
     if (CONNECTED) {
-        printlog("[Client] Sending gamma: %d\n", GAMMA);
+        printlog(LCLIENT, "[Client] Sending gamma: %d\n", GAMMA);
 
         send_msg(MSG_SET_GAMMA);
         send_int(GAMMA);
 
-        printlog("[Client] Gamma sent\n");
+        printlog(LCLIENT, "[Client] Gamma sent\n");
     }
 }
 
 static void send_expvalue() {
     if (CONNECTED) {
-        printlog("[Client] Sending exposure value: %d\n", EXPVALUE);
+        printlog(LCLIENT, "[Client] Sending exposure value: %d\n", EXPVALUE);
 
         send_msg(MSG_SET_EXP_VAL);
         send_int(EXPVALUE);
 
-        printlog("[Client] Exposure value sent\n");
+        printlog(LCLIENT, "[Client] Exposure value sent\n");
     }
 }
 
 static void send_binthres() {
     if (CONNECTED) {
-        printlog("[Client] Sending binary threshold: %d\n", BIN_TH);
+        printlog(LCLIENT, "[Client] Sending binary threshold: %d\n", BIN_TH);
 
         send_msg(MSG_SET_BIN_TH);
         send_int(BIN_TH);
 
-        printlog("[Client] Binary threshold sent\n");
+        printlog(LCLIENT, "[Client] Binary threshold sent\n");
     }
 }
 
 static void send_canny() {
     if (CONNECTED) {
-        printlog("[Client] Sending canny threshold: %d\n", CANNY_TH);
+        printlog(LCLIENT, "[Client] Sending canny threshold: %d\n", CANNY_TH);
 
         send_msg(MSG_SET_CANNY_TH);
         send_int(CANNY_TH);
 
-        printlog("[Client] Canny threshold sent\n");
+        printlog(LCLIENT, "[Client] Canny threshold sent\n");
     }
 }
 
 static void send_mode() {
     if (CONNECTED) {
-        printlog("[Client] Sending altitude determination mode");
+        printlog(LCLIENT, "[Client] Sending altitude determination mode");
         
         switch (MODE) {
             case 1: send_msg(MSG_SET_MODE_AUTO); break;
@@ -269,18 +269,18 @@ static void send_mode() {
             case 3: send_msg(MSG_SET_MODE_HORI); break;
         }
         
-        printlog("[Client] Altitude determination mode sent\n");        
+        printlog(LCLIENT, "[Client] Altitude determination mode sent\n");        
     }
 }
 
 static void send_speed() {
     if (CONNECTED) {
-        printlog("[Client] Sending speed limit (?): %d\n", SPEED);
+        printlog(LCLIENT, "[Client] Sending speed limit (?): %d\n", SPEED);
 
         send_msg(MSG_PASS);
         //send_int(SPEED);
 
-        printlog("[Client] Speed limit sent (?)\n");
+        printlog(LCLIENT, "[Client] Speed limit sent (?)\n");
     }
 }
 
@@ -300,7 +300,7 @@ static void send_all() {
 static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
-        printlog("[Client] Shutdown signal sent. Disconnecting");
+        printlog(LCLIENT, "[Client] Shutdown signal sent. Disconnecting");
         disconnect_server();
     }
 }
@@ -308,7 +308,7 @@ static void send_shutdown() {
 static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
-        printlog("[Client] Restart signal sent. Disconnecting");
+        printlog(LCLIENT, "[Client] Restart signal sent. Disconnecting");
         disconnect_server();
     }
 }
@@ -450,7 +450,7 @@ static int connect_socket(int portno) {
         return false;
     }
 
-    printlog("Socket connected. File descriptor: %d\n", sockfd);
+    printlog(LCLIENT,"Socket connected. File descriptor: %d\n", sockfd);
     return sockfd;
 }
 
@@ -464,14 +464,14 @@ static bool connect_server () {
     bool connected = false;
 
     // Using three sockets in three diferent ports
-    printlog("Contacting %s on ports %d,%d,%d\n", SERVER_IP, PORT_COMMANDS,PORT_BIG_DATA,PORT_SMALL_DATA);
+    printlog(LCLIENT,"Contacting %s on ports %d,%d,%d\n", SERVER_IP, PORT_COMMANDS,PORT_BIG_DATA,PORT_SMALL_DATA);
 
     SOCKFD1 = connect_socket(PORT_COMMANDS);
     SOCKFD2 = connect_socket(PORT_BIG_DATA);
     SOCKFD3 = connect_socket(PORT_SMALL_DATA);
     connected = SOCKFD1 && SOCKFD2 && SOCKFD3;
 
-    if (connected) printlog("Connected\n");
+    if (connected) printlog(LCLIENT,"Connected\n");
 
     return connected;
 }

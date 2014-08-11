@@ -36,7 +36,7 @@ static void call_imageConvert (char* filename_in, char* filename_out) {
 
     if (fork() == 0) {
         // Child process
-        printlog("Calling \"imageConvert\" to convert %s into %s", filename_in, filename_out);
+        printlog(LIMAGE, "Calling \"imageConvert\" to convert %s into %s", filename_in, filename_out);
         sprintf(buffer, "imageConvert \"%s\" \"%s\"", filename_in, filename_out);
         system(buffer);
         exit(0);

@@ -67,42 +67,42 @@ static void send_speed();
 
 
 // SETTING VARIABLES
-static void set_value(int* value, int* VALUE, char* msg, void (*send)()) {
+static void set_value(int* value, int* VALUE, ltype type, char* msg, void (*send)()) {
     (*VALUE) = (*value);
-    printlog(msg, (*value));
+    printlog(type, msg, (*value));
     (*send)();
 }
 
 // Star tracker
-static void set_magnitude       (int magnitude) { set_value(&magnitude, &CATALOG,         "[Star Tracker] Using star tracker catalog: %d\n", send_magnitude);      }
-static void set_unitary_vectors (int vectors)   { set_value(&vectors,   &UNIT_VECTORS,    "[Star Tracker] Using %d unitary vectors\n",       send_unitaryVectors); }
-static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_THRESHOLD, "[Star Tracker] Using %d as threshold\n",          send_threshold);      }
-static void set_roi             (int roi)       { set_value(&roi,       &ROI,             "[Star Tracker] Using %d as ROI\n",                send_roi);            }
-static void set_points          (int points)    { set_value(&points,    &POINTS,          "[Star Tracker] Using %d points\n",                send_points);         }
+static void set_magnitude       (int magnitude) { set_value(&magnitude, &CATALOG,         LSTAR,   "[Star Tracker] Using star tracker catalog: %d\n", send_magnitude);      }
+static void set_unitary_vectors (int vectors)   { set_value(&vectors,   &UNIT_VECTORS,    LSTAR,   "[Star Tracker] Using %d unitary vectors\n",       send_unitaryVectors); }
+static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_THRESHOLD, LSTAR,   "[Star Tracker] Using %d as threshold\n",          send_threshold);      }
+static void set_roi             (int roi)       { set_value(&roi,       &ROI,             LSTAR,   "[Star Tracker] Using %d as ROI\n",                send_roi);            }
+static void set_points          (int points)    { set_value(&points,    &POINTS,          LSTAR,   "[Star Tracker] Using %d points\n",                send_points);         }
 // Camera
-static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,      "[Camera] Brightness changed to %d\n",             send_brightness);     }
-static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,           "[Camera] Gamma changed to %d\n",                  send_gamma);          }
-static void set_gain            (int gain)      { set_value(&gain,      &GAIN,            "[Camera] Gain changed to %d\n",                   send_gain);           }
-static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,        "[Camera] Exposure value changed to %d\n",         send_expvalue);       }
+static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,      LCAMERA, "[Camera] Brightness changed to %d\n",             send_brightness);     }
+static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,           LCAMERA, "[Camera] Gamma changed to %d\n",                  send_gamma);          }
+static void set_gain            (int gain)      { set_value(&gain,      &GAIN,            LCAMERA, "[Camera] Gain changed to %d\n",                   send_gain);           }
+static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,        LCAMERA, "[Camera] Exposure value changed to %d\n",         send_expvalue);       }
 // Horizon Sensor
-static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,          "[Horizon Sensor] Binary threshold change to %d\n",send_binthres);       }
-static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,        "[Horizon Sensor] Canny threshold change to %d\n", send_canny);          }
+static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,          LHORIZON, "[Horizon Sensor] Binary threshold change to %d\n",send_binthres);       }
+static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,        LHORIZON, "[Horizon Sensor] Canny threshold change to %d\n", send_canny);          }
 
 static void set_error(float error) {
     ERROR = error;
-    printlog("[Star Tracker] Using %f as error\n", error);
+    printlog(LSTAR, "[Star Tracker] Using %f as error\n", error);
     send_error();
 }
 
 static void set_magnetometer(float x, float y, float z) {
-    printlog("[Data] Magnetometer measures:  %f,%f,%f\n", x,y,z);
+    printlog(LDATA, "[Data] Magnetometer measures:  %f,%f,%f\n", x,y,z);
     MAG[0] = x;
     MAG[1] = y;
     MAG[2] = z;
 }
 
 static void set_accelerometer(float x, float y, float z) {
-    printlog("[Data] Accelerometer measures: %f,%f,%f\n", x,y,z);
+    printlog(LDATA, "[Data] Accelerometer measures: %f,%f,%f\n", x,y,z);
     ACC[0] = x;
     ACC[1] = y;
     ACC[2] = z;
@@ -110,7 +110,7 @@ static void set_accelerometer(float x, float y, float z) {
 
 static void set_mode(int mode) {
     MODE = mode;
-    printlog("Altitude determination mode changed\n");
+    printlog(LSTATUS, "Altitude determination mode changed\n");
     send_mode();
 }
 
@@ -126,7 +126,7 @@ static void set_imagebmp() {
 
 static void set_speed(int speed) {
     SPEED = speed;
-    printlog("Speed limit changed\n");
+    printlog(LSTATUS, "Speed limit changed\n");
     send_speed();
 }
 
