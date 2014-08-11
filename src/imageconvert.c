@@ -11,7 +11,7 @@
 #include <cv.h>
 #include <highgui.h>
 
-static void transform_image(char* filename_in, char* filename_out) {
+static void transform_image(const char* filename_in, const char* filename_out) {
     // Reads the raw image
     uint8_t image_stream[960*1280];
     FILE* raw_img = fopen(filename_in, "r");
@@ -37,11 +37,15 @@ static void transform_image(char* filename_in, char* filename_out) {
 int main(int argc, char* argv[]) {
     // Checks for the correct number of arguments
     if (argc != 3) {
-        printf("Error. Invalid number of arguments\n");
+        printf("[ImageConvert] Error. Invalid number of arguments\n");
         return 1;
     }
 
-    transform_image(argv[1], argv[2]);
+    const char* filename_in = argv[1];
+    const char* filename_out = argv[2];
+
+    printf("[ImageConvert] Converting %s into %s", filename_in, filename_out);
+    transform_image(filename_in, filename_out);
 
     return 0;
 }

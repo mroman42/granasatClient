@@ -12,9 +12,9 @@
 
 #include <stdio.h>
 #include <stdint.h>
-//#include <cv.h>
-//#include <highgui.h>
-#include <data.h>
+#include "data.h"
+#include "log.h"
+
 
 #define IMAGEBMP_SIZE 1229878
 extern uint8_t IMAGE_STREAM [960*1280];
@@ -30,21 +30,18 @@ static void write_bmp_to_file (char* filename) {
     fwrite(IMAGEBMP_STREAM, 1, IMAGEBMP_SIZE, raw_img);
 }
 
-/*
-static void transform_image(char* filename) {
-	IplImage* cv_image = cvCreateImage(cvSize(1280,960),8,1);
-	cvSetZero(cv_image);
+static void call_imageConvert (char* filename_in, char* filename_out) {
+    // Forks to create a new process to run imageConvert
+    char buffer[100];
 
-	int x,y;
-	for (y=0 ; y < cv_image->height ; y++) {
-		for (x=0; x < cv_image->width ; x++) {
-			(cv_image->imageData + cv_image->widthStep*y)[x] = 
-                ((uint8_t*) IMAGE_STREAM)[y * cv_image->width + x];
-		}
-	}
-	
-	cvSaveImage(filename, cv_image, NULL);
+    if (fork() == 0) {
+        // Child process
+        printlog("");
+        printf("Calling \"imageConvert\" to convert %s into %s", filename_in, filename_out);
+        sprintf(buffer, "imageConvert \"%s\" \"%s\"", filename_in, filename_out);
+        system(buffer);
+        exit(0);
+    }
 }
-*/
 
 #endif
