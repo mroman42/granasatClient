@@ -96,8 +96,15 @@ static void close_sockets() {
 /**
  *   SENDING MESSAGES
  */
-static void send_value () {
-    
+static void send_value (int command, int value, char* name) {
+    if (CONNECTED) {
+        printlog(LCLIENT, " Sending %s: %d\n", name, value);
+
+        send_msg(command);
+        send_int(value);
+
+        printlog(LCLIENT, " %s sent\n", name);
+    } 
 }
 
 static void check_ping() {
