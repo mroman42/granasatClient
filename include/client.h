@@ -96,6 +96,10 @@ static void close_sockets() {
 /**
  *   SENDING MESSAGES
  */
+static void send_value () {
+    
+}
+
 static void check_ping() {
     char zero;
     bzero(&zero,1);

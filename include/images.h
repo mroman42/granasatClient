@@ -16,6 +16,7 @@
 #include "log.h"
 
 
+#define IMAGE_CONVERT "bin/imageConvert"
 #define IMAGEBMP_SIZE 1229878
 extern uint8_t IMAGE_STREAM [960*1280];
 extern uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
@@ -37,7 +38,7 @@ static void call_imageConvert (char* filename_in, char* filename_out) {
     if (fork() == 0) {
         // Child process
         printlog(LIMAGE, "Calling \"imageConvert\" to convert %s into %s", filename_in, filename_out);
-        sprintf(buffer, "imageConvert \"%s\" \"%s\"", filename_in, filename_out);
+        sprintf(buffer, "%s \"%s\" \"%s\"", IMAGE_CONVERT, filename_in, filename_out);
         system(buffer);
         exit(0);
     }
