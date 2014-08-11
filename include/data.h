@@ -15,7 +15,7 @@
 #include <stdint.h>
 #include "log.h"
 
-#define IMAGE_FILE "images/sample1.jpg"
+#define IMAGE_FILE "images/image.bmp"
 #define IMAGE_RAW  "images/image.raw"
 #define IMAGE_BMP  "images/image.bmp"
 
