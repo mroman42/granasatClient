@@ -120,7 +120,8 @@ static void set_mode(int mode) {
 static void set_image() {
     static int image_number = 0;
     char buffer_filename[100];
-    sprintf();
+    sprintf(buffer_filename,"%s/image%d.raw",WFOLDER_NAME,image_number);
+    image_number++;
 
     write_image_to_file(IMAGE_RAW);
     call_imageConvert(IMAGE_RAW, IMAGE_BMP);

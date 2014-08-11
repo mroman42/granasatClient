@@ -29,8 +29,12 @@ static void transform_image(const char* filename_in, const char* filename_out) {
         }
     }
     
-    // Saves the bmp image
-    cvSaveImage(filename_out, cv_image, NULL);
+    // Resizes and saves the bmp image
+    IplImage *resized_img = cvCreateImage (cvSize(640,480), cv_image->depth, cv_image->nChannels);
+    cvResize(cv_image, resized_img, CV_INTER_LINEAR);
+    cvSaveImage(filename_out, resized_img, NULL);
+    cvReleaseImage(&cv_image);
+    cvReleaseImage(&resized_img);
 }
 
 
