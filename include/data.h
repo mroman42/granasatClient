@@ -74,11 +74,11 @@ static void set_value(int* value, int* VALUE, ltype type, char* msg, void (*send
 }
 
 // Star tracker
-static void set_magnitude       (int magnitude) { set_value(&magnitude, &CATALOG,         LSTAR,   "[Star Tracker] Using star tracker catalog: %d\n", send_magnitude);      }
-static void set_unitary_vectors (int vectors)   { set_value(&vectors,   &UNIT_VECTORS,    LSTAR,   "[Star Tracker] Using %d unitary vectors\n",       send_unitaryVectors); }
-static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_THRESHOLD, LSTAR,   "[Star Tracker] Using %d as threshold\n",          send_threshold);      }
-static void set_roi             (int roi)       { set_value(&roi,       &ROI,             LSTAR,   "[Star Tracker] Using %d as ROI\n",                send_roi);            }
-static void set_points          (int points)    { set_value(&points,    &POINTS,          LSTAR,   "[Star Tracker] Using %d points\n",                send_points);         }
+static void set_magnitude       (int magnitude) { set_value(&magnitude, &CATALOG,         LSTAR,   "Using star tracker catalog: %d\n", send_magnitude);      }
+static void set_unitary_vectors (int vectors)   { set_value(&vectors,   &UNIT_VECTORS,    LSTAR,   "Using %d unitary vectors\n",       send_unitaryVectors); }
+static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_THRESHOLD, LSTAR,   "Using %d as threshold\n",          send_threshold);      }
+static void set_roi             (int roi)       { set_value(&roi,       &ROI,             LSTAR,   "Using %d as ROI\n",                send_roi);            }
+static void set_points          (int points)    { set_value(&points,    &POINTS,          LSTAR,   "Using %d points\n",                send_points);         }
 // Camera
 static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,      LCAMERA, "[Camera] Brightness changed to %d\n",             send_brightness);     }
 static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,           LCAMERA, "[Camera] Gamma changed to %d\n",                  send_gamma);          }
@@ -90,7 +90,7 @@ static void set_canny           (int canny)     { set_value(&canny,     &CANNY_T
 
 static void set_error(float error) {
     ERROR = error;
-    printlog(LSTAR, "[Star Tracker] Using %f as error\n", error);
+    printlog(LSTAR, "Using %f as error\n", error);
     send_error();
 }
 

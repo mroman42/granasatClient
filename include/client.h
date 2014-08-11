@@ -128,140 +128,140 @@ static void send_int(int msg) {
 
 static void send_magnitude() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending magnitude: %d\n", CATALOG);
+        printlog(LCLIENT, " Sending magnitude: %d\n", CATALOG);
 
         send_msg(MSG_SET_CATALOG);
         send_int(CATALOG);
 
-        printlog(LCLIENT, "[Client] Magnitude sent\n");
+        printlog(LCLIENT, " Magnitude sent\n");
     }
 }
 
 static void send_unitaryVectors() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending stars: %d\n", UNIT_VECTORS);
+        printlog(LCLIENT, " Sending stars: %d\n", UNIT_VECTORS);
 
         send_msg(MSG_SET_STARS);
         send_int(UNIT_VECTORS);
 
-        printlog(LCLIENT, "[Client] Stars sent\n");
+        printlog(LCLIENT, " Stars sent\n");
     }
 }
 
 static void send_threshold() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending threshold: %d\n", PIXEL_THRESHOLD);
+        printlog(LCLIENT, " Sending threshold: %d\n", PIXEL_THRESHOLD);
 
         send_msg(MSG_SET_PX_THRESH);
         send_int(PIXEL_THRESHOLD);
 
-        printlog(LCLIENT, "[Client] Threshold sent\n");
+        printlog(LCLIENT, " Threshold sent\n");
     }
 }
 
 static void send_roi() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending ROI: %d\n", ROI);
+        printlog(LCLIENT, " Sending ROI: %d\n", ROI);
 
         send_msg(MSG_SET_ROI);
         send_int(ROI);
 
-        printlog(LCLIENT, "[Client] ROI sent\n");
+        printlog(LCLIENT, "ROI sent\n");
     }
 }
 
 static void send_points() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending points: %d\n", POINTS);
+        printlog(LCLIENT, " Sending points: %d\n", POINTS);
 
         send_msg(MSG_SET_POINTS);
         send_int(POINTS);
 
-        printlog(LCLIENT, "[Client] Points sent\n");
+        printlog(LCLIENT, " Points sent\n");
     }
 }
 
 static void send_gain() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending gain: %d\n", GAIN);
+        printlog(LCLIENT, " Sending gain: %d\n", GAIN);
 
         send_msg(MSG_SET_GAIN);
         send_int(GAIN);
 
-        printlog(LCLIENT, "[Client] Gain sent\n");
+        printlog(LCLIENT, " Gain sent\n");
     }
 }
 
 static void send_error() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending error: %f\n", ERROR);
+        printlog(LCLIENT, " Sending error: %f\n", ERROR);
 
         send_msg(MSG_SET_ERROR);
         send_int(ERROR);
 
-        printlog(LCLIENT, "[Client] Error sent\n");
+        printlog(LCLIENT, " Error sent\n");
     }
 }
 
 
 static void send_brightness() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending brightness: %d\n", BRIGHTNESS);
+        printlog(LCLIENT, " Sending brightness: %d\n", BRIGHTNESS);
 
         send_msg(MSG_SET_BRIGHTNESS);
         send_int(BRIGHTNESS);
 
-        printlog(LCLIENT, "[Client] Brightness sent\n");
+        printlog(LCLIENT, " Brightness sent\n");
     }
 }
 
 static void send_gamma() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending gamma: %d\n", GAMMA);
+        printlog(LCLIENT, " Sending gamma: %d\n", GAMMA);
 
         send_msg(MSG_SET_GAMMA);
         send_int(GAMMA);
 
-        printlog(LCLIENT, "[Client] Gamma sent\n");
+        printlog(LCLIENT, " Gamma sent\n");
     }
 }
 
 static void send_expvalue() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending exposure value: %d\n", EXPVALUE);
+        printlog(LCLIENT, " Sending exposure value: %d\n", EXPVALUE);
 
         send_msg(MSG_SET_EXP_VAL);
         send_int(EXPVALUE);
 
-        printlog(LCLIENT, "[Client] Exposure value sent\n");
+        printlog(LCLIENT, " Exposure value sent\n");
     }
 }
 
 static void send_binthres() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending binary threshold: %d\n", BIN_TH);
+        printlog(LCLIENT, " Sending binary threshold: %d\n", BIN_TH);
 
         send_msg(MSG_SET_BIN_TH);
         send_int(BIN_TH);
 
-        printlog(LCLIENT, "[Client] Binary threshold sent\n");
+        printlog(LCLIENT, " Binary threshold sent\n");
     }
 }
 
 static void send_canny() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending canny threshold: %d\n", CANNY_TH);
+        printlog(LCLIENT, " Sending canny threshold: %d\n", CANNY_TH);
 
         send_msg(MSG_SET_CANNY_TH);
         send_int(CANNY_TH);
 
-        printlog(LCLIENT, "[Client] Canny threshold sent\n");
+        printlog(LCLIENT, " Canny threshold sent\n");
     }
 }
 
 static void send_mode() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending altitude determination mode");
+        printlog(LCLIENT, " Sending altitude determination mode");
         
         switch (MODE) {
             case 1: send_msg(MSG_SET_MODE_AUTO); break;
@@ -269,18 +269,18 @@ static void send_mode() {
             case 3: send_msg(MSG_SET_MODE_HORI); break;
         }
         
-        printlog(LCLIENT, "[Client] Altitude determination mode sent\n");        
+        printlog(LCLIENT, " Altitude determination mode sent\n");        
     }
 }
 
 static void send_speed() {
     if (CONNECTED) {
-        printlog(LCLIENT, "[Client] Sending speed limit (?): %d\n", SPEED);
+        printlog(LCLIENT, " Sending speed limit (?): %d\n", SPEED);
 
         send_msg(MSG_PASS);
         //send_int(SPEED);
 
-        printlog(LCLIENT, "[Client] Speed limit sent (?)\n");
+        printlog(LCLIENT, " Speed limit sent (?)\n");
     }
 }
 
@@ -300,7 +300,7 @@ static void send_all() {
 static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
-        printlog(LCLIENT, "[Client] Shutdown signal sent. Disconnecting");
+        printlog(LCLIENT, " Shutdown signal sent. Disconnecting");
         disconnect_server();
     }
 }
@@ -308,7 +308,7 @@ static void send_shutdown() {
 static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
-        printlog(LCLIENT, "[Client] Restart signal sent. Disconnecting");
+        printlog(LCLIENT, " Restart signal sent. Disconnecting");
         disconnect_server();
     }
 }
