@@ -16,6 +16,8 @@
 #include "log.h"
 
 #define IMAGE_FILE "images/sample1.jpg"
+#define IMAGE_RAW  "images/image.raw"
+#define IMAGE_BMP  "images/image.bmp"
 
 // Status
 static int SPEED = 0;
@@ -115,14 +117,14 @@ static void set_mode(int mode) {
 }
 
 static void set_image() {
-    write_image_to_file("image.raw");
-    //transform_image("image.bmp");
+    write_image_to_file(IMAGE_RAW);
+    call_imageConvert(IMAGE_RAW, IMAGE_BMP);
 }
 
-static void set_imagebmp() {
-    write_bmp_to_file("image.bmp");
-    //transform_image("image.bmp");
-}
+// static void set_imagebmp() {
+//     write_bmp_to_file("image.bmp");
+//     //transform_image("image.bmp");
+// }
 
 static void set_speed(int speed) {
     SPEED = speed;

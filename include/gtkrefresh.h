@@ -29,15 +29,15 @@ static gboolean sendRedrawSignals();
 static gboolean refreshConnectionLabel();
 static gboolean readData();
 static gboolean readImage();
-static gboolean readImageBmp();
+//static gboolean readImageBmp();
 static gboolean refreshImage();
 
 static void add_timeouts() {
     // Client timeouts
     g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
-    //g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImage, NULL);
-    g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImageBmp, NULL);
+    g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImage, NULL);
+    //g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImageBmp, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) refreshImage, NULL);
 
     // Data timeouts
@@ -70,11 +70,11 @@ static gboolean readImage() {
     return 1;
 }
 
-static gboolean readImageBmp() {
-    if (CONNECTED)
-        read_imagebmp();
-    return 1;
-}
+// static gboolean readImageBmp() {
+//     if (CONNECTED)
+//         read_imagebmp();
+//     return 1;
+// }
 
 static gboolean checkServer() {
     check_connection();

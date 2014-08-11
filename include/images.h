@@ -25,10 +25,10 @@ static void write_image_to_file (char* filename) {
     fwrite(IMAGE_STREAM, 1, 960*1280, raw_img);
 }
 
-static void write_bmp_to_file (char* filename) {
-    FILE* raw_img = fopen(filename, "w");
-    fwrite(IMAGEBMP_STREAM, 1, IMAGEBMP_SIZE, raw_img);
-}
+// static void write_bmp_to_file (char* filename) {
+//     FILE* raw_img = fopen(filename, "w");
+//     fwrite(IMAGEBMP_STREAM, 1, IMAGEBMP_SIZE, raw_img);
+// }
 
 static void call_imageConvert (char* filename_in, char* filename_out) {
     // Forks to create a new process to run imageConvert
