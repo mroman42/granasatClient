@@ -128,8 +128,7 @@ static void send_int(int msg) {
 
 static void send_magnitude() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending magnitude: %d\n", CATALOG);
+        printlog("[Client] Sending magnitude: %d\n", CATALOG);
 
         send_msg(MSG_SET_CATALOG);
         send_int(CATALOG);
@@ -140,8 +139,7 @@ static void send_magnitude() {
 
 static void send_unitaryVectors() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending stars: %d\n", UNIT_VECTORS);
+        printlog("[Client] Sending stars: %d\n", UNIT_VECTORS);
 
         send_msg(MSG_SET_STARS);
         send_int(UNIT_VECTORS);
@@ -152,8 +150,7 @@ static void send_unitaryVectors() {
 
 static void send_threshold() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending threshold: %d\n", PIXEL_THRESHOLD);
+        printlog("[Client] Sending threshold: %d\n", PIXEL_THRESHOLD);
 
         send_msg(MSG_SET_PX_THRESH);
         send_int(PIXEL_THRESHOLD);
@@ -164,8 +161,7 @@ static void send_threshold() {
 
 static void send_roi() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending ROI: %d\n", ROI);
+        printlog("[Client] Sending ROI: %d\n", ROI);
 
         send_msg(MSG_SET_ROI);
         send_int(ROI);
@@ -176,8 +172,7 @@ static void send_roi() {
 
 static void send_points() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending points: %d\n", POINTS);
+        printlog("[Client] Sending points: %d\n", POINTS);
 
         send_msg(MSG_SET_POINTS);
         send_int(POINTS);
@@ -188,8 +183,7 @@ static void send_points() {
 
 static void send_gain() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending gain: %d\n", GAIN);
+        printlog("[Client] Sending gain: %d\n", GAIN);
 
         send_msg(MSG_SET_GAIN);
         send_int(GAIN);
@@ -200,8 +194,7 @@ static void send_gain() {
 
 static void send_error() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending error: %f\n", ERROR);
+        printlog("[Client] Sending error: %f\n", ERROR);
 
         send_msg(MSG_SET_ERROR);
         send_int(ERROR);
@@ -213,8 +206,7 @@ static void send_error() {
 
 static void send_brightness() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending brightness: %d\n", BRIGHTNESS);
+        printlog("[Client] Sending brightness: %d\n", BRIGHTNESS);
 
         send_msg(MSG_SET_BRIGHTNESS);
         send_int(BRIGHTNESS);
@@ -225,8 +217,7 @@ static void send_brightness() {
 
 static void send_gamma() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending gamma: %d\n", GAMMA);
+        printlog("[Client] Sending gamma: %d\n", GAMMA);
 
         send_msg(MSG_SET_GAMMA);
         send_int(GAMMA);
@@ -237,8 +228,7 @@ static void send_gamma() {
 
 static void send_expvalue() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending exposure value: %d\n", EXPVALUE);
+        printlog("[Client] Sending exposure value: %d\n", EXPVALUE);
 
         send_msg(MSG_SET_EXP_VAL);
         send_int(EXPVALUE);
@@ -249,8 +239,7 @@ static void send_expvalue() {
 
 static void send_binthres() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending binary threshold: %d\n", BIN_TH);
+        printlog("[Client] Sending binary threshold: %d\n", BIN_TH);
 
         send_msg(MSG_SET_BIN_TH);
         send_int(BIN_TH);
@@ -261,8 +250,7 @@ static void send_binthres() {
 
 static void send_canny() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending canny threshold: %d\n", CANNY_TH);
+        printlog("[Client] Sending canny threshold: %d\n", CANNY_TH);
 
         send_msg(MSG_SET_CANNY_TH);
         send_int(CANNY_TH);
@@ -273,8 +261,7 @@ static void send_canny() {
 
 static void send_mode() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending altitude determination mode");
+        printlog("[Client] Sending altitude determination mode");
         
         switch (MODE) {
             case 1: send_msg(MSG_SET_MODE_AUTO); break;
@@ -288,8 +275,7 @@ static void send_mode() {
 
 static void send_speed() {
     if (CONNECTED) {
-        printlog("");
-        printf("[Client] Sending speed limit (?): %d\n", SPEED);
+        printlog("[Client] Sending speed limit (?): %d\n", SPEED);
 
         send_msg(MSG_PASS);
         //send_int(SPEED);
@@ -464,8 +450,7 @@ static int connect_socket(int portno) {
         return false;
     }
 
-    printlog("");
-    printf("Socket connected. File descriptor: %d\n", sockfd);
+    printlog("Socket connected. File descriptor: %d\n", sockfd);
     return sockfd;
 }
 
@@ -479,8 +464,7 @@ static bool connect_server () {
     bool connected = false;
 
     // Using three sockets in three diferent ports
-    printlog("");
-	printf("Contacting %s on ports %d,%d,%d\n", SERVER_IP, PORT_COMMANDS,PORT_BIG_DATA,PORT_SMALL_DATA);
+    printlog("Contacting %s on ports %d,%d,%d\n", SERVER_IP, PORT_COMMANDS,PORT_BIG_DATA,PORT_SMALL_DATA);
 
     SOCKFD1 = connect_socket(PORT_COMMANDS);
     SOCKFD2 = connect_socket(PORT_BIG_DATA);

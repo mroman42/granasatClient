@@ -69,8 +69,7 @@ static void send_speed();
 // SETTING VARIABLES
 static void set_value(int* value, int* VALUE, char* msg, void (*send)()) {
     (*VALUE) = (*value);
-    printlog("");
-    printf(msg, (*value));
+    printlog(msg, (*value));
     (*send)();
 }
 
@@ -91,22 +90,19 @@ static void set_canny           (int canny)     { set_value(&canny,     &CANNY_T
 
 static void set_error(float error) {
     ERROR = error;
-    printlog("");
-    printf("[Star Tracker] Using %f as error\n", error);
+    printlog("[Star Tracker] Using %f as error\n", error);
     send_error();
 }
 
 static void set_magnetometer(float x, float y, float z) {
-    printlog("");
-    printf("[Data] Magnetometer measures:  %f,%f,%f\n", x,y,z);
+    printlog("[Data] Magnetometer measures:  %f,%f,%f\n", x,y,z);
     MAG[0] = x;
     MAG[1] = y;
     MAG[2] = z;
 }
 
 static void set_accelerometer(float x, float y, float z) {
-    printlog("");
-    printf("[Data] Accelerometer measures: %f,%f,%f\n", x,y,z);
+    printlog("[Data] Accelerometer measures: %f,%f,%f\n", x,y,z);
     ACC[0] = x;
     ACC[1] = y;
     ACC[2] = z;
@@ -114,8 +110,7 @@ static void set_accelerometer(float x, float y, float z) {
 
 static void set_mode(int mode) {
     MODE = mode;
-    printlog("");
-    printf("Altitude determination mode changed\n");
+    printlog("Altitude determination mode changed\n");
     send_mode();
 }
 
@@ -131,8 +126,7 @@ static void set_imagebmp() {
 
 static void set_speed(int speed) {
     SPEED = speed;
-    printlog("");
-    printf("Speed limit changed\n");
+    printlog("Speed limit changed\n");
     send_speed();
 }
 

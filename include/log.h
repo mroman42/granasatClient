@@ -13,13 +13,17 @@
 #include <stdio.h>
 #include <time.h>
 
-static void printlog(const char* msg);
+static void printlog(const char* msg, ...);
 static void printtime();
 
 
-static void printlog(const char* msg) {
+static void printlog(const char* format, ...) {
+    va_list args;
+    va_start(args, format);
     printtime();
-    printf("%s",msg);
+    vfprintf(stdout, format, args);
+    va_end(args);
+
 }
 
 static void printtime() {
