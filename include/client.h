@@ -286,6 +286,18 @@ static void send_mode() {
     }
 }
 
+static void send_speed() {
+    if (CONNECTED) {
+        printlog("");
+        printf("[Client] Sending speed limit (?): %d\n", SPEED);
+
+        send_msg(MSG_PASS);
+        //send_int(SPEED);
+
+        printlog("[Client] Speed limit sent (?)\n");
+    }
+}
+
 static void send_all() {
     send_magnitude();
     send_unitaryVectors();

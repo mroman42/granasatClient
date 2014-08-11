@@ -18,7 +18,7 @@
 #define IMAGE_FILE "images/sample1.jpg"
 
 // Status
-//static int SPEED = 0;
+static int SPEED = 0;
 static int MODE = 1;
 
 // Measures
@@ -62,6 +62,7 @@ static void send_expvalue();
 static void send_binthres();
 static void send_canny();
 static void send_mode();
+static void send_speed();
 
 // Setting variables
 static void set_magnitude(int new_magnitude) {
@@ -179,6 +180,13 @@ static void set_image() {
 static void set_imagebmp() {
     write_bmp_to_file("image.bmp");
     //transform_image("image.bmp");
+}
+
+static void set_speed(int speed) {
+    SPEED = speed;
+    printlog("");
+    printf("Speed limit changed\n");
+    send_speed();
 }
 
 #endif

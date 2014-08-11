@@ -31,6 +31,7 @@ static void button_shutdown_clicked     (GtkButton *button, gpointer data);
 static void button_restart_clicked      (GtkButton *button, gpointer data);
 static void scale_binthres_value_changed(GtkRange *range, gpointer data);
 static void scale_canny_value_changed   (GtkRange *range, gpointer data);
+static void scale_speed_changed         (GtkRange *range, gpointer data);
 
 static void connect_all_signals (){
     // Main signals
@@ -39,6 +40,7 @@ static void connect_all_signals (){
     g_signal_connect (G_OBJECT (radiobutton_altitude1), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(1));
     g_signal_connect (G_OBJECT (radiobutton_altitude2), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(2));
     g_signal_connect (G_OBJECT (radiobutton_altitude3), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(3));
+    g_signal_connect (G_OBJECT (scale_speed), "value_changed", G_CALLBACK (scale_speed_changed), NULL);
 
     // Draw signals
     g_signal_connect (G_OBJECT (drawing_area1), "draw", G_CALLBACK (drawGraph), MAG);
@@ -128,6 +130,10 @@ static void scale_binthres_value_changed (GtkRange *range, gpointer data) {
 
 static void scale_canny_value_changed (GtkRange *range, gpointer data) {
     set_canny(gtk_range_get_value(range));
+}
+
+static void scale_speed_changed (GtkRange *range, gpointer data) {
+    set_speed(gtk_range_get_value(range));
 }
 
 #endif
