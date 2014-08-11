@@ -18,6 +18,7 @@
 #define IMAGE_FILE "images/image.bmp"
 #define IMAGE_RAW  "images/image.raw"
 #define IMAGE_BMP  "images/image.bmp"
+static char WFOLDER_NAME[100];
 
 // Status
 static int SPEED = 0;
@@ -117,19 +118,28 @@ static void set_mode(int mode) {
 }
 
 static void set_image() {
+    static int image_number = 0;
+    char buffer_filename[100];
+    sprintf();
+
     write_image_to_file(IMAGE_RAW);
     call_imageConvert(IMAGE_RAW, IMAGE_BMP);
 }
-
-// static void set_imagebmp() {
-//     write_bmp_to_file("image.bmp");
-//     //transform_image("image.bmp");
-// }
 
 static void set_speed(int speed) {
     SPEED = speed;
     printlog(LSTATUS, "Speed limit changed\n");
     send_speed();
+}
+
+static void set_working_folder_name() {
+    time_t timer;
+    struct tm* tm_info;
+
+    time(&timer);
+    tm_info = localtime(&timer);
+
+    strftime(WFOLDER_NAME, 100, "log[%m/%d/%y](%H:%M:%S)", tm_info);
 }
 
 #endif
