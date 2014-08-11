@@ -66,7 +66,7 @@ static void send_speed();
 
 
 
-// Setting variables
+// SETTING VARIABLES
 static void set_value(int* value, int* VALUE, char* msg, void (*send)()) {
     (*VALUE) = (*value);
     printlog("");
@@ -74,90 +74,26 @@ static void set_value(int* value, int* VALUE, char* msg, void (*send)()) {
     (*send)();
 }
 
-static void set_magnitude(int new_magnitude) { set_value(&new_magnitude, &CATALOG, "[Star Tracker] Using star tracker catalog: %d\n", send_magnitude); }
-
-// static void set_magnitude(int new_magnitude) {
-//     CATALOG = new_magnitude;
-//     printlog("");
-//     printf("[Star Tracker] Using star tracker catalog: %d\n", new_magnitude);
-//     send_magnitude();
-// }
-
-static void set_unitary_vectors(int new_vectors) {
-    UNIT_VECTORS = new_vectors;
-    printlog("");
-    printf("[Star Tracker] Using %d unitary vectors\n", new_vectors);
-    send_unitaryVectors();
-}
-
-static void set_threshold(int threshold) {
-    PIXEL_THRESHOLD = threshold;
-    printlog("");
-    printf("[Star Tracker] Using %d as threshold\n", threshold);
-    send_threshold();
-}
-
-static void set_roi(int roi) {
-    ROI = roi;
-    printlog("");
-    printf("[Star Tracker] Using %d as ROI\n", roi);
-    send_roi();
-}
-
-static void set_points(int points) {
-    POINTS = points;
-    printlog("");
-    printf("[Star Tracker] Using %d points\n", points);
-    send_points();
-}
+// Star tracker
+static void set_magnitude       (int magnitude) { set_value(&magnitude, &CATALOG,         "[Star Tracker] Using star tracker catalog: %d\n", send_magnitude);      }
+static void set_unitary_vectors (int vectors)   { set_value(&vectors,   &UNIT_VECTORS,    "[Star Tracker] Using %d unitary vectors\n",       send_unitaryVectors); }
+static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_THRESHOLD, "[Star Tracker] Using %d as threshold\n",          send_threshold);      }
+static void set_roi             (int roi)       { set_value(&roi,       &ROI,             "[Star Tracker] Using %d as ROI\n",                send_roi);            }
+static void set_points          (int points)    { set_value(&points,    &POINTS,          "[Star Tracker] Using %d points\n",                send_points);         }
+// Camera
+static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,      "[Camera] Brightness changed to %d\n",             send_brightness);     }
+static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,           "[Camera] Gamma changed to %d\n",                  send_gamma);          }
+static void set_gain            (int gain)      { set_value(&gain,      &GAIN,            "[Camera] Gain changed to %d\n",                   send_gain);           }
+static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,        "[Camera] Exposure value changed to %d\n",         send_expvalue);       }
+// Horizon Sensor
+static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,          "[Horizon Sensor] Binary threshold change to %d\n",send_binthres);       }
+static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,        "[Horizon Sensor] Canny threshold change to %d\n", send_canny);          }
 
 static void set_error(float error) {
     ERROR = error;
     printlog("");
     printf("[Star Tracker] Using %f as error\n", error);
     send_error();
-}
-
-static void set_brightness(int bright) {
-    BRIGHTNESS = bright;
-    printlog("");
-    printf("[Camera] Brightness changed to %d\n", bright);
-    send_brightness();
-}
-
-static void set_gamma(int gamma) {
-    GAMMA = gamma;
-    printlog("");
-    printf("[Camera] Gamma changed to %d\n", gamma);
-    send_gamma();
-}
-
-static void set_gain(int gain) {
-    GAIN = gain;
-    printlog("");
-    printf("[Camera] Gain changed to %d\n", gain);
-    send_gain();
-}
-
-static void set_exposure_value(int expvalue) {
-    EXPVALUE = expvalue;
-    printlog("");
-    printf("[Camera] Exposure value changed to %d\n", expvalue);
-    send_expvalue();
-}
-
-static void set_binthres(int binthres) {
-    BIN_TH = binthres;
-    printlog("");
-    printf("[Horizon Sensor] Binary threshold change to %d\n", binthres);
-    send_binthres();
-}
-
-static void set_canny(int canny) {
-    CANNY_TH = canny;
-    printlog("");
-    printf("[Horizon Sensor] Canny threshold change to %d\n", canny);
-    send_canny();
 }
 
 static void set_magnetometer(float x, float y, float z) {
