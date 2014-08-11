@@ -48,5 +48,6 @@ $(OBJ)/%.o: $(SRC)/%.c $(HEADERS)
 clean:
 	@rm $(OBJ)/*.o && echo "Borrados ficheros objeto."
 	@rm $(EXECUTABLE) && echo "Borrado ejecutable."
+	@rm $(EXECUTABLE2) && echo "Borrado ejecutable 2."
 
 .PHONY: clean documentacion tabla

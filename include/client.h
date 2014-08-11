@@ -96,13 +96,11 @@ static void close_sockets() {
 /**
  *   SENDING MESSAGES
  */
-static void send_value (int command, int value, char* name) {
+static void send_value (int command, int value, const char* name) {
     if (CONNECTED) {
         printlog(LCLIENT, " Sending %s: %d\n", name, value);
-
         send_msg(command);
         send_int(value);
-
         printlog(LCLIENT, " %s sent\n", name);
     } 
 }
@@ -137,38 +135,9 @@ static void send_int(int msg) {
     }
 }
 
-static void send_magnitude() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending magnitude: %d\n", CATALOG);
-
-        send_msg(MSG_SET_CATALOG);
-        send_int(CATALOG);
-
-        printlog(LCLIENT, " Magnitude sent\n");
-    }
-}
-
-static void send_unitaryVectors() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending stars: %d\n", UNIT_VECTORS);
-
-        send_msg(MSG_SET_STARS);
-        send_int(UNIT_VECTORS);
-
-        printlog(LCLIENT, " Stars sent\n");
-    }
-}
-
-static void send_threshold() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending threshold: %d\n", PIXEL_THRESHOLD);
-
-        send_msg(MSG_SET_PX_THRESH);
-        send_int(PIXEL_THRESHOLD);
-
-        printlog(LCLIENT, " Threshold sent\n");
-    }
-}
+static void send_magnitude()      { send_value(MSG_SET_CATALOG, CATALOG, "Magnitude"); }
+static void send_unitaryVectors() { send_value(MSG_SET_STARS, UNIT_VECTORS, "Stars"); }
+static void send_threshold()      { send_value(MSG_SET_PX_THRESH, PIXEL_THRESHOLD, "Threshold"); }
 
 static void send_roi() {
     if (CONNECTED) {
