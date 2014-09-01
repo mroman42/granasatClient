@@ -18,6 +18,19 @@
 
 #define IMAGE_CONVERT "bin/imageConvert"
 #define IMAGEBMP_SIZE 1229878
+
+// Image file size constants
+#define IMG_WIDTH	   1280
+#define IMG_HEIGHT	   960
+#define IMG_DATA_SIZE  (sizeof(uint8_t) * IMG_WIDTH * IMG_HEIGHT)
+#define PARAM_SIZE	   (sizeof(int))
+#define PARAM_ST_SIZE  (PARAM_SIZE * 5)
+#define TV_SEC_SIZE	   (sizeof(time_t) )
+#define TV_NSEC_SIZE   (sizeof(long))
+#define TIMESTAMP_SIZE (TV_SEC_SIZE + TV_NSEC_SIZE)
+#define	IMG_FILE_SIZE  (IMG_DATA_SIZE + TIMESTAMP_SIZE + PARAM_ST_SIZE)
+
+
 extern uint8_t IMAGE_STREAM [960*1280];
 extern uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 

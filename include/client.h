@@ -136,17 +136,17 @@ static void send_value (int command, int value, const char* name) {
 }
 
 
-static void send_magnitude()      { send_value(MSG_SET_CATALOG, CATALOG, "Magnitude"); }
-static void send_unitaryVectors() { send_value(MSG_SET_STARS, UNIT_VECTORS, "Stars"); }
-static void send_threshold()      { send_value(MSG_SET_PX_THRESH, PIXEL_THRESHOLD, "Threshold"); }
-static void send_roi()            { send_value(MSG_SET_ROI, ROI, "ROI"); }
-static void send_points()         { send_value(MSG_SET_POINTS, POINTS, "Points"); }
-static void send_gain()           { send_value(MSG_SET_GAIN, GAIN, "Gain"); }
-static void send_brightness()     { send_value(MSG_SET_BRIGHTNESS, BRIGHTNESS, "Brightness"); }
-static void send_gamma()          { send_value(MSG_SET_GAMMA, GAMMA, "Gamma"); }
-static void send_expvalue()       { send_value(MSG_SET_EXP_VAL, EXPVALUE, "Exposure"); }
-static void send_binthres()       { send_value(MSG_SET_BIN_TH, BIN_TH, "Binary threshold"); }
-static void send_canny()          { send_value(MSG_SET_CANNY_TH, CANNY_TH, "Canny threshold"); }
+static void send_magnitude()      { send_value(MSG_SET_CATALOG,    CATALOG,         "Magnitude"        ); }
+static void send_unitaryVectors() { send_value(MSG_SET_STARS,      UNIT_VECTORS,    "Stars"            ); }
+static void send_threshold()      { send_value(MSG_SET_PX_THRESH,  PIXEL_THRESHOLD, "Threshold"        ); }
+static void send_roi()            { send_value(MSG_SET_ROI,        ROI,             "ROI"              ); }
+static void send_points()         { send_value(MSG_SET_POINTS,     POINTS,          "Points"           ); }
+static void send_gain()           { send_value(MSG_SET_GAIN,       GAIN,            "Gain"             ); }
+static void send_brightness()     { send_value(MSG_SET_BRIGHTNESS, BRIGHTNESS,      "Brightness"       ); }
+static void send_gamma()          { send_value(MSG_SET_GAMMA,      GAMMA,           "Gamma"            ); }
+static void send_expvalue()       { send_value(MSG_SET_EXP_VAL,    EXPVALUE,        "Exposure"         ); }
+static void send_binthres()       { send_value(MSG_SET_BIN_TH,     BIN_TH,          "Binary threshold" ); }
+static void send_canny()          { send_value(MSG_SET_CANNY_TH,   CANNY_TH,        "Canny threshold"  ); }
 
 static void send_error() {
     if (CONNECTED) {
