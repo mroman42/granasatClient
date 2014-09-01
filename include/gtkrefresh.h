@@ -70,12 +70,6 @@ static gboolean readImage() {
     return 1;
 }
 
-// static gboolean readImageBmp() {
-//     if (CONNECTED)
-//         read_imagebmp();
-//     return 1;
-// }
-
 static gboolean checkServer() {
     check_connection();
     return 1;
