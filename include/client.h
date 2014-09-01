@@ -96,15 +96,6 @@ static void close_sockets() {
 /**
  *   SENDING MESSAGES
  */
-static void send_value (int command, int value, const char* name) {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending %s: %d\n", name, value);
-        send_msg(command);
-        send_int(value);
-        printlog(LCLIENT, " %s sent\n", name);
-    } 
-}
-
 static void check_ping() {
     char zero;
     bzero(&zero,1);
@@ -135,42 +126,27 @@ static void send_int(int msg) {
     }
 }
 
+static void send_value (int command, int value, const char* name) {
+    if (CONNECTED) {
+        printlog(LCLIENT, " Sending %s: %d\n", name, value);
+        send_msg(command);
+        send_int(value);
+        printlog(LCLIENT, " %s sent\n", name);
+    } 
+}
+
+
 static void send_magnitude()      { send_value(MSG_SET_CATALOG, CATALOG, "Magnitude"); }
 static void send_unitaryVectors() { send_value(MSG_SET_STARS, UNIT_VECTORS, "Stars"); }
 static void send_threshold()      { send_value(MSG_SET_PX_THRESH, PIXEL_THRESHOLD, "Threshold"); }
-
-static void send_roi() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending ROI: %d\n", ROI);
-
-        send_msg(MSG_SET_ROI);
-        send_int(ROI);
-
-        printlog(LCLIENT, "ROI sent\n");
-    }
-}
-
-static void send_points() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending points: %d\n", POINTS);
-
-        send_msg(MSG_SET_POINTS);
-        send_int(POINTS);
-
-        printlog(LCLIENT, " Points sent\n");
-    }
-}
-
-static void send_gain() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending gain: %d\n", GAIN);
-
-        send_msg(MSG_SET_GAIN);
-        send_int(GAIN);
-
-        printlog(LCLIENT, " Gain sent\n");
-    }
-}
+static void send_roi()            { send_value(MSG_SET_ROI, ROI, "ROI"); }
+static void send_points()         { send_value(MSG_SET_POINTS, POINTS, "Points"); }
+static void send_gain()           { send_value(MSG_SET_GAIN, GAIN, "Gain"); }
+static void send_brightness()     { send_value(MSG_SET_BRIGHTNESS, BRIGHTNESS, "Brightness"); }
+static void send_gamma()          { send_value(MSG_SET_GAMMA, GAMMA, "Gamma"); }
+static void send_expvalue()       { send_value(MSG_SET_EXP_VAL, EXPVALUE, "Exposure"); }
+static void send_binthres()       { send_value(MSG_SET_BIN_TH, BIN_TH, "Binary threshold"); }
+static void send_canny()          { send_value(MSG_SET_CANNY_TH, CANNY_TH, "Canny threshold"); }
 
 static void send_error() {
     if (CONNECTED) {
@@ -183,61 +159,6 @@ static void send_error() {
     }
 }
 
-
-static void send_brightness() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending brightness: %d\n", BRIGHTNESS);
-
-        send_msg(MSG_SET_BRIGHTNESS);
-        send_int(BRIGHTNESS);
-
-        printlog(LCLIENT, " Brightness sent\n");
-    }
-}
-
-static void send_gamma() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending gamma: %d\n", GAMMA);
-
-        send_msg(MSG_SET_GAMMA);
-        send_int(GAMMA);
-
-        printlog(LCLIENT, " Gamma sent\n");
-    }
-}
-
-static void send_expvalue() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending exposure value: %d\n", EXPVALUE);
-
-        send_msg(MSG_SET_EXP_VAL);
-        send_int(EXPVALUE);
-
-        printlog(LCLIENT, " Exposure value sent\n");
-    }
-}
-
-static void send_binthres() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending binary threshold: %d\n", BIN_TH);
-
-        send_msg(MSG_SET_BIN_TH);
-        send_int(BIN_TH);
-
-        printlog(LCLIENT, " Binary threshold sent\n");
-    }
-}
-
-static void send_canny() {
-    if (CONNECTED) {
-        printlog(LCLIENT, " Sending canny threshold: %d\n", CANNY_TH);
-
-        send_msg(MSG_SET_CANNY_TH);
-        send_int(CANNY_TH);
-
-        printlog(LCLIENT, " Canny threshold sent\n");
-    }
-}
 
 static void send_mode() {
     if (CONNECTED) {
