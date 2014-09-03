@@ -19,6 +19,11 @@ static void printlog(ltype msgtype, const char* msg, ...);
 static void printtime();
 
 
+/**
+ * Prints the current time and the message in a coloured log.
+ * @param msgtype Type of the message.
+ * @param format Message format.
+ */
 static void printlog(ltype msgtype, const char* format, ...) {
     va_list args;
     va_start(args, format);
@@ -44,6 +49,10 @@ static void printlog(ltype msgtype, const char* format, ...) {
     va_end(args);
 }
 
+
+/**
+ * Prints the current time in [h:m:s] format.
+ */
 static void printtime() {
     time_t timer;
     char buffer[25];

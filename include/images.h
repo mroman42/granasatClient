@@ -37,6 +37,12 @@
 extern uint8_t IMAGE_STREAM [960*1280];
 extern uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 
+
+/**
+ * Writes the current image stream to a image file.
+ * Creates a new thread to write the image.
+ * @param filename Output file name
+ */
 static void write_image_to_file (char* filename) {
     if (fork() == 0) {
         FILE* raw_img = fopen(filename, "w");

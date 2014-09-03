@@ -98,14 +98,14 @@ static void set_error(float error) {
 }
 
 static void set_magnetometer(float x, float y, float z) {
-    printlog(LDATA, "[Data] Magnetometer measures:  %f,%f,%f\n", x,y,z);
+    printlog(LDATA, "Magnetometer measures:  %f,%f,%f\n", x,y,z);
     MAG[0] = x;
     MAG[1] = y;
     MAG[2] = z;
 }
 
 static void set_accelerometer(float x, float y, float z) {
-    printlog(LDATA, "[Data] Accelerometer measures: %f,%f,%f\n", x,y,z);
+    printlog(LDATA, "Accelerometer measures: %f,%f,%f\n", x,y,z);
     ACC[0] = x;
     ACC[1] = y;
     ACC[2] = z;
@@ -124,6 +124,7 @@ static void set_image() {
     image_number++;
 
     write_image_to_file(IMAGE_RAW);
+    write_image_to_file(buffer_filename);
     call_imageConvert(IMAGE_RAW, IMAGE_BMP);
 }
 
