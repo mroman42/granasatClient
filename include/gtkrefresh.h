@@ -37,7 +37,6 @@ static void add_timeouts() {
     g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImage, NULL);
-    //g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImageBmp, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) refreshImage, NULL);
 
     // Data timeouts
@@ -76,16 +75,23 @@ static gboolean checkServer() {
 }
 
 static gboolean refreshMagnetometer() {
-	char buffer[100];
+	char buffer[200];
 	sprintf(buffer, MSG_MAGNETOMETER_DATA, MAG[0],MAG[1],MAG[2]);
 	gtk_label_set_text (magnetometer_label, buffer);
 	return 1;
 }
 
 static gboolean refreshAccelerometer() {
-    char buffer[100];
+    char buffer[200];
     sprintf(buffer, MSG_ACCELEROMETER_DATA, ACC[0],ACC[1],ACC[2]);
     gtk_label_set_text (accelerometer_label, buffer);
+    return 1;
+}
+
+static gboolean refreshTempGeneral() {
+    char buffer[100];
+    sprintf(buffer, MSG_TEMP_GENERAL, TEMP_GENERAL);
+    gtk_label_set_text (label_general_temp, buffer);
     return 1;
 }
 

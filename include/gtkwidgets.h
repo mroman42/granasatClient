@@ -30,6 +30,10 @@ static GtkWidget*  button_restart;
 static GtkWidget*  radiobutton_altitude1;
 static GtkWidget*  radiobutton_altitude2;
 static GtkWidget*  radiobutton_altitude3;
+static GtkLabel*   label_general_temp;
+static GtkLabel*   label_camera_temp;
+static GtkLabel*   label_magnetometer_temp;
+static GtkLabel*   label_cpu_temp;
 // Star Tracker tab
 static GtkWidget*  radiobutton_catalog_1;
 static GtkWidget*  radiobutton_catalog_2;
@@ -61,6 +65,9 @@ char* MSG_MAGNETOMETER_DATA  = "Magnetometer data (Gauss):\n\tX: %4.3f\n\tY: %4.
 char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
 char* MSG_CONNECTION_ON      = "Raspberry: Connected";
 char* MSG_CONNECTION_OFF     = "Raspberry: Not Connected";
+char* MSG_TEMP_GENERAL       = "General temperature: \t%d";
+
+
 
 /**
  * Adds a widget given its name.
@@ -198,6 +205,13 @@ static GtkWidget* add_scale_binthres() {
 
 static GtkWidget* add_scale_canny() {
     return scale_canny = add_widget("scale_canny");
+}
+
+static GtkWidget* add_label_temperatures() {
+    label_general_temp = add_widget("label_general_temp");
+    label_camera_temp = add_widget("label_camera_temp");
+    label_magnetometer_temp = add_widget("label_magnetometer_temp");
+    label_cpu_temp = add_widget("");
 }
 
 /*

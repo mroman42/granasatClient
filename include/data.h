@@ -28,6 +28,12 @@ static int MODE = 1;
 static float MAG[3];
 static float ACC[3];
 
+// Temperatures
+static int TEMP_CAMERA  = 0;
+static int TEMP_GENERAL = 0;
+static int TEMP_CPU     = 0;
+static int TEMP_MAGNET  = 0;
+
 // Star Tracker
 static int CATALOG = 4;
 static int UNIT_VECTORS = 5;
