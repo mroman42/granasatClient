@@ -42,19 +42,20 @@ static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 
 	// Vector
 	// Move to center and draw the line
+	const float VECTOR_SIZE = 15;
 	const float CENTER_W  = WIDTH/2;
 	const float CENTER_H  = 2*HEIGHT/3;
-	const float COMPON_XW =  SIN_60*measures[0]*4;
-	const float COMPON_YW = -SIN_60*measures[1]*4;
+	const float COMPON_XW =  SIN_60*measures[0];
+	const float COMPON_YW = -SIN_60*measures[1];
 	const float COMPON_ZW = 0;
-	const float COMPON_XH = COS_60*measures[0]*4;
-	const float COMPON_YH = COS_60*measures[1]*4;
-	const float COMPON_ZH = -measures[2]*4;
+	const float COMPON_XH = COS_60*measures[0];
+	const float COMPON_YH = COS_60*measures[1];
+	const float COMPON_ZH = -measures[2];
 
 	cairo_set_source_rgba (cr, 1, 0.2, 0.2, 0.6);
 	cairo_move_to (cr, CENTER_W, CENTER_H);
-	cairo_line_to (cr, CENTER_W + COMPON_XW+COMPON_YW+COMPON_ZW,
- 					   CENTER_H + COMPON_XH+COMPON_YH+COMPON_ZH);
+	cairo_line_to (cr, CENTER_W + VECTOR_SIZE*(COMPON_XW+COMPON_YW+COMPON_ZW),
+ 					   CENTER_H + VECTOR_SIZE*(COMPON_XH+COMPON_YH+COMPON_ZH));
 	cairo_stroke (cr);
 }
 
