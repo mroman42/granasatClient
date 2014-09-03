@@ -275,18 +275,19 @@ static void read_data_packet() {
         *(ACC+1) = (float) *(a+1)*A_GAIN;
         *(ACC+2) = (float) *(a+2)*A_GAIN;
 
-        int16_t general_temp      = packet[MAG_FM_SIZE+ACC_FM_SIZE+2];
-        int16_t camera_temp       = packet[MAG_FM_SIZE+ACC_FM_SIZE+0];
-        int16_t cpu_temp          = packet[MAG_FM_SIZE+ACC_FM_SIZE+6];
-        int16_t magnetometer_temp = packet[MAG_FM_SIZE+ACC_FM_SIZE+4];
+        int16_t temps[4];
+        *(temps+0) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+2] | packet[MAG_FM_SIZE+ACC_FM_SIZE+3] << 8);
+        *(temps+1) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+0] | packet[MAG_FM_SIZE+ACC_FM_SIZE+1] << 8);
+        *(temps+2) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+4] | packet[MAG_FM_SIZE+ACC_FM_SIZE+5] << 8);
+        *(temps+3) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+6] | packet[MAG_FM_SIZE+ACC_FM_SIZE+7] << 8);
 
         set_magnetometer(MAG[0],MAG[1],MAG[2]);
         set_accelerometer(ACC[0],ACC[1],ACC[2]);
 
-        set_general_temp (general_temp);
-        set_camera_temp  (camera_temp);
-        set_cpu_temp     (cpu_temp);
-        set_magnet_temp  (magnetometer_temp);
+        set_general_temp (temps[0]);
+        set_camera_temp  (temps[1]);
+        set_cpu_temp     (temps[2]);
+        set_magnet_temp  (temps[3]);
     }
 }
 

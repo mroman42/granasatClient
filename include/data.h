@@ -100,7 +100,7 @@ static void set_canny           (int canny)     { set_value(&canny,     &CANNY_T
 static void set_general_temp    (int temp)      { set_value(&temp,      &TEMP_GENERAL,      LDATA,    "General temperature: %d\n",                       NULL); }
 static void set_camera_temp     (int temp)      { set_value(&temp,      &TEMP_CAMERA,       LDATA,    "Camera temperature: %d\n",                        NULL); }
 static void set_cpu_temp        (int temp)      { set_value(&temp,      &TEMP_CPU,          LDATA,    "CPU temperature: %d\n",                           NULL); }
-static void set_magnet_temp     (int temp)      { set_value(&temp,      &TEMP_MAGNETOMETER, LDATA,    "CPU temperature: %d\n",                           NULL); }
+static void set_magnet_temp     (int temp)      { set_value(&temp,      &TEMP_MAGNETOMETER, LDATA,    "Magnetometer temperature: %d\n",                  NULL); }
 
 
 static void set_error(float error) {
@@ -110,14 +110,14 @@ static void set_error(float error) {
 }
 
 static void set_magnetometer(float x, float y, float z) {
-    printlog(LDATA, "Magnetometer measures:  %f,%f,%f\n", x,y,z);
+    printlog(LDATA, "Magnetometer measures:  %f\t%f\t%f\n", x,y,z);
     MAG[0] = x;
     MAG[1] = y;
     MAG[2] = z;
 }
 
 static void set_accelerometer(float x, float y, float z) {
-    printlog(LDATA, "Accelerometer measures: %f,%f,%f\n", x,y,z);
+    printlog(LDATA, "Accelerometer measures: %f\t%f\t%f\n", x,y,z);
     ACC[0] = x;
     ACC[1] = y;
     ACC[2] = z;
@@ -133,6 +133,7 @@ static void set_image() {
     static int image_number = 0;
     char buffer_filename[100];
     sprintf(buffer_filename,"%s/image%d.raw",WFOLDER_NAME,image_number);
+    printf("bufferfilename: %s\n", buffer_filename);
     image_number++;
 
     write_image_to_file(IMAGE_RAW);
@@ -153,7 +154,7 @@ static void set_working_folder_name() {
     time(&timer);
     tm_info = localtime(&timer);
 
-    strftime(WFOLDER_NAME, 100, "log[%m/%d/%y](%H:%M:%S)", tm_info);
+    strftime(WFOLDER_NAME, 100, "./images%m:%d:%y%H:%M", tm_info);
 }
 
 #endif
