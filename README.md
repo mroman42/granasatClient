@@ -6,6 +6,6 @@ Client side of GranaSAT experiment, selected for BEXUS 19 campaign.
 The server side code can be seen in its [GitHub page](https://github.com/agarciamontoro/granasatServer).
 
 ### Do you want to know more about us?
-See more information at [GranaSAT website](http://granasat.ugr.es).
-Like our [fanpage](http://www.facebook.com/granasat) at Facebook.
-Follow us on Twitter: [@granaSAT](http://twitter.com/GranaSAT).
+See more information at [GranaSAT website](http://granasat.ugr.es).  
+Like our fanpage at [Facebook](http://www.facebook.com/granasat).  
+Follow us on Twitter: [@granaSAT](http://twitter.com/GranaSAT).  
