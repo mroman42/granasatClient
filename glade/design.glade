@@ -233,8 +233,62 @@
                 <property name="digits">0</property>
               </object>
               <packing>
-                <property name="x">50</property>
+                <property name="x">47</property>
                 <property name="y">47</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_general_temp">
+                <property name="width_request">185</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">General temperature:		 ??? ºC</property>
+              </object>
+              <packing>
+                <property name="x">321</property>
+                <property name="y">35</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_camera_temp">
+                <property name="name">2</property>
+                <property name="width_request">185</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Camera temperature: 		 ??? ºC</property>
+              </object>
+              <packing>
+                <property name="x">321</property>
+                <property name="y">60</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_magnetometer_temp">
+                <property name="name">2</property>
+                <property name="width_request">234</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Magnetometer temperature: ??? ºC</property>
+              </object>
+              <packing>
+                <property name="x">319</property>
+                <property name="y">109</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label1">
+                <property name="width_request">185</property>
+                <property name="height_request">20</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">CPU temperature:			  ??? ºC</property>
+              </object>
+              <packing>
+                <property name="x">319</property>
+                <property name="y">85</property>
               </packing>
             </child>
           </object>
