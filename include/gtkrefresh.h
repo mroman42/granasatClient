@@ -101,28 +101,28 @@ static gboolean refreshAccelerometer() {
 
 static gboolean refreshTempGeneral() {
     char buffer[100];
-    sprintf(buffer, MSG_TEMP_GENERAL, TEMP_GENERAL);
+    sprintf(buffer, MSG_TEMP_GENERAL, TEMP_GENERAL/1000.0);
     gtk_label_set_text (label_general_temp, buffer);
     return 1;
 }
 
 static gboolean refreshTempCamera() {
     char buffer[100];
-    sprintf(buffer, MSG_TEMP_CAMERA, TEMP_CAMERA);
+    sprintf(buffer, MSG_TEMP_CAMERA, TEMP_CAMERA/1000.0);
     gtk_label_set_text (label_camera_temp, buffer);
     return 1;
 }
 
 static gboolean refreshTempCpu() {
     char buffer[100];
-    sprintf(buffer, MSG_TEMP_CPU, TEMP_CPU);
+    sprintf(buffer, MSG_TEMP_CPU, TEMP_CPU/1000.0);
     gtk_label_set_text (label_cpu_temp, buffer);
     return 1;
 }
 
 static gboolean refreshTempMagnetometer() {
     char buffer[100];
-    sprintf(buffer, MSG_TEMP_MAGNETOMETER, TEMP_MAGNETOMETER);
+    sprintf(buffer, MSG_TEMP_MAGNETOMETER, TEMP_MAGNETOMETER/1000.0);
     gtk_label_set_text (label_magnetometer_temp, buffer);
     return 1;
 }

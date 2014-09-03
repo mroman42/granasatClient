@@ -226,11 +226,15 @@ static void read_data_packet() {
     #define ACC_MM_SIZE     ( sizeof(uint8_t) * 6 )
     #define ACC_FM_SIZE     ( ACC_MM_SIZE + TIMESTAMP_SIZE )
 
+    #define TEMP_FM_SIZE	( sizeof(int16_t)*4 + TIMESTAMP_SIZE)
+
+    #define PACKET_SIZE	    ( MAG_FM_SIZE + ACC_FM_SIZE + TEMP_FM_SIZE )
+
 
     // Reading
-    static int n_bytes = MAG_FM_SIZE + ACC_FM_SIZE;
+    static int n_bytes = PACKET_SIZE;
     static int bytes_sent = 0;
-    uint8_t packet[MAG_FM_SIZE + ACC_FM_SIZE];
+    uint8_t packet[PACKET_SIZE];
     int n;
 
     if (bytes_sent < n_bytes) {
@@ -271,8 +275,18 @@ static void read_data_packet() {
         *(ACC+1) = (float) *(a+1)*A_GAIN;
         *(ACC+2) = (float) *(a+2)*A_GAIN;
 
+        int16_t general_temp      = packet[MAG_FM_SIZE+ACC_FM_SIZE+2];
+        int16_t camera_temp       = packet[MAG_FM_SIZE+ACC_FM_SIZE+0];
+        int16_t cpu_temp          = packet[MAG_FM_SIZE+ACC_FM_SIZE+6];
+        int16_t magnetometer_temp = packet[MAG_FM_SIZE+ACC_FM_SIZE+4];
+
         set_magnetometer(MAG[0],MAG[1],MAG[2]);
         set_accelerometer(ACC[0],ACC[1],ACC[2]);
+
+        set_general_temp (general_temp);
+        set_camera_temp  (camera_temp);
+        set_cpu_temp     (cpu_temp);
+        set_magnet_temp  (magnetometer_temp);
     }
 }
 

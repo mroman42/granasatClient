@@ -79,7 +79,7 @@ static void send_speed();
 static void set_value(int* value, int* VALUE, ltype type, char* msg, void (*send)()) {
     (*VALUE) = (*value);
     printlog(type, msg, (*value));
-    (*send)();
+    if (send != NULL) (*send)();
 }
 
 // Star tracker
@@ -97,10 +97,10 @@ static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALU
 static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,            LHORIZON, "[Horizon Sensor] Binary threshold change to %d\n",send_binthres);       }
 static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,          LHORIZON, "[Horizon Sensor] Canny threshold change to %d\n", send_canny);          }
 // Temperatures
-static void set_general_temp    (int temp)      { set_value(&temp,      &TEMP_GENERAL,      LDATA,    "General temperature: %d",                         NULL); }
-static void set_camera_temp     (int temp)      { set_value(&temp,      &TEMP_CAMERA,       LDATA,    "Camera temperature: %d",                          NULL); }
-static void set_cpu_temp        (int temp)      { set_value(&temp,      &TEMP_CPU,          LDATA,    "CPU temperature: %d",                             NULL); }
-static void set_magnet_temp     (int temp)      { set_value(&temp,      &TEMP_MAGNETOMETER, LDATA,    "CPU temperature: %d",                             NULL); }
+static void set_general_temp    (int temp)      { set_value(&temp,      &TEMP_GENERAL,      LDATA,    "General temperature: %d\n",                       NULL); }
+static void set_camera_temp     (int temp)      { set_value(&temp,      &TEMP_CAMERA,       LDATA,    "Camera temperature: %d\n",                        NULL); }
+static void set_cpu_temp        (int temp)      { set_value(&temp,      &TEMP_CPU,          LDATA,    "CPU temperature: %d\n",                           NULL); }
+static void set_magnet_temp     (int temp)      { set_value(&temp,      &TEMP_MAGNETOMETER, LDATA,    "CPU temperature: %d\n",                           NULL); }
 
 
 static void set_error(float error) {

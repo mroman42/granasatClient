@@ -65,10 +65,10 @@ char* MSG_MAGNETOMETER_DATA  = "Magnetometer data (Gauss):\n\tX: %4.3f\n\tY: %4.
 char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %4.3f\n\tY: %4.3f\n\tZ: %4.3f";
 char* MSG_CONNECTION_ON      = "Raspberry: Connected";
 char* MSG_CONNECTION_OFF     = "Raspberry: Not Connected";
-char* MSG_TEMP_GENERAL       = "General temperature: \t%d";
-char* MSG_TEMP_CAMERA        = "Camera temperature: \t%d";
-char* MSG_TEMP_CPU           = "CPU temperature: \t%d";
-char* MSG_TEMP_MAGNETOMETER  = "Magnetometer temperature: \t%d";
+char* MSG_TEMP_GENERAL       = "General temperature: \t%4.3f ºC";
+char* MSG_TEMP_CAMERA        = "Camera temperature: \t%4.3f ºC";
+char* MSG_TEMP_CPU           = "CPU temperature: \t\t%4.3f ºC";
+char* MSG_TEMP_MAGNETOMETER  = "Magnetometer temperature: \t%4.3f ºC";
 
 /**
  * Adds a widget given its name.
