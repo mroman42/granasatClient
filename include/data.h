@@ -13,6 +13,7 @@
 #include <images.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <time.h>
 #include "log.h"
 
 #define IMAGE_FILE "images/image.bmp"
@@ -89,13 +90,13 @@ static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_T
 static void set_roi             (int roi)       { set_value(&roi,       &ROI,               LSTAR,    "Using %d as ROI\n",                               send_roi);            }
 static void set_points          (int points)    { set_value(&points,    &POINTS,            LSTAR,    "Using %d points\n",                               send_points);         }
 // Camera
-static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,        LCAMERA,  "[Camera] Brightness changed to %d\n",             send_brightness);     }
-static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,             LCAMERA,  "[Camera] Gamma changed to %d\n",                  send_gamma);          }
-static void set_gain            (int gain)      { set_value(&gain,      &GAIN,              LCAMERA,  "[Camera] Gain changed to %d\n",                   send_gain);           }
-static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,          LCAMERA,  "[Camera] Exposure value changed to %d\n",         send_expvalue);       }
+static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,        LCAMERA,  "Brightness changed to %d\n",             send_brightness);     }
+static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,             LCAMERA,  "Gamma changed to %d\n",                  send_gamma);          }
+static void set_gain            (int gain)      { set_value(&gain,      &GAIN,              LCAMERA,  "Gain changed to %d\n",                   send_gain);           }
+static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,          LCAMERA,  "Exposure value changed to %d\n",         send_expvalue);       }
 // Horizon Sensor
-static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,            LHORIZON, "[Horizon Sensor] Binary threshold change to %d\n",send_binthres);       }
-static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,          LHORIZON, "[Horizon Sensor] Canny threshold change to %d\n", send_canny);          }
+static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,            LHORIZON, "Binary threshold change to %d\n",send_binthres);       }
+static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,          LHORIZON, "Canny threshold change to %d\n", send_canny);          }
 // Temperatures
 static void set_general_temp    (int temp)      { set_value(&temp,      &TEMP_GENERAL,      LDATA,    "General temperature: %d\n",                       NULL); }
 static void set_camera_temp     (int temp)      { set_value(&temp,      &TEMP_CAMERA,       LDATA,    "Camera temperature: %d\n",                        NULL); }
@@ -132,7 +133,7 @@ static void set_mode(int mode) {
 static void set_image() {
     static int image_number = 0;
     char buffer_filename[100];
-    sprintf(buffer_filename,"%s/image%d.raw",WFOLDER_NAME,image_number);
+    sprintf(buffer_filename,"%s/image%lld.raw",WFOLDER_NAME, (long long int) time(NULL));
     printf("bufferfilename: %s\n", buffer_filename);
     image_number++;
 
@@ -154,7 +155,7 @@ static void set_working_folder_name() {
     time(&timer);
     tm_info = localtime(&timer);
 
-    strftime(WFOLDER_NAME, 100, "./images%m:%d:%y%H:%M", tm_info);
+    strftime(WFOLDER_NAME, 100, "./images", tm_info);
 }
 
 #endif
