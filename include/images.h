@@ -23,17 +23,26 @@
 #define IMG_WIDTH	   1280
 #define IMG_HEIGHT	   960
 #define IMG_DATA_SIZE  (sizeof(uint8_t) * IMG_WIDTH * IMG_HEIGHT)
-#define PARAM_SIZE	   (sizeof(int))
+#define PARAM_SIZE	   (sizeof(uint32_t))
 #define PARAM_ST_SIZE  (PARAM_SIZE * 5)
 #define	IMG_FILE_SIZE  (IMG_DATA_SIZE + TIMESTAMP_SIZE + PARAM_ST_SIZE)
+
+// Timestamp sizes
+#define TV_SEC_SIZE     ( sizeof(uint32_t) )
+#define TV_NSEC_SIZE    ( sizeof(uint32_t) )
+#define TIMESTAMP_SIZE  ( TV_SEC_SIZE + TV_NSEC_SIZE )
+
 
 
 extern uint8_t IMAGE_STREAM [960*1280];
 extern uint8_t IMAGEBMP_STREAM [IMAGEBMP_SIZE];
 
 static void write_image_to_file (char* filename) {
-    FILE* raw_img = fopen(filename, "w");
-    fwrite(IMAGE_STREAM, 1, 960*1280, raw_img);
+    if (fork() == 0) {
+        FILE* raw_img = fopen(filename, "w");
+        fwrite(IMAGE_STREAM, 1, IMG_FILE_SIZE, raw_img);
+        exit(0);
+    }
 }
 
 static void call_imageConvert (char* filename_in, char* filename_out) {

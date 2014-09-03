@@ -18,6 +18,10 @@
 
 static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
 
+
+/**
+ * Draws a graph
+ */
 static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
     // Measures
 	float* measures = (float*) user_data;

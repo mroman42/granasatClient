@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     const char* filename_in = argv[1];
     const char* filename_out = argv[2];
 
-    printf("[ImageConvert] Converting %s into %s", filename_in, filename_out);
+    printf("[ImageConvert] Converting %s into %s\n", filename_in, filename_out);
     transform_image(filename_in, filename_out);
 
     return 0;

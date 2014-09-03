@@ -206,7 +206,7 @@ static void send_all() {
 static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
-        printlog(LCLIENT, " Shutdown signal sent. Disconnecting");
+        printlog(LCLIENT, " Shutdown signal sent. Disconnecting\n");
         disconnect_server();
     }
 }
@@ -214,7 +214,7 @@ static void send_shutdown() {
 static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
-        printlog(LCLIENT, " Restart signal sent. Disconnecting");
+        printlog(LCLIENT, " Restart signal sent. Disconnecting\n");
         disconnect_server();
     }
 }
@@ -286,7 +286,7 @@ static void read_data_packet() {
 }
 
 static void read_image() {
-    static int n_bytes = 960*1280;
+    static int n_bytes = IMG_FILE_SIZE;
     static int bytes_sent = 0;
     int n = 0;
 
@@ -307,6 +307,7 @@ static void read_image() {
 
     // If the image is complete, write and transform it
     if (bytes_sent == n_bytes) {
+        bytes_sent = 0;
         set_image();
     }
 }

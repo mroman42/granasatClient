@@ -17,8 +17,8 @@
 
 // Constants
 const int REFRESH_INTERVAL_CONNECTION = 1000;
-const int REFRESH_INTERVAL_IMAGE = 200;
-const int REFRESH_INTERVAL_DATA = 10;
+const int REFRESH_INTERVAL_IMAGE = 10;
+const int REFRESH_INTERVAL_DATA = 5;
 const int REFRESH_INTERVAL_REDRAW = 100;
 
 static void add_timeouts();
