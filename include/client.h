@@ -152,6 +152,7 @@ static void send_gamma()          { send_value(MSG_SET_GAMMA,      GAMMA,       
 static void send_expvalue()       { send_value(MSG_SET_EXP_VAL,    EXPVALUE,        "Exposure"         ); }
 static void send_binthres()       { send_value(MSG_SET_BIN_TH,     BIN_TH,          "Binary threshold" ); }
 static void send_canny()          { send_value(MSG_SET_CANNY_TH,   CANNY_TH,        "Canny threshold"  ); }
+static void send_speed()          { send_value(MSG_SET_BANDWITH,   SPEED,           "Maximum bandwith" ); }
 
 static void send_error() {
     if (CONNECTED) {
@@ -179,17 +180,6 @@ static void send_mode() {
     }
 }
 
-static void send_speed() {
-    if (CONNECTED) {
-        printlog(LCLIENT, "Sending speed limit (?): %d\n", SPEED);
-
-        send_msg(MSG_PASS);
-        //send_int(SPEED);
-
-        printlog(LCLIENT, "Speed limit sent (?)\n");
-    }
-}
-
 static void send_all() {
     send_magnitude();
     send_unitaryVectors();
@@ -200,6 +190,7 @@ static void send_all() {
     send_binthres();
     send_canny();
     send_mode();
+    send_speed();
 }
 
 // COMMANDS
