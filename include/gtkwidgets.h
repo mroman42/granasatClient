@@ -66,8 +66,9 @@ char* MSG_ACCELEROMETER_DATA = "Accelerometer data (G):\n\tX: %4.3f\n\tY: %4.3f\
 char* MSG_CONNECTION_ON      = "Raspberry: Connected";
 char* MSG_CONNECTION_OFF     = "Raspberry: Not Connected";
 char* MSG_TEMP_GENERAL       = "General temperature: \t%d";
-
-
+char* MSG_TEMP_CAMERA        = "Camera temperature: \t%d";
+char* MSG_TEMP_CPU           = "CPU temperature: \t%d";
+char* MSG_TEMP_MAGNETOMETER  = "Magnetometer temperature: \t%d";
 
 /**
  * Adds a widget given its name.
@@ -207,11 +208,11 @@ static GtkWidget* add_scale_canny() {
     return scale_canny = add_widget("scale_canny");
 }
 
-static GtkWidget* add_label_temperatures() {
-    label_general_temp = add_widget("label_general_temp");
-    label_camera_temp = add_widget("label_camera_temp");
-    label_magnetometer_temp = add_widget("label_magnetometer_temp");
-    label_cpu_temp = add_widget("");
+static void add_label_temperatures() {
+    label_general_temp = GTK_LABEL(add_widget("label_general_temp"));
+    label_camera_temp = GTK_LABEL(add_widget("label_camera_temp"));
+    label_magnetometer_temp = GTK_LABEL(add_widget("label_magnetometer_temp"));
+    label_cpu_temp = GTK_LABEL(add_widget("label_cpu_temp"));
 }
 
 /*
@@ -246,6 +247,7 @@ static void add_all_widgets() {
     add_scale_binthres();
     add_scale_canny();
     add_altitude_size_group();
+    add_label_temperatures();
 }
 
 #endif

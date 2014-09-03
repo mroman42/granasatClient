@@ -29,10 +29,10 @@ static float MAG[3];
 static float ACC[3];
 
 // Temperatures
-static int TEMP_CAMERA  = 0;
-static int TEMP_GENERAL = 0;
-static int TEMP_CPU     = 0;
-static int TEMP_MAGNET  = 0;
+static int TEMP_CAMERA        = 0;
+static int TEMP_GENERAL       = 0;
+static int TEMP_CPU           = 0;
+static int TEMP_MAGNETOMETER  = 0;
 
 // Star Tracker
 static int CATALOG = 4;
@@ -83,19 +83,25 @@ static void set_value(int* value, int* VALUE, ltype type, char* msg, void (*send
 }
 
 // Star tracker
-static void set_magnitude       (int magnitude) { set_value(&magnitude, &CATALOG,         LSTAR,   "Using star tracker catalog: %d\n", send_magnitude);      }
-static void set_unitary_vectors (int vectors)   { set_value(&vectors,   &UNIT_VECTORS,    LSTAR,   "Using %d unitary vectors\n",       send_unitaryVectors); }
-static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_THRESHOLD, LSTAR,   "Using %d as threshold\n",          send_threshold);      }
-static void set_roi             (int roi)       { set_value(&roi,       &ROI,             LSTAR,   "Using %d as ROI\n",                send_roi);            }
-static void set_points          (int points)    { set_value(&points,    &POINTS,          LSTAR,   "Using %d points\n",                send_points);         }
+static void set_magnitude       (int magnitude) { set_value(&magnitude, &CATALOG,           LSTAR,    "Using star tracker catalog: %d\n",                send_magnitude);      }
+static void set_unitary_vectors (int vectors)   { set_value(&vectors,   &UNIT_VECTORS,      LSTAR,    "Using %d unitary vectors\n",                      send_unitaryVectors); }
+static void set_threshold       (int threshold) { set_value(&threshold, &PIXEL_THRESHOLD,   LSTAR,    "Using %d as threshold\n",                         send_threshold);      }
+static void set_roi             (int roi)       { set_value(&roi,       &ROI,               LSTAR,    "Using %d as ROI\n",                               send_roi);            }
+static void set_points          (int points)    { set_value(&points,    &POINTS,            LSTAR,    "Using %d points\n",                               send_points);         }
 // Camera
-static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,      LCAMERA, "[Camera] Brightness changed to %d\n",             send_brightness);     }
-static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,           LCAMERA, "[Camera] Gamma changed to %d\n",                  send_gamma);          }
-static void set_gain            (int gain)      { set_value(&gain,      &GAIN,            LCAMERA, "[Camera] Gain changed to %d\n",                   send_gain);           }
-static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,        LCAMERA, "[Camera] Exposure value changed to %d\n",         send_expvalue);       }
+static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTNESS,        LCAMERA,  "[Camera] Brightness changed to %d\n",             send_brightness);     }
+static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,             LCAMERA,  "[Camera] Gamma changed to %d\n",                  send_gamma);          }
+static void set_gain            (int gain)      { set_value(&gain,      &GAIN,              LCAMERA,  "[Camera] Gain changed to %d\n",                   send_gain);           }
+static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,          LCAMERA,  "[Camera] Exposure value changed to %d\n",         send_expvalue);       }
 // Horizon Sensor
-static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,          LHORIZON, "[Horizon Sensor] Binary threshold change to %d\n",send_binthres);       }
-static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,        LHORIZON, "[Horizon Sensor] Canny threshold change to %d\n", send_canny);          }
+static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,            LHORIZON, "[Horizon Sensor] Binary threshold change to %d\n",send_binthres);       }
+static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,          LHORIZON, "[Horizon Sensor] Canny threshold change to %d\n", send_canny);          }
+// Temperatures
+static void set_general_temp    (int temp)      { set_value(&temp,      &TEMP_GENERAL,      LDATA,    "General temperature: %d",                         NULL); }
+static void set_camera_temp     (int temp)      { set_value(&temp,      &TEMP_CAMERA,       LDATA,    "Camera temperature: %d",                          NULL); }
+static void set_cpu_temp        (int temp)      { set_value(&temp,      &TEMP_CPU,          LDATA,    "CPU temperature: %d",                             NULL); }
+static void set_magnet_temp     (int temp)      { set_value(&temp,      &TEMP_MAGNETOMETER, LDATA,    "CPU temperature: %d",                             NULL); }
+
 
 static void set_error(float error) {
     ERROR = error;

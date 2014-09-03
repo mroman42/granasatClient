@@ -31,6 +31,11 @@ static gboolean readData();
 static gboolean readImage();
 //static gboolean readImageBmp();
 static gboolean refreshImage();
+static gboolean refreshTempGeneral();
+static gboolean refreshTempCamera();
+static gboolean refreshTempCpu();
+static gboolean refreshTempMagnetometer();
+
 
 static void add_timeouts() {
     // Client timeouts
@@ -38,6 +43,12 @@ static void add_timeouts() {
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImage, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) refreshImage, NULL);
+
+    // Temperature label timeouts
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshTempGeneral, NULL);
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshTempCamera, NULL);
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshTempCpu, NULL);
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshTempMagnetometer, NULL);
 
     // Data timeouts
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshMagnetometer, NULL);
@@ -92,6 +103,27 @@ static gboolean refreshTempGeneral() {
     char buffer[100];
     sprintf(buffer, MSG_TEMP_GENERAL, TEMP_GENERAL);
     gtk_label_set_text (label_general_temp, buffer);
+    return 1;
+}
+
+static gboolean refreshTempCamera() {
+    char buffer[100];
+    sprintf(buffer, MSG_TEMP_CAMERA, TEMP_CAMERA);
+    gtk_label_set_text (label_camera_temp, buffer);
+    return 1;
+}
+
+static gboolean refreshTempCpu() {
+    char buffer[100];
+    sprintf(buffer, MSG_TEMP_CPU, TEMP_CPU);
+    gtk_label_set_text (label_cpu_temp, buffer);
+    return 1;
+}
+
+static gboolean refreshTempMagnetometer() {
+    char buffer[100];
+    sprintf(buffer, MSG_TEMP_MAGNETOMETER, TEMP_MAGNETOMETER);
+    gtk_label_set_text (label_magnetometer_temp, buffer);
     return 1;
 }
 

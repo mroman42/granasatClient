@@ -84,8 +84,8 @@ static void disconnect_server() {
     }
 }
 
-/*
-    Closes the three sockets.
+/**
+ *  Closes the three sockets.
  */
 static void close_sockets() {
     printlog(LCLIENT, "Disconnecting. Closing sockets.\n");
@@ -99,7 +99,7 @@ static void close_sockets() {
 
 
 /**
- *   SENDING MESSAGES
+ *  SENDING MESSAGES
  */
 static void check_ping() {
     char zero;
@@ -349,8 +349,8 @@ static int connect_socket(int portno) {
     return sockfd;
 }
 
-/*
-    Connects to the server using three sockets.
+/**
+ *   Connects to the server using three sockets.
  */
 static bool connect_server () {
     /* This code is adapted from: */
