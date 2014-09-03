@@ -42,7 +42,7 @@ static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
 
 	// Vector
 	// Move to center and draw the line
-	const float VECTOR_SIZE = 15;
+	const float VECTOR_SIZE = 60;
 	const float CENTER_W  = WIDTH/2;
 	const float CENTER_H  = 2*HEIGHT/3;
 	const float COMPON_XW =  SIN_60*measures[0];

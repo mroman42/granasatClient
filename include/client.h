@@ -31,6 +31,11 @@
 #define SOCKET_BIG_DATA   SOCKFD2
 #define SOCKET_SMALL_DATA SOCKFD3
 
+// Timestamp sizes
+#define TV_SEC_SIZE     ( sizeof(uint32_t) )
+#define TV_NSEC_SIZE    ( sizeof(uint32_t) )
+#define TIMESTAMP_SIZE  ( TV_SEC_SIZE + TV_NSEC_SIZE )
+
 // Connection data
 static bool CONNECTED = false;
 static int  SOCKFD1 = 0;
@@ -128,10 +133,10 @@ static void send_int(int msg) {
 
 static void send_value (int command, int value, const char* name) {
     if (CONNECTED) {
-        printlog(LCLIENT, " Sending %s: %d\n", name, value);
+        printlog(LCLIENT, "Sending %s: %d\n", name, value);
         send_msg(command);
         send_int(value);
-        printlog(LCLIENT, " %s sent\n", name);
+        printlog(LCLIENT, "%s sent\n", name);
     } 
 }
 
@@ -150,19 +155,19 @@ static void send_canny()          { send_value(MSG_SET_CANNY_TH,   CANNY_TH,    
 
 static void send_error() {
     if (CONNECTED) {
-        printlog(LCLIENT, " Sending error: %f\n", ERROR);
+        printlog(LCLIENT, "Sending error: %f\n", ERROR);
 
         send_msg(MSG_SET_ERROR);
         send_int(ERROR);
 
-        printlog(LCLIENT, " Error sent\n");
+        printlog(LCLIENT, "Error sent\n");
     }
 }
 
 
 static void send_mode() {
     if (CONNECTED) {
-        printlog(LCLIENT, " Sending altitude determination mode");
+        printlog(LCLIENT, "Sending altitude determination mode\n");
         
         switch (MODE) {
             case 1: send_msg(MSG_SET_MODE_AUTO); break;
@@ -170,18 +175,18 @@ static void send_mode() {
             case 3: send_msg(MSG_SET_MODE_HORI); break;
         }
         
-        printlog(LCLIENT, " Altitude determination mode sent\n");        
+        printlog(LCLIENT, "Altitude determination mode sent\n");        
     }
 }
 
 static void send_speed() {
     if (CONNECTED) {
-        printlog(LCLIENT, " Sending speed limit (?): %d\n", SPEED);
+        printlog(LCLIENT, "Sending speed limit (?): %d\n", SPEED);
 
         send_msg(MSG_PASS);
         //send_int(SPEED);
 
-        printlog(LCLIENT, " Speed limit sent (?)\n");
+        printlog(LCLIENT, "Speed limit sent (?)\n");
     }
 }
 
@@ -225,9 +230,6 @@ static void read_data_packet() {
     #define M_Z_GAIN   980	    //[LSB/Gauss] GN=001
     #define T_GAIN     8	    //[LSB/ÂºC]
 
-    #define TV_SEC_SIZE     ( sizeof(time_t) )
-    #define TV_NSEC_SIZE    ( sizeof(long) )
-    #define TIMESTAMP_SIZE  ( TV_SEC_SIZE + TV_NSEC_SIZE )
     #define MAG_MM_SIZE     ( sizeof(uint8_t) * 6 )
     #define MAG_FM_SIZE     ( MAG_MM_SIZE + TIMESTAMP_SIZE )
     #define ACC_MM_SIZE     ( sizeof(uint8_t) * 6 )
@@ -259,23 +261,27 @@ static void read_data_packet() {
         bytes_sent = 0;
 
         int16_t m[3];
-	    *(m+0) = (int16_t)(packet[1] | packet[0] << 8);
-	    *(m+1) = (int16_t)(packet[5] | packet[4] << 8);
-	    *(m+2) = (int16_t)(packet[3] | packet[2] << 8);
-	    *(m+0) = (float) *(m+0)/M_XY_GAIN;
-	    *(m+1) = (float) *(m+1)/M_XY_GAIN;
-	    *(m+2) = (float) *(m+2)/M_Z_GAIN;
+    	*(m+0) = (int16_t)(packet[1] | packet[0] << 8);
+    	*(m+1) = (int16_t)(packet[5] | packet[4] << 8);
+    	*(m+2) = (int16_t)(packet[3] | packet[2] << 8);
+
+    	float MAG[3];
+    	*(MAG+0) = (float) *(m+0)/M_XY_GAIN;
+    	*(MAG+1) = (float) *(m+1)/M_XY_GAIN;
+    	*(MAG+2) = (float) *(m+2)/M_Z_GAIN;
         
         int16_t a[3];
         *(a+0) = (int16_t)(packet[MAG_FM_SIZE+0] | packet[MAG_FM_SIZE+1] << 8) >> 4;
         *(a+1) = (int16_t)(packet[MAG_FM_SIZE+2] | packet[MAG_FM_SIZE+3] << 8) >> 4;
         *(a+2) = (int16_t)(packet[MAG_FM_SIZE+4] | packet[MAG_FM_SIZE+5] << 8) >> 4;
-        *(a+0) = (float) *(a+0)*A_GAIN;
-        *(a+1) = (float) *(a+1)*A_GAIN;
-        *(a+2) = (float) *(a+2)*A_GAIN;
+   
+        float ACC[3];
+        *(ACC+0) = (float) *(a+0)*A_GAIN;
+        *(ACC+1) = (float) *(a+1)*A_GAIN;
+        *(ACC+2) = (float) *(a+2)*A_GAIN;
 
-        set_magnetometer(m[0],m[1],m[2]);
-        set_accelerometer(a[0],a[1],a[2]);
+        set_magnetometer(MAG[0],MAG[1],MAG[2]);
+        set_accelerometer(ACC[0],ACC[1],ACC[2]);
     }
 }
 
