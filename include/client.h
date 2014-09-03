@@ -223,10 +223,21 @@ static void read_data_packet() {
     #define A_GAIN     0.004    //[G/LSB] FS=10
     #define M_XY_GAIN  1100   	//[LSB/Gauss] GN=001
     #define M_Z_GAIN   980	    //[LSB/Gauss] GN=001
-    #define T_GAIN     8	    //[LSB/ºC]
-    static int n_bytes = 12;
+    #define T_GAIN     8	    //[LSB/ÂºC]
+
+    #define TV_SEC_SIZE     ( sizeof(time_t) )
+    #define TV_NSEC_SIZE    ( sizeof(long) )
+    #define TIMESTAMP_SIZE  ( TV_SEC_SIZE + TV_NSEC_SIZE )
+    #define MAG_MM_SIZE     ( sizeof(uint8_t) * 6 )
+    #define MAG_FM_SIZE     ( MAG_MM_SIZE + TIMESTAMP_SIZE )
+    #define ACC_MM_SIZE     ( sizeof(uint8_t) * 6 )
+    #define ACC_FM_SIZE     ( ACC_MM_SIZE + TIMESTAMP_SIZE )
+
+
+    // Reading
+    static int n_bytes = MAG_FM_SIZE + ACC_FM_SIZE;
     static int bytes_sent = 0;
-    uint8_t packet[12];
+    uint8_t packet[MAG_FM_SIZE + ACC_FM_SIZE];
     int n;
 
     if (bytes_sent < n_bytes) {
@@ -256,9 +267,9 @@ static void read_data_packet() {
 	    *(m+2) = (float) *(m+2)/M_Z_GAIN;
         
         int16_t a[3];
-        *(a+0) = (int16_t)(packet[6] | packet[7] << 8) >> 4;
-        *(a+1) = (int16_t)(packet[8] | packet[9] << 8) >> 4;
-        *(a+2) = (int16_t)(packet[10] | packet[11] << 8) >> 4;
+        *(a+0) = (int16_t)(packet[MAG_FM_SIZE+0] | packet[MAG_FM_SIZE+1] << 8) >> 4;
+        *(a+1) = (int16_t)(packet[MAG_FM_SIZE+2] | packet[MAG_FM_SIZE+3] << 8) >> 4;
+        *(a+2) = (int16_t)(packet[MAG_FM_SIZE+4] | packet[MAG_FM_SIZE+5] << 8) >> 4;
         *(a+0) = (float) *(a+0)*A_GAIN;
         *(a+1) = (float) *(a+1)*A_GAIN;
         *(a+2) = (float) *(a+2)*A_GAIN;
