@@ -1,9 +1,8 @@
 /**
- * images.h
- * granaSAT.Client
- *
- *  Created on: Ago 5, 2014
- *      Author: Mario Román
+ * @file images.h
+ * @author Mario Román
+ * @date 5 Ago 2014
+ * @brief Image management and IO. Size definitions.
  */
 
 // Avoids redefinition

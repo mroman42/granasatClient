@@ -1,9 +1,8 @@
 /**
- * log.h
- * granaSAT.Client
- *
- *  Created on: Jul 11, 2014
- *      Author: Mario Román
+ * @file log.h
+ * @author Mario Román
+ * @date 11 Jul 2014
+ * @brief Log writing.
  */
 
 // Avoids redefinition

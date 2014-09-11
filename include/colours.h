@@ -1,9 +1,8 @@
 /**
- * colours.h
- * granaSAT.Client
- *
- *  Created on: Aug 11, 2014
- *      Author: Mario Román
+ * @file colours.h
+ * @author Mario Román
+ * @date 11 Aug 2014
+ * @brief Color definitions.
  */
 
 // Avoids redefinition

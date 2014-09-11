@@ -53,5 +53,3 @@ doc:
 	doxygen doxyfile
 
 .PHONY: clean doc
-
-

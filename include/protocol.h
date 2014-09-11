@@ -1,9 +1,8 @@
 /**
-* protocol.h
-* granaSAT.Client/granaSAT.Server
-*
-*  Created on: Jul 24, 2014
-*      Author: Alejandro García, Mario Román
+* @file protocol.h
+* @author Mario Román
+* @date 24 Jul 2014
+* @brief Communication protocol with granasatServer.
 */
 
 // Avoids redefinition

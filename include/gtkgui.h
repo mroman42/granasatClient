@@ -1,10 +1,10 @@
 /**
- * gtkgui.h
- * granaSAT.Client
- *
- *  Created on: May 17, 2014
- *      Author: Mario Román
+ * @file gtkgui.h
+ * @author Mario Román
+ * @date 17 May 2014
+ * @brief Basic GTK management.
  */
+
 
 // Avoids redefinition
 #ifndef GTKGUI_H

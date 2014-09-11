@@ -1,9 +1,8 @@
 /**
- * client.h
- * granaSAT.Client
- *
- *  Created on: Jun 29, 2014
- *      Author: Mario Román
+ * @file client.h
+ * @author Mario Román
+ * @date 29 Jun 2014
+ * @brief Connection. Sending and receiving data.
  */
 
 // Avoids redefinition
@@ -73,10 +72,10 @@ static void check_connection() {
     }
 }
 
-/*
-    Closes all the sockets and sets the connection
-    as 'disconnected'.
- */
+/**
+* Closes all the sockets and sets the connection
+* as 'disconnected'.
+*/
 static void disconnect_server() {
     if (CONNECTED) {
         CONNECTED = false;
@@ -85,7 +84,7 @@ static void disconnect_server() {
 }
 
 /**
- *  Closes the three sockets.
+ * Closes the three sockets.
  */
 static void close_sockets() {
     printlog(LCLIENT, "Disconnecting. Closing sockets.\n");
@@ -98,9 +97,12 @@ static void close_sockets() {
 }
 
 
-/**
- *  SENDING MESSAGES
- */
+// SENDING MESSAGES
+
+/*
+* @brief Checks the connection sending a ping.
+* If the connection is broken, disconnects the client.
+*/
 static void check_ping() {
     char zero;
     bzero(&zero,1);

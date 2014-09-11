@@ -1,9 +1,8 @@
 /**
- * gtkwidgets.h
- * granaSAT.Client
- *
- *  Created on: May 17, 2014
- *      Author: Mario Román
+ * @file gtkwidgets.h
+ * @author Mario Román
+ * @date 17 May 2014
+ * @brief Creation of GTK widgets.
  */
 
 // Avoids redefinition

@@ -1,9 +1,8 @@
 /**
- * gtksignals.h
- * granaSAT.Client
- *
- *  Created on: Jul 18, 2014
- *      Author: Mario Román
+ * @file gtksignals.h
+ * @author Mario Román
+ * @date 18 Jul 2014
+ * @brief Widget signals management.
  */
 
 // Avoids redefinition

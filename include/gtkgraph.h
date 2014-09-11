@@ -1,9 +1,8 @@
 /**
- * gtkgraph.h
- * granaSAT.Client
- *
- *  Created on: Jun 24, 2014
- *      Author: Mario Román
+ * @file gtkgraph.h
+ * @author Mario Román
+ * @date 24 Jun 2014
+ * @brief Graph drawing. Using Cairo libraries.
  */
 
 // Avoids redefinition

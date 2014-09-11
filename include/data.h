@@ -1,10 +1,10 @@
 /**
- * data.h
- * granaSAT.Client
- *
- *  Created on: Jun 24, 2014
- *      Author: Mario Román
+ * @file data.h
+ * @author Mario Román
+ * @date 24 Jun 2014
+ * @brief Data management and storage.
  */
+
 
 // Avoids redefinition
 #ifndef DATA_H
