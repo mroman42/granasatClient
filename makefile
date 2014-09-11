@@ -49,5 +49,9 @@ clean:
 	@rm $(OBJ)/*.o && echo "Borrados ficheros objeto."
 	@rm $(EXECUTABLE) && echo "Borrado ejecutable."
 	@rm $(EXECUTABLE2) && echo "Borrado ejecutable 2."
+doc:
+	doxygen doxyfile
 
-.PHONY: clean documentacion tabla
+.PHONY: clean doc
+
+
