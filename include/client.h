@@ -221,14 +221,14 @@ static void read_data_packet() {
     #define M_Z_GAIN   980	    //[LSB/Gauss] GN=001
     #define T_GAIN     8	    //[LSB/ÂºC]
 
-    #define MAG_MM_SIZE     ( sizeof(uint8_t) * 6 )
-    #define MAG_FM_SIZE     ( MAG_MM_SIZE + TIMESTAMP_SIZE )
-    #define ACC_MM_SIZE     ( sizeof(uint8_t) * 6 )
-    #define ACC_FM_SIZE     ( ACC_MM_SIZE + TIMESTAMP_SIZE )
+    #define MAG_MM_SIZE     (sizeof(uint8_t) * 6)
+    #define MAG_FM_SIZE     (MAG_MM_SIZE + TIMESTAMP_SIZE)
+    #define ACC_MM_SIZE     (sizeof(uint8_t) * 6)
+    #define ACC_FM_SIZE     (ACC_MM_SIZE + TIMESTAMP_SIZE)
 
-    #define TEMP_FM_SIZE	( sizeof(int16_t)*4 + TIMESTAMP_SIZE)
+    #define TEMP_FM_SIZE	(sizeof(int32_t)*4 + TIMESTAMP_SIZE)
 
-    #define PACKET_SIZE	    ( MAG_FM_SIZE + ACC_FM_SIZE + TEMP_FM_SIZE )
+    #define PACKET_SIZE	    (MAG_FM_SIZE + ACC_FM_SIZE + TEMP_FM_SIZE)
 
 
     // Reading
@@ -275,11 +275,12 @@ static void read_data_packet() {
         *(ACC+1) = (float) *(a+1)*A_GAIN;
         *(ACC+2) = (float) *(a+2)*A_GAIN;
 
-        int16_t temps[4];
-        *(temps+0) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+2] | packet[MAG_FM_SIZE+ACC_FM_SIZE+3] << 8);
-        *(temps+1) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+0] | packet[MAG_FM_SIZE+ACC_FM_SIZE+1] << 8);
-        *(temps+2) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+4] | packet[MAG_FM_SIZE+ACC_FM_SIZE+5] << 8);
-        *(temps+3) = (int16_t)(packet[MAG_FM_SIZE+ACC_FM_SIZE+6] | packet[MAG_FM_SIZE+ACC_FM_SIZE+7] << 8);
+        int32_t temps[4];
+        int offset = MAG_FM_SIZE + ACC_FM_SIZE;
+        *(temps+0) = (int32_t)(packet[offset+4] | packet[offset+5] << 8 | packet[offset+6] << 16 | packet[offset+7] << 24);
+        *(temps+1) = (int32_t)(packet[offset+0] | packet[offset+1] << 8 | packet[offset+2] << 16 | packet[offset+3] << 24);
+        *(temps+2) = (int32_t)(packet[offset+8] | packet[offset+9] << 8 | packet[offset+10] << 16 | packet[offset+11] << 24);
+        *(temps+3) = (int32_t)(packet[offset+12] | packet[offset+13] << 8 | packet[offset+14] << 16 | packet[offset+15] << 24);
 
         set_magnetometer(MAG[0],MAG[1],MAG[2]);
         set_accelerometer(ACC[0],ACC[1],ACC[2]);
