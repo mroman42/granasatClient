@@ -3,6 +3,9 @@
  * @author Mario Román
  * @date 24 Jun 2014
  * @brief Data management and storage.
+ * All the variables are storaged here, in order to 
+ * provide an easy way to set them to new values and
+ * to send them to the server.
  */
 
 

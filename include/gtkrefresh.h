@@ -3,6 +3,7 @@
  * @author Mario Román
  * @date 24 Jun 2014
  * @brief Timeout functions management.
+ * GTK timeout functions are defined in this file.
  */
 
 // Avoids redefinition

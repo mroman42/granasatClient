@@ -3,6 +3,7 @@
  * @author Mario Román
  * @date 17 May 2014
  * @brief Creation of GTK widgets.
+ * GTK widgets are created and managed by the code in this file.
  */
 
 // Avoids redefinition

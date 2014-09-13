@@ -3,6 +3,7 @@
  * @author Mario Román
  * @date 17 May 2014
  * @brief Basic GTK management.
+ * The GTK system is initialized in this file.
  */
 
 

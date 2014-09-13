@@ -3,6 +3,9 @@
  * @author Mario Román
  * @date 29 Jun 2014
  * @brief Connection. Sending and receiving data.
+ * Code used to connect the client to the server and send and receive
+ * data. The three sockets which are used to connect to the server
+ *  are managed by the functions in this file.
  */
 
 // Avoids redefinition

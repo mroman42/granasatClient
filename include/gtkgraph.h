@@ -3,6 +3,8 @@
  * @author Mario Román
  * @date 24 Jun 2014
  * @brief Graph drawing. Using Cairo libraries.
+ * The magnetometer and accelerometer graphs will be
+ * draw using the code in this file.
  */
 
 // Avoids redefinition

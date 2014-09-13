@@ -3,7 +3,7 @@
  * @author Mario Román
  * @date 11 Aug 2014
  * @brief Color definitions.
- * Macros defining colour strings for ptinting in the terminal.
+ * Macros defining colour strings for printing in the terminal.
  */
 
 // Avoids redefinition

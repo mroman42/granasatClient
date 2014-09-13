@@ -3,6 +3,7 @@
  * @author Mario Román
  * @date 18 Jul 2014
  * @brief Widget signals management.
+ * GTK signal handlers are defined in this file.
  */
 
 // Avoids redefinition

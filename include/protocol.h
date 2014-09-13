@@ -3,6 +3,8 @@
 * @author Mario Román
 * @date 24 Jul 2014
 * @brief Communication protocol with granasatServer.
+* The messages and commands that will be sent to the server
+* are defined here. A unique number is assigned to each command.
 */
 
 // Avoids redefinition

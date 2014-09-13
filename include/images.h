@@ -3,6 +3,9 @@
  * @author Mario Román
  * @date 5 Ago 2014
  * @brief Image management and IO. Size definitions.
+ * The code in this file can write images to files,
+ * transform and manage them. The image streams of
+ * partial read images will be storaged here.
  */
 
 // Avoids redefinition

@@ -3,6 +3,8 @@
  * @author Mario Román
  * @date 11 Jul 2014
  * @brief Log writing.
+ * The log management is controlled by the code in this file,
+ * which provides high level functions to write into the log.
  */
 
 // Avoids redefinition
