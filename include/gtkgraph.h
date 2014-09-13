@@ -19,7 +19,12 @@ static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data);
 
 
 /**
- * Draws a graph
+ * Draws a measures graph using the data storaged.
+ * The graph will be a tridimensional graph of a tridimensional vector.
+ * Three axes and the vector will be drawn in isometric perspective.
+ * @param widget The drawing area that will be used.
+ * @param cr Cairo canvas.
+ * @param user_data Graph data. 
  */
 static void drawGraph (GtkWidget* widget, cairo_t* cr, gpointer user_data) {
     // Measures

@@ -77,6 +77,21 @@ static void send_speed();
 
 
 // SETTING VARIABLES
+
+/**
+ * Sets a new data value into the data storage.
+ * A log message detailing the changes will be printed.
+ * After the change, the \e send \e function will be called,
+ * allowing us to send the new value to the server.
+ *
+ * All the other set functions are particular cases of this one.
+ * 
+ * @param value New value.
+ * @param VALUE Variable that will be changed.
+ * @param type  Type of the log message that will be printed.
+ * @param msg   Log message
+ * @param send  Send function that will be called after the change.
+ */
 static void set_value(int* value, int* VALUE, ltype type, char* msg, void (*send)()) {
     (*VALUE) = (*value);
     printlog(type, msg, (*value));
@@ -148,6 +163,13 @@ static void set_speed(int speed) {
     send_speed();
 }
 
+
+
+/**
+ * Sets the \b working \b folder that will be used during this execution.
+ * The log and the images produced during the execution will
+ * be saved in this working folder.
+ */
 static void set_working_folder_name() {
     time_t timer;
     struct tm* tm_info;

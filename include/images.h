@@ -50,6 +50,13 @@ static void write_image_to_file (char* filename) {
     }
 }
 
+
+/**
+ * Calls the image convert program, which converts a raw image
+ * into a bmp image.
+ * @param filename_in Name of the input file.
+ * @param filename_out Name of the output file.
+ */
 static void call_imageConvert (char* filename_in, char* filename_out) {
     // Forks to create a new process to run imageConvert
     char buffer[100];

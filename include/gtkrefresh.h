@@ -14,7 +14,7 @@
 #include "data.h"
 #include "client.h"
 
-// Constants
+// Refresh intervals
 const int REFRESH_INTERVAL_CONNECTION = 1000;
 const int REFRESH_INTERVAL_IMAGE = 1;
 const int REFRESH_INTERVAL_DATA = 5;
@@ -28,7 +28,6 @@ static gboolean sendRedrawSignals();
 static gboolean refreshConnectionLabel();
 static gboolean readData();
 static gboolean readImage();
-//static gboolean readImageBmp();
 static gboolean refreshImage();
 static gboolean refreshTempGeneral();
 static gboolean refreshTempCamera();
@@ -36,6 +35,12 @@ static gboolean refreshTempCpu();
 static gboolean refreshTempMagnetometer();
 
 
+/**
+ * Adds all the timeout handlers to the GTK main loop.
+ * This function has to be called in order to use the timeout functions into
+ * the main loop. The timeout functions refresh the labels, graphs and status
+ * of the program.
+ */
 static void add_timeouts() {
     // Client timeouts
     g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
@@ -61,7 +66,7 @@ static void add_timeouts() {
 }
 
 
-
+// Timeout handlers
 static gboolean readData() {
     if (CONNECTED)
         read_data_packet();

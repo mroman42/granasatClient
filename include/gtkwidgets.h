@@ -71,6 +71,7 @@ char* MSG_TEMP_MAGNETOMETER  = "Magnetometer temperature: \t%4.3f ºC";
 
 /**
  * Adds a widget given its name.
+ * @param name Widget glade name.
  */
 static GtkWidget* add_widget(char* name) {
     GtkWidget* widget = GTK_WIDGET(gtk_builder_get_object(builder,name));
@@ -78,9 +79,9 @@ static GtkWidget* add_widget(char* name) {
     return widget;
 }
 
-/**
- * Widgets
- */
+
+
+// Widgets
 static GtkWidget* add_main_window() {
     GtkWidget* main_window = add_widget("main_window");
     g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
@@ -214,8 +215,9 @@ static void add_label_temperatures() {
     label_cpu_temp = GTK_LABEL(add_widget("label_cpu_temp"));
 }
 
-/*
-   Adds all widgets
+/**
+ * Adds all widgets.
+ * This function should be called in order to use GTK widgets.
  */
 static void add_all_widgets() {
     add_image_window();

@@ -55,11 +55,11 @@ static void send_int(int msg);
 static void send_all();
 
 
-/*
-    Checks the connection to the server and 
-    reconnects if it is not already connected.
-    Resends all the data if the connection is succesful.
-*/
+/**
+ * Checks the connection to the server and 
+ * reconnects if it is not already connected.
+ * Resends all the data if the connection is succesful.
+ */
 static void check_connection() {
     check_ping();
 
@@ -72,10 +72,11 @@ static void check_connection() {
     }
 }
 
+
 /**
-* Closes all the sockets and sets the connection
-* as 'disconnected'.
-*/
+ * Closes all the sockets and sets the connection
+ * as \e disconnected.
+ */
 static void disconnect_server() {
     if (CONNECTED) {
         CONNECTED = false;
@@ -83,8 +84,10 @@ static void disconnect_server() {
     }
 }
 
+
 /**
- * Closes the three sockets.
+ * Closes the three connection sockets.
+ * A log message will be printed.
  */
 static void close_sockets() {
     printlog(LCLIENT, "Disconnecting. Closing sockets.\n");
@@ -113,6 +116,11 @@ static void check_ping() {
     } 
 }
 
+/**
+ * Writes a message in the commands socket.
+ * The available commands are defined in \c protocol.h.
+ * @param msg Message that will be sent
+ */
 static void send_msg(char msg) {
     if (CONNECTED) {
         if (write(SOCKET_COMMANDS, &msg, 1) < 0) {
@@ -123,6 +131,12 @@ static void send_msg(char msg) {
     }
 }
 
+/**
+ * Writes an integer in the commands socket.
+ * The integer can be used as an argument to a command written
+ * previously.
+ * @param msg Integer that will be sent
+ */
 static void send_int(int msg) {
     if (CONNECTED) {
         if (write(SOCKET_COMMANDS, &msg, sizeof(int)) < 0) {
@@ -133,6 +147,14 @@ static void send_int(int msg) {
     }
 }
 
+/**
+ * Sends the new value of a variable to the server.
+ * All the other \b send \b functions are particular cases of this one.
+ * \warning This function will do nothing if the server is not connected.
+ * @param command Command used to order the value change.
+ * @param value New value of the variable.
+ * @param name Name of the variable, as it will appear in the log. 
+ */
 static void send_value (int command, int value, const char* name) {
     if (CONNECTED) {
         printlog(LCLIENT, "Sending %s: %d\n", name, value);
@@ -182,6 +204,11 @@ static void send_mode() {
     }
 }
 
+/**
+ * Sends all the variables to the server in order.
+ * All the values will be updated to the server.
+ * \warning This function will do nothing if the server is not connected.
+ */
 static void send_all() {
     send_magnitude();
     send_unitaryVectors();
@@ -196,6 +223,10 @@ static void send_all() {
 }
 
 // COMMANDS
+/**
+ * Sends the \c shutdown command to the server.
+ * \warning This function will do nothing if the server is not connected.
+ */
 static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
@@ -204,6 +235,10 @@ static void send_shutdown() {
     }
 }
 
+/**
+ * Sends the \c restart command to the server.
+ * \warning This function will do nothing if the server is not connected.
+ */
 static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
@@ -213,8 +248,14 @@ static void send_restart() {
 }
 
 
+
+// READING
+
 /**
- * READING
+ * Reads a data packet from the <tt> small data socket </tt>.
+ * A data packet contains the magnetometer and accelerometer measures,
+ * the temperature data and a timestamp.
+ * All the read variables will be updated in the data storage.
  */
 static void read_data_packet() {
     // Reading protocol
@@ -294,6 +335,15 @@ static void read_data_packet() {
     }
 }
 
+/**
+ * Reads an image from the <tt>big data socket<\tt>.
+ * If the image is not completely sent, it reads the partial
+ * image and storages it. The rest of the image will be read
+ * in other call to the function.
+ *
+ * If the image is complete, it writes it to a file and transforms
+ * it into a bmp file.
+ */
 static void read_image() {
     static int n_bytes = IMG_FILE_SIZE;
     static int bytes_sent = 0;
@@ -322,12 +372,10 @@ static void read_image() {
 }
 
 
-/*
-    Creates a socket and connects to it.
-    Parameters:
-        portno - Port number
-    Returns:
-        the socket file descriptor
+/**
+ * Creates a socket and connects to it.
+ * @param portno Port number.
+ * @return The socket file descriptor.
  */
 static int connect_socket(int portno) {
     int sockfd;
@@ -359,7 +407,10 @@ static int connect_socket(int portno) {
 }
 
 /**
- *   Connects to the server using three sockets.
+ * Connects to the server using three sockets.
+ * The complete connection to the server is done by this function.
+ * It will open three sockets: a <tt>small data socket</tt>, a <tt>big data socket</tt> 
+ * and a a <tt>commands socket</tt>.
  */
 static bool connect_server () {
     /* This code is adapted from: */

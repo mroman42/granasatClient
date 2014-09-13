@@ -19,7 +19,9 @@ static void printtime();
 
 
 /**
- * Prints the current time and the message in a coloured log.
+ * @brief Prints the current time and the message in a coloured log.
+ * The color will depend on the type of the message.
+ * The message format will be: <tt> [H:m:s][<Type>]: <Message> </tt>
  * @param msgtype Type of the message.
  * @param format Message format.
  */
@@ -50,7 +52,7 @@ static void printlog(ltype msgtype, const char* format, ...) {
 
 
 /**
- * Prints the current time in [h:m:s] format.
+ * Prints the current time in <tt>[h:m:s]</tt> format.
  */
 static void printtime() {
     time_t timer;
