@@ -25,7 +25,7 @@ The **client** will try to contact the server in the IP direction `SERVER_IP` pr
 in `client.h`. Three sockets will be used to read data and send commands to the server.  
 The server side execution can be started after or before the client execution, and the client
 will try to recover the connection if it were cut. Anyway, the client can be used without connection,
-and the changed parameters are be sent to the server when the connection 
+and the changed parameters are sent to the server when the connection is restored.
 
 ## Do you want to know more about us?
 See more information at [GranaSAT website](http://granasat.ugr.es).  
