@@ -21,18 +21,26 @@
 #define IMAGE_CONVERT "bin/imageConvert"
 #define IMAGEBMP_SIZE 1229878
 
-// Image file size constants
+// IMAGE AND BUFFER SIZES
+// Image
 #define IMG_WIDTH	   1280
 #define IMG_HEIGHT	   960
 #define IMG_DATA_SIZE  (sizeof(uint8_t) * IMG_WIDTH * IMG_HEIGHT)
+// Timestamp
+#define TV_SEC_SIZE    (sizeof(uint32_t))
+#define TV_NSEC_SIZE   (sizeof(uint32_t))
+#define TIMESTAMP_SIZE (TV_SEC_SIZE + TV_NSEC_SIZE)
+// Parameters
 #define PARAM_SIZE	   (sizeof(uint32_t))
 #define PARAM_ST_SIZE  (PARAM_SIZE * 5)
-#define	IMG_FILE_SIZE  (IMG_DATA_SIZE + TIMESTAMP_SIZE + PARAM_ST_SIZE)
+// Att data
+#define ATT_MODE_SIZE  (sizeof(uint8_t))
+#define ATT_DATA_SIZE  10*sizeof(uint32_t)
+#define ATT_FILE_SIZE  ATT_MODE_SIZE + ATT_DATA_SIZE
+// File
+#define IMG_FILE_SIZE  (IMG_DATA_SIZE + TIMESTAMP_SIZE + PARAM_ST_SIZE + ATT_FILE_SIZE)
 
-// Timestamp sizes
-#define TV_SEC_SIZE     ( sizeof(uint32_t) )
-#define TV_NSEC_SIZE    ( sizeof(uint32_t) )
-#define TIMESTAMP_SIZE  ( TV_SEC_SIZE + TV_NSEC_SIZE )
+
 
 extern uint8_t IMAGE_STREAM [IMG_FILE_SIZE];
 

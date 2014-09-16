@@ -33,11 +33,6 @@
 #define SOCKET_BIG_DATA   SOCKFD2
 #define SOCKET_SMALL_DATA SOCKFD3
 
-// Timestamp sizes
-#define TV_SEC_SIZE     ( sizeof(uint32_t) )
-#define TV_NSEC_SIZE    ( sizeof(uint32_t) )
-#define TIMESTAMP_SIZE  ( TV_SEC_SIZE + TV_NSEC_SIZE )
-
 // Connection data
 static bool CONNECTED = false;
 static int  SOCKFD1 = 0;
