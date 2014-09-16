@@ -23,7 +23,6 @@ static GtkWidget*  drawing_area1;
 static GtkWidget*  drawing_area2;
 static GtkLabel*   status_connected_label;
 static GtkWidget*  scale_speed;
-static GtkWidget*  image;
 // Main
 static GtkWidget*  button_shutdown;
 static GtkWidget*  button_restart;
@@ -88,16 +87,6 @@ static GtkWidget* add_main_window() {
     g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
     gtk_window_set_keep_above((GtkWindow *) main_window, TRUE);
     return main_window;
-}
-
-static GtkWidget* add_image_window() {
-    GtkWidget* image_window = add_widget("image_window");
-    gtk_window_set_title (GTK_WINDOW (image_window), "Images");
-    return image_window;
-}
-
-static GtkWidget* add_image() {
-    return image = add_widget("image");
 }
 
 static GtkWidget* add_main_notebook() {
@@ -221,8 +210,6 @@ static void add_label_temperatures() {
  * This function should be called in order to use GTK widgets.
  */
 static void add_all_widgets() {
-    add_image_window();
-    add_image();
     add_main_window();
     add_main_notebook();
     add_measures_container();

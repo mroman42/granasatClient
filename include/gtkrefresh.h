@@ -29,7 +29,6 @@ static gboolean sendRedrawSignals();
 static gboolean refreshConnectionLabel();
 static gboolean readData();
 static gboolean readImage();
-static gboolean refreshImage();
 static gboolean refreshTempGeneral();
 static gboolean refreshTempCamera();
 static gboolean refreshTempCpu();
@@ -47,7 +46,6 @@ static void add_timeouts() {
     g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImage, NULL);
-    g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) refreshImage, NULL);
 
     // Temperature label timeouts
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshTempGeneral, NULL);
@@ -71,11 +69,6 @@ static void add_timeouts() {
 static gboolean readData() {
     if (CONNECTED)
         read_data_packet();
-    return 1;
-}
-
-static gboolean refreshImage() {
-    gtk_image_set_from_file((GtkImage*) image, IMAGE_FILE);
     return 1;
 }
 
