@@ -100,10 +100,19 @@ static void transform_image(const char* filename_in, const char* filename_out) {
     //ATTITUDE DATA
     //Attitude mode
     sprintf(string, "ATTITUDE MODE: ");
-    if(attmode_buffer[0] == 1)
-        sprintf(string, "%s Star Tracker", string);
-    else
-        sprintf(string, "%s Horizon sensor", string);
+    switch(attmode_buffer[0]){
+        case 0:
+            sprintf(string, "%s Auto", string);
+            break;
+
+        case 1:
+            sprintf(string, "%s Star tracker", string);
+            break;
+
+        case 2:
+            sprintf(string, "%s Horizon sensor", string);
+            break;
+    }
     cvPutText(cv_image, string, cvPoint(20, 60), &font, text_colour);
 
     //Attitude data
