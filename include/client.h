@@ -71,7 +71,7 @@ static void check_connection() {
         CONNECTED = connect_server();
     
         if (CONNECTED)
-            //send_all();
+            send_all();
     }
 }
 
