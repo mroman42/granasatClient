@@ -146,6 +146,22 @@ static void send_int(int msg) {
 }
 
 /**
+ * Writes a float in the commands socket.
+ * The integer can be used as an argument to a command written
+ * previously.
+ * @param msg Float that will be sent
+ */
+static void send_float(float msg) {
+    if (CONNECTED) {
+        if (write(SOCKET_COMMANDS, &msg, sizeof(float)) < 0) {
+            perror("ERROR writing integer to socket");
+            disconnect_server();
+            return;
+        }
+    }
+}
+
+/**
  * Sends the new value of a variable to the server.
  * All the other \b send \b functions are particular cases of this one.
  * \warning This function will do nothing if the server is not connected.
@@ -182,7 +198,7 @@ static void send_error() {
         printlog(LCLIENT, "Sending error: %f\n", ERROR);
 
         send_msg(MSG_SET_ERROR);
-        send_int(ERROR);
+        send_float(ERROR);
 
         printlog(LCLIENT, "Error sent\n");
     }
