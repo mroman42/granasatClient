@@ -342,8 +342,8 @@ static void read_data_packet() {
 
         set_general_temp (temps[0]);
         set_camera_temp  (temps[1]);
-        set_cpu_temp     (temps[2]);
-        set_magnet_temp  (temps[3]);
+        set_cpu_temp     (temps[3]);
+        set_magnet_temp  (temps[2]);
     }
 }
 
