@@ -93,7 +93,7 @@ static void transform_image(const char* filename_in, const char* filename_out) {
     cvPutText(cv_image, string, cvPoint(20, 20), &font, text_colour);
 
     //PARAMETERS
-    sprintf(string, "BRIGHTNESS:%d GAMMA:%d GAIN:%d EXP_VALUE:%d EXP_MODE:%d",
+    sprintf(string, "BRIGHTNESS:%d GAMMA:%d GAIN:%d EXP_MODE:%d EXP_VALUE:%d",
             parameters_buffer[0], parameters_buffer[1], parameters_buffer[2], parameters_buffer[3], parameters_buffer[4]);
     cvPutText(cv_image, string, cvPoint(20, 40), &font, text_colour);
 
