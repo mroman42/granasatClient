@@ -1,0 +1,829 @@
+[11:45:05]: [Client] Not connected to server. Checking connection.
+[11:45:05]: [Client] Contacting 192.168.0.200 on ports 51717,51718,51719
+[11:45:05]: [Client] Socket connected. File descriptor: 13
+[11:45:05]: [Client] Socket connected. File descriptor: 14
+[11:45:05]: [Client] Socket connected. File descriptor: 15
+[11:45:05]: [Client] Connected
+[11:45:05]: [Client] Sending Magnitude: 4
+[11:45:05]: [Client] Magnitude sent
+[11:45:05]: [Client] Sending Stars: 5
+[11:45:05]: [Client] Stars sent
+[11:45:05]: [Client] Sending Threshold: 100
+[11:45:05]: [Client] Threshold sent
+[11:45:05]: [Client] Sending Brightness: 0
+[11:45:05]: [Client] Brightness sent
+[11:45:05]: [Client] Sending Gamma: 100
+[11:45:05]: [Client] Gamma sent
+[11:45:05]: [Client] Sending Exposure: 200
+[11:45:05]: [Client] Exposure sent
+[11:45:05]: [Client] Sending Binary threshold: 50
+[11:45:05]: [Client] Binary threshold sent
+[11:45:05]: [Client] Sending Canny threshold: 100
+[11:45:05]: [Client] Canny threshold sent
+[11:45:05]: [Client] Sending altitude determination mode
+[11:45:05]: [Client] Altitude determination mode sent
+[11:45:05]: [Client] Sending Maximum bandwith: 0
+[11:45:05]: [Client] Maximum bandwith sent
+[11:45:10]: [Client] Start measures signal sent.
+[11:45:10]: [Client] Sending Magnitude: 4
+[11:45:10]: [Client] Magnitude sent
+[11:45:10]: [Client] Sending Stars: 5
+[11:45:10]: [Client] Stars sent
+[11:45:10]: [Client] Sending Threshold: 100
+[11:45:10]: [Client] Threshold sent
+[11:45:10]: [Client] Sending Brightness: 0
+[11:45:10]: [Client] Brightness sent
+[11:45:10]: [Client] Sending Gamma: 100
+[11:45:10]: [Client] Gamma sent
+[11:45:10]: [Client] Sending Exposure: 200
+[11:45:10]: [Client] Exposure sent
+[11:45:10]: [Client] Sending Binary threshold: 50
+[11:45:10]: [Client] Binary threshold sent
+[11:45:10]: [Client] Sending Canny threshold: 100
+[11:45:10]: [Client] Canny threshold sent
+[11:45:10]: [Client] Sending altitude determination mode
+[11:45:10]: [Client] Altitude determination mode sent
+[11:45:10]: [Client] Sending Maximum bandwith: 0
+[11:45:10]: [Client] Maximum bandwith sent
+[11:45:17]: [Data] Magnetometer measures:  0,209091	0,064545	-0,223469
+[11:45:17]: [Data] Accelerometer measures: -0,016000	-0,020000	1,000000
+[11:45:17]: [Data] General temperature: 32000
+[11:45:17]: [Data] Camera temperature: 0
+[11:45:17]: [Data] CPU temperature: 58376
+[11:45:17]: [Data] Magnetometer temperature: 17000
+[11:45:18]: [Data] Magnetometer measures:  0,209091	0,064545	-0,223469
+[11:45:18]: [Data] Accelerometer measures: -0,016000	-0,020000	1,000000
+[11:45:18]: [Data] General temperature: 32000
+[11:45:18]: [Data] Camera temperature: 0
+[11:45:18]: [Data] CPU temperature: 58376
+[11:45:18]: [Data] Magnetometer temperature: 17000
+[11:45:18]: [Data] Magnetometer measures:  0,209091	0,064545	-0,223469
+[11:45:18]: [Data] Accelerometer measures: -0,016000	-0,020000	1,000000
+[11:45:18]: [Data] General temperature: 32000
+[11:45:18]: [Data] Camera temperature: 0
+[11:45:18]: [Data] CPU temperature: 58376
+[11:45:18]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860719.raw
+[11:45:19]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860719.raw
+bufferfilename: ./images/image1410860719.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860719.raw
+[11:45:20]: [Data] Magnetometer measures:  0,207273	0,064545	-0,221429
+[11:45:20]: [Data] Accelerometer measures: -0,008000	-0,024000	1,000000
+[11:45:20]: [Data] General temperature: 32000
+[11:45:20]: [Data] Camera temperature: 0
+[11:45:20]: [Data] CPU temperature: 58376
+[11:45:20]: [Data] Magnetometer temperature: 17000
+[11:45:20]: [Data] Magnetometer measures:  0,207273	0,064545	-0,221429
+[11:45:20]: [Data] Accelerometer measures: -0,008000	-0,024000	1,000000
+[11:45:20]: [Data] General temperature: 32000
+[11:45:20]: [Data] Camera temperature: 0
+[11:45:20]: [Data] CPU temperature: 58376
+[11:45:20]: [Data] Magnetometer temperature: 17000
+[11:45:21]: [Data] Magnetometer measures:  0,207273	0,065455	-0,225510
+[11:45:21]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:21]: [Data] General temperature: 32000
+[11:45:21]: [Data] Camera temperature: 0
+[11:45:21]: [Data] CPU temperature: 58376
+[11:45:21]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860721.raw
+[11:45:21]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860721.raw
+bufferfilename: ./images/image1410860721.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860721.raw
+[11:45:22]: [Data] Magnetometer measures:  0,207273	0,065455	-0,225510
+[11:45:22]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:22]: [Data] General temperature: 32000
+[11:45:22]: [Data] Camera temperature: 0
+[11:45:22]: [Data] CPU temperature: 58376
+[11:45:22]: [Data] Magnetometer temperature: 17000
+[11:45:22]: [Data] Magnetometer measures:  0,207273	0,065455	-0,225510
+[11:45:22]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:22]: [Data] General temperature: 32000
+[11:45:22]: [Data] Camera temperature: 0
+[11:45:22]: [Data] CPU temperature: 58376
+[11:45:22]: [Data] Magnetometer temperature: 17000
+[11:45:23]: [Data] Magnetometer measures:  0,206364	0,064545	-0,221429
+[11:45:23]: [Data] Accelerometer measures: -0,008000	-0,016000	0,996000
+[11:45:23]: [Data] General temperature: 32000
+[11:45:23]: [Data] Camera temperature: 0
+[11:45:23]: [Data] CPU temperature: 58376
+[11:45:23]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860723.raw
+[11:45:23]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860723.raw
+bufferfilename: ./images/image1410860723.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860723.raw
+[11:45:24]: [Data] Magnetometer measures:  0,206364	0,064545	-0,221429
+[11:45:24]: [Data] Accelerometer measures: -0,008000	-0,016000	0,996000
+[11:45:24]: [Data] General temperature: 32000
+[11:45:24]: [Data] Camera temperature: 0
+[11:45:24]: [Data] CPU temperature: 58376
+[11:45:24]: [Data] Magnetometer temperature: 17000
+[11:45:25]: [Data] Magnetometer measures:  0,206364	0,064545	-0,221429
+[11:45:25]: [Data] Accelerometer measures: -0,008000	-0,016000	0,996000
+[11:45:25]: [Data] General temperature: 32000
+[11:45:25]: [Data] Camera temperature: 0
+[11:45:25]: [Data] CPU temperature: 58376
+[11:45:25]: [Data] Magnetometer temperature: 17000
+[11:45:25]: [Data] Magnetometer measures:  0,208182	0,064545	-0,220408
+[11:45:25]: [Data] Accelerometer measures: -0,008000	-0,008000	0,996000
+[11:45:25]: [Data] General temperature: 32000
+[11:45:25]: [Data] Camera temperature: 0
+[11:45:25]: [Data] CPU temperature: 58376
+[11:45:25]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860726.raw
+bufferfilename: ./images/image1410860726.raw
+[11:45:26]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860726.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860726.raw
+[11:45:26]: [Data] Magnetometer measures:  0,208182	0,064545	-0,220408
+[11:45:26]: [Data] Accelerometer measures: -0,008000	-0,008000	0,996000
+[11:45:26]: [Data] General temperature: 32000
+[11:45:26]: [Data] Camera temperature: 0
+[11:45:26]: [Data] CPU temperature: 58376
+[11:45:26]: [Data] Magnetometer temperature: 17000
+[11:45:27]: [Data] Magnetometer measures:  0,207273	0,064545	-0,222449
+[11:45:27]: [Data] Accelerometer measures: -0,016000	-0,028000	1,000000
+[11:45:27]: [Data] General temperature: 32000
+[11:45:27]: [Data] Camera temperature: 0
+[11:45:27]: [Data] CPU temperature: 58376
+[11:45:27]: [Data] Magnetometer temperature: 17000
+[11:45:27]: [Data] Magnetometer measures:  0,207273	0,064545	-0,222449
+[11:45:27]: [Data] Accelerometer measures: -0,016000	-0,028000	1,000000
+[11:45:27]: [Data] General temperature: 32000
+[11:45:27]: [Data] Camera temperature: 0
+[11:45:27]: [Data] CPU temperature: 58376
+[11:45:27]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860728.raw
+bufferfilename: ./images/image1410860728.raw
+bufferfilename: ./images/image1410860728.raw
+[11:45:28]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860728.raw
+[11:45:28]: [Data] Magnetometer measures:  0,207273	0,064545	-0,222449
+[11:45:28]: [Data] Accelerometer measures: -0,016000	-0,028000	1,000000
+[11:45:28]: [Data] General temperature: 32000
+[11:45:28]: [Data] Camera temperature: 0
+[11:45:28]: [Data] CPU temperature: 58376
+[11:45:28]: [Data] Magnetometer temperature: 17000
+[11:45:29]: [Data] Magnetometer measures:  0,209091	0,062727	-0,221429
+[11:45:29]: [Data] Accelerometer measures: -0,016000	-0,020000	0,992000
+[11:45:29]: [Data] General temperature: 32000
+[11:45:29]: [Data] Camera temperature: 0
+[11:45:29]: [Data] CPU temperature: 58376
+[11:45:29]: [Data] Magnetometer temperature: 17000
+[11:45:29]: [Data] Magnetometer measures:  0,209091	0,062727	-0,221429
+[11:45:29]: [Data] Accelerometer measures: -0,016000	-0,020000	0,992000
+[11:45:29]: [Data] General temperature: 32000
+[11:45:29]: [Data] Camera temperature: 0
+[11:45:29]: [Data] CPU temperature: 58376
+[11:45:29]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860729.raw
+[11:45:29]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860729.raw
+bufferfilename: ./images/image1410860729.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860729.raw
+[11:45:30]: [Data] Magnetometer measures:  0,209091	0,062727	-0,221429
+[11:45:30]: [Data] Accelerometer measures: -0,016000	-0,020000	0,992000
+[11:45:30]: [Data] General temperature: 32000
+[11:45:30]: [Data] Camera temperature: 0
+[11:45:30]: [Data] CPU temperature: 58376
+[11:45:30]: [Data] Magnetometer temperature: 17000
+[11:45:31]: [Data] Magnetometer measures:  0,209091	0,062727	-0,221429
+[11:45:31]: [Data] Accelerometer measures: -0,016000	-0,020000	0,992000
+[11:45:31]: [Data] General temperature: 32000
+[11:45:31]: [Data] Camera temperature: 0
+[11:45:31]: [Data] CPU temperature: 58376
+[11:45:31]: [Data] Magnetometer temperature: 17000
+[11:45:31]: [Data] Magnetometer measures:  0,207273	0,063636	-0,222449
+[11:45:31]: [Data] Accelerometer measures: -0,008000	-0,012000	0,996000
+[11:45:31]: [Data] General temperature: 31500
+[11:45:31]: [Data] Camera temperature: 0
+[11:45:31]: [Data] CPU temperature: 58376
+[11:45:31]: [Data] Magnetometer temperature: 17000
+[11:45:31]: [Camera] Exposure value changed to 50
+[11:45:31]: [Client] Sending Exposure: 50
+[11:45:31]: [Client] Exposure sent
+bufferfilename: ./images/image1410860731.raw
+[11:45:31]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860731.raw
+bufferfilename: ./images/image1410860731.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860731.raw
+[11:45:32]: [Data] Magnetometer measures:  0,207273	0,063636	-0,222449
+[11:45:32]: [Data] Accelerometer measures: -0,008000	-0,012000	0,996000
+[11:45:32]: [Data] General temperature: 31500
+[11:45:32]: [Data] Camera temperature: 0
+[11:45:32]: [Data] CPU temperature: 58376
+[11:45:32]: [Data] Magnetometer temperature: 17000
+[11:45:32]: [Data] Magnetometer measures:  0,207273	0,063636	-0,222449
+[11:45:32]: [Data] Accelerometer measures: -0,008000	-0,012000	0,996000
+[11:45:32]: [Data] General temperature: 31500
+[11:45:32]: [Data] Camera temperature: 0
+[11:45:32]: [Data] CPU temperature: 58376
+[11:45:32]: [Data] Magnetometer temperature: 17000
+[11:45:33]: [Data] Magnetometer measures:  0,208182	0,062727	-0,223469
+[11:45:33]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:33]: [Data] General temperature: 31500
+[11:45:33]: [Data] Camera temperature: 0
+[11:45:33]: [Data] CPU temperature: 58376
+[11:45:33]: [Data] Magnetometer temperature: 17000
+[11:45:33]: [Data] Magnetometer measures:  0,208182	0,062727	-0,223469
+[11:45:33]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:33]: [Data] General temperature: 31500
+[11:45:33]: [Data] Camera temperature: 0
+[11:45:33]: [Data] CPU temperature: 58376
+[11:45:33]: [Data] Magnetometer temperature: 17000
+[11:45:34]: [Data] Magnetometer measures:  0,208182	0,062727	-0,223469
+[11:45:34]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:34]: [Data] General temperature: 31500
+[11:45:34]: [Data] Camera temperature: 0
+[11:45:34]: [Data] CPU temperature: 58376
+[11:45:34]: [Data] Magnetometer temperature: 17000
+[11:45:34]: [Data] Magnetometer measures:  0,208182	0,062727	-0,223469
+[11:45:34]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:34]: [Data] General temperature: 31500
+[11:45:34]: [Data] Camera temperature: 0
+[11:45:34]: [Data] CPU temperature: 58376
+[11:45:34]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860735.raw
+[11:45:35]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860735.raw
+bufferfilename: ./images/image1410860735.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860735.raw
+[11:45:35]: [Data] Magnetometer measures:  0,210000	0,061818	-0,222449
+[11:45:35]: [Data] Accelerometer measures: -0,024000	-0,016000	0,992000
+[11:45:35]: [Data] General temperature: 31500
+[11:45:35]: [Data] Camera temperature: 0
+[11:45:35]: [Data] CPU temperature: 58376
+[11:45:35]: [Data] Magnetometer temperature: 17000
+[11:45:36]: [Data] Magnetometer measures:  0,210000	0,061818	-0,222449
+[11:45:36]: [Data] Accelerometer measures: -0,024000	-0,016000	0,992000
+[11:45:36]: [Data] General temperature: 31500
+[11:45:36]: [Data] Camera temperature: 0
+[11:45:36]: [Data] CPU temperature: 58376
+[11:45:36]: [Data] Magnetometer temperature: 17000
+[11:45:36]: [Data] Magnetometer measures:  0,210000	0,061818	-0,222449
+[11:45:36]: [Data] Accelerometer measures: -0,024000	-0,016000	0,992000
+[11:45:36]: [Data] General temperature: 31500
+[11:45:36]: [Data] Camera temperature: 0
+[11:45:36]: [Data] CPU temperature: 58376
+[11:45:36]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860737.raw
+[11:45:37]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860737.raw
+bufferfilename: ./images/image1410860737.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860737.raw
+[11:45:37]: [Data] Magnetometer measures:  0,208182	0,063636	-0,220408
+[11:45:37]: [Data] Accelerometer measures: -0,012000	-0,016000	0,996000
+[11:45:37]: [Data] General temperature: 31500
+[11:45:37]: [Data] Camera temperature: 0
+[11:45:37]: [Data] CPU temperature: 58376
+[11:45:37]: [Data] Magnetometer temperature: 17000
+[11:45:38]: [Data] Magnetometer measures:  0,208182	0,063636	-0,220408
+[11:45:38]: [Data] Accelerometer measures: -0,012000	-0,016000	0,996000
+[11:45:38]: [Data] General temperature: 31500
+[11:45:38]: [Data] Camera temperature: 0
+[11:45:38]: [Data] CPU temperature: 58376
+[11:45:38]: [Data] Magnetometer temperature: 17000
+[11:45:38]: [Data] Magnetometer measures:  0,208182	0,063636	-0,220408
+[11:45:38]: [Data] Accelerometer measures: -0,012000	-0,016000	0,996000
+[11:45:38]: [Data] General temperature: 31500
+[11:45:38]: [Data] Camera temperature: 0
+[11:45:38]: [Data] CPU temperature: 58376
+[11:45:38]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860738.raw
+[11:45:38]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860738.raw
+bufferfilename: ./images/image1410860738.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860738.raw
+[11:45:39]: [Data] Magnetometer measures:  0,208182	0,060909	-0,225510
+[11:45:39]: [Data] Accelerometer measures: -0,012000	-0,020000	0,988000
+[11:45:39]: [Data] General temperature: 31500
+[11:45:39]: [Data] Camera temperature: 0
+[11:45:39]: [Data] CPU temperature: 58376
+[11:45:39]: [Data] Magnetometer temperature: 17000
+[11:45:39]: [Data] Magnetometer measures:  0,208182	0,060909	-0,225510
+[11:45:39]: [Data] Accelerometer measures: -0,012000	-0,020000	0,988000
+[11:45:39]: [Data] General temperature: 31500
+[11:45:39]: [Data] Camera temperature: 0
+[11:45:39]: [Data] CPU temperature: 58376
+[11:45:39]: [Data] Magnetometer temperature: 17000
+[11:45:40]: [Data] Magnetometer measures:  0,208182	0,060909	-0,225510
+[11:45:40]: [Data] Accelerometer measures: -0,012000	-0,020000	0,988000
+[11:45:40]: [Data] General temperature: 31500
+[11:45:40]: [Data] Camera temperature: 0
+[11:45:40]: [Data] CPU temperature: 58376
+[11:45:40]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860740.raw
+[11:45:40]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860740.raw
+bufferfilename: ./images/image1410860740.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860740.raw
+[11:45:41]: [Data] Magnetometer measures:  0,209091	0,062727	-0,220408
+[11:45:41]: [Data] Accelerometer measures: -0,008000	-0,016000	0,996000
+[11:45:41]: [Data] General temperature: 31500
+[11:45:41]: [Data] Camera temperature: 0
+[11:45:41]: [Data] CPU temperature: 58376
+[11:45:41]: [Data] Magnetometer temperature: 17000
+[11:45:41]: [Data] Magnetometer measures:  0,209091	0,062727	-0,220408
+[11:45:41]: [Data] Accelerometer measures: -0,008000	-0,016000	0,996000
+[11:45:41]: [Data] General temperature: 31500
+[11:45:41]: [Data] Camera temperature: 0
+[11:45:41]: [Data] CPU temperature: 58376
+[11:45:41]: [Data] Magnetometer temperature: 17000
+[11:45:42]: [Data] Magnetometer measures:  0,209091	0,062727	-0,220408
+[11:45:42]: [Data] Accelerometer measures: -0,008000	-0,016000	0,996000
+[11:45:42]: [Data] General temperature: 31500
+[11:45:42]: [Data] Camera temperature: 0
+[11:45:42]: [Data] CPU temperature: 58376
+[11:45:42]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860742.raw
+[11:45:42]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860742.raw
+bufferfilename: ./images/image1410860742.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860742.raw
+[11:45:43]: [Data] Magnetometer measures:  0,205455	0,060909	-0,223469
+[11:45:43]: [Data] Accelerometer measures: -0,008000	-0,004000	0,996000
+[11:45:43]: [Data] General temperature: 31500
+[11:45:43]: [Data] Camera temperature: 0
+[11:45:43]: [Data] CPU temperature: 58376
+[11:45:43]: [Data] Magnetometer temperature: 17000
+[11:45:43]: [Data] Magnetometer measures:  0,205455	0,060909	-0,223469
+[11:45:43]: [Data] Accelerometer measures: -0,008000	-0,004000	0,996000
+[11:45:43]: [Data] General temperature: 31500
+[11:45:43]: [Data] Camera temperature: 0
+[11:45:43]: [Data] CPU temperature: 58376
+[11:45:43]: [Data] Magnetometer temperature: 17000
+[11:45:44]: [Data] Magnetometer measures:  0,205455	0,060909	-0,223469
+[11:45:44]: [Data] Accelerometer measures: -0,008000	-0,004000	0,996000
+[11:45:44]: [Data] General temperature: 31500
+[11:45:44]: [Data] Camera temperature: 0
+[11:45:44]: [Data] CPU temperature: 58376
+[11:45:44]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860744.raw
+[11:45:44]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860744.raw
+bufferfilename: ./images/image1410860744.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860744.raw
+[11:45:45]: [Data] Magnetometer measures:  0,205455	0,060909	-0,223469
+[11:45:45]: [Data] Accelerometer measures: -0,008000	-0,004000	0,996000
+[11:45:45]: [Data] General temperature: 31500
+[11:45:45]: [Data] Camera temperature: 0
+[11:45:45]: [Data] CPU temperature: 58376
+[11:45:45]: [Data] Magnetometer temperature: 17000
+[11:45:45]: [Data] Magnetometer measures:  0,208182	0,060000	-0,224490
+[11:45:45]: [Data] Accelerometer measures: -0,012000	-0,020000	1,000000
+[11:45:45]: [Data] General temperature: 31500
+[11:45:45]: [Data] Camera temperature: 0
+[11:45:45]: [Data] CPU temperature: 58376
+[11:45:45]: [Data] Magnetometer temperature: 17000
+[11:45:46]: [Data] Magnetometer measures:  0,208182	0,060000	-0,224490
+[11:45:46]: [Data] Accelerometer measures: -0,012000	-0,020000	1,000000
+[11:45:46]: [Data] General temperature: 31500
+[11:45:46]: [Data] Camera temperature: 0
+[11:45:46]: [Data] CPU temperature: 58376
+[11:45:46]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860746.raw
+[11:45:46]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860746.raw
+bufferfilename: ./images/image1410860746.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860746.raw
+[11:45:46]: [Data] Magnetometer measures:  0,208182	0,060000	-0,224490
+[11:45:46]: [Data] Accelerometer measures: -0,012000	-0,020000	1,000000
+[11:45:46]: [Data] General temperature: 31500
+[11:45:46]: [Data] Camera temperature: 0
+[11:45:46]: [Data] CPU temperature: 58376
+[11:45:46]: [Data] Magnetometer temperature: 17000
+[11:45:47]: [Data] Magnetometer measures:  0,208182	0,060909	-0,217347
+[11:45:47]: [Data] Accelerometer measures: -0,008000	-0,012000	1,000000
+[11:45:47]: [Data] General temperature: 31500
+[11:45:47]: [Data] Camera temperature: 0
+[11:45:47]: [Data] CPU temperature: 58376
+[11:45:47]: [Data] Magnetometer temperature: 17000
+[11:45:48]: [Data] Magnetometer measures:  0,208182	0,060909	-0,217347
+[11:45:48]: [Data] Accelerometer measures: -0,008000	-0,012000	1,000000
+[11:45:48]: [Data] General temperature: 31500
+[11:45:48]: [Data] Camera temperature: 0
+[11:45:48]: [Data] CPU temperature: 58376
+[11:45:48]: [Data] Magnetometer temperature: 17000
+[11:45:48]: [Data] Magnetometer measures:  0,208182	0,060909	-0,217347
+[11:45:48]: [Data] Accelerometer measures: -0,008000	-0,012000	1,000000
+[11:45:48]: [Data] General temperature: 31500
+[11:45:48]: [Data] Camera temperature: 0
+[11:45:48]: [Data] CPU temperature: 58376
+[11:45:48]: [Data] Magnetometer temperature: 17000
+[11:45:49]: [Data] Magnetometer measures:  0,208182	0,060909	-0,217347
+[11:45:49]: [Data] Accelerometer measures: -0,008000	-0,012000	1,000000
+[11:45:49]: [Data] General temperature: 31500
+[11:45:49]: [Data] Camera temperature: 0
+[11:45:49]: [Data] CPU temperature: 58376
+[11:45:49]: [Data] Magnetometer temperature: 17000
+[11:45:49]: [Data] Magnetometer measures:  0,208182	0,061818	-0,223469
+[11:45:49]: [Data] Accelerometer measures: -0,004000	-0,008000	0,996000
+[11:45:49]: [Data] General temperature: 31500
+[11:45:49]: [Data] Camera temperature: 0
+[11:45:49]: [Data] CPU temperature: 58376
+[11:45:49]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860749.raw
+[11:45:49]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860749.raw
+bufferfilename: ./images/image1410860749.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860749.raw
+[11:45:50]: [Data] Magnetometer measures:  0,208182	0,061818	-0,223469
+[11:45:50]: [Data] Accelerometer measures: -0,004000	-0,008000	0,996000
+[11:45:50]: [Data] General temperature: 31500
+[11:45:50]: [Data] Camera temperature: 0
+[11:45:50]: [Data] CPU temperature: 58376
+[11:45:50]: [Data] Magnetometer temperature: 17000
+[11:45:50]: [Data] Magnetometer measures:  0,208182	0,061818	-0,223469
+[11:45:50]: [Data] Accelerometer measures: -0,004000	-0,008000	0,996000
+[11:45:50]: [Data] General temperature: 31500
+[11:45:50]: [Data] Camera temperature: 0
+[11:45:50]: [Data] CPU temperature: 58376
+[11:45:50]: [Data] Magnetometer temperature: 17000
+[11:45:51]: [Data] Magnetometer measures:  0,208182	0,063636	-0,220408
+[11:45:51]: [Data] Accelerometer measures: -0,008000	-0,004000	1,024000
+[11:45:51]: [Data] General temperature: 31500
+[11:45:51]: [Data] Camera temperature: 0
+[11:45:51]: [Data] CPU temperature: 58376
+[11:45:51]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860751.raw
+[11:45:51]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860751.raw
+bufferfilename: ./images/image1410860751.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860751.raw
+[11:45:52]: [Data] Magnetometer measures:  0,208182	0,063636	-0,220408
+[11:45:52]: [Data] Accelerometer measures: -0,008000	-0,004000	1,024000
+[11:45:52]: [Data] General temperature: 31500
+[11:45:52]: [Data] Camera temperature: 0
+[11:45:52]: [Data] CPU temperature: 58376
+[11:45:52]: [Data] Magnetometer temperature: 17000
+[11:45:52]: [Data] Magnetometer measures:  0,208182	0,063636	-0,220408
+[11:45:52]: [Data] Accelerometer measures: -0,008000	-0,004000	1,024000
+[11:45:52]: [Data] General temperature: 31500
+[11:45:52]: [Data] Camera temperature: 0
+[11:45:52]: [Data] CPU temperature: 58376
+[11:45:52]: [Data] Magnetometer temperature: 17000
+[11:45:53]: [Data] Magnetometer measures:  0,210000	0,060909	-0,224490
+[11:45:53]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:53]: [Data] General temperature: 31500
+[11:45:53]: [Data] Camera temperature: 0
+[11:45:53]: [Data] CPU temperature: 58914
+[11:45:53]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860753.raw
+[11:45:53]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860753.raw
+bufferfilename: ./images/image1410860753.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860753.raw
+[11:45:54]: [Data] Magnetometer measures:  0,210000	0,060909	-0,224490
+[11:45:54]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:54]: [Data] General temperature: 31500
+[11:45:54]: [Data] Camera temperature: 0
+[11:45:54]: [Data] CPU temperature: 58914
+[11:45:54]: [Data] Magnetometer temperature: 17000
+[11:45:54]: [Data] Magnetometer measures:  0,210000	0,060909	-0,224490
+[11:45:54]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:45:54]: [Data] General temperature: 31500
+[11:45:54]: [Data] Camera temperature: 0
+[11:45:54]: [Data] CPU temperature: 58914
+[11:45:54]: [Data] Magnetometer temperature: 17000
+[11:45:55]: [Data] Magnetometer measures:  0,208182	0,062727	-0,222449
+[11:45:55]: [Data] Accelerometer measures: -0,012000	-0,012000	0,992000
+[11:45:55]: [Data] General temperature: 31500
+[11:45:55]: [Data] Camera temperature: 0
+[11:45:55]: [Data] CPU temperature: 58376
+[11:45:55]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860755.raw
+[11:45:55]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860755.raw
+bufferfilename: ./images/image1410860755.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860755.raw
+[11:45:56]: [Data] Magnetometer measures:  0,208182	0,062727	-0,222449
+[11:45:56]: [Data] Accelerometer measures: -0,012000	-0,012000	0,992000
+[11:45:56]: [Data] General temperature: 31500
+[11:45:56]: [Data] Camera temperature: 0
+[11:45:56]: [Data] CPU temperature: 58376
+[11:45:56]: [Data] Magnetometer temperature: 17000
+[11:45:56]: [Data] Magnetometer measures:  0,208182	0,062727	-0,222449
+[11:45:56]: [Data] Accelerometer measures: -0,012000	-0,012000	0,992000
+[11:45:56]: [Data] General temperature: 31500
+[11:45:56]: [Data] Camera temperature: 0
+[11:45:56]: [Data] CPU temperature: 58376
+[11:45:56]: [Data] Magnetometer temperature: 17000
+[11:45:57]: [Data] Magnetometer measures:  0,210000	0,062727	-0,221429
+[11:45:57]: [Data] Accelerometer measures: -0,012000	-0,016000	1,000000
+[11:45:57]: [Data] General temperature: 31500
+[11:45:57]: [Data] Camera temperature: 0
+[11:45:57]: [Data] CPU temperature: 58376
+[11:45:57]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860758.raw
+[11:45:58]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860758.raw
+bufferfilename: ./images/image1410860758.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860758.raw
+[11:45:58]: [Data] Magnetometer measures:  0,210000	0,062727	-0,221429
+[11:45:58]: [Data] Accelerometer measures: -0,012000	-0,016000	1,000000
+[11:45:58]: [Data] General temperature: 31500
+[11:45:58]: [Data] Camera temperature: 0
+[11:45:58]: [Data] CPU temperature: 58376
+[11:45:58]: [Data] Magnetometer temperature: 17000
+[11:45:59]: [Data] Magnetometer measures:  0,210000	0,062727	-0,221429
+[11:45:59]: [Data] Accelerometer measures: -0,012000	-0,016000	1,000000
+[11:45:59]: [Data] General temperature: 31500
+[11:45:59]: [Data] Camera temperature: 0
+[11:45:59]: [Data] CPU temperature: 58376
+[11:45:59]: [Data] Magnetometer temperature: 17000
+[11:45:59]: [Data] Magnetometer measures:  0,205455	0,068182	-0,222449
+[11:45:59]: [Data] Accelerometer measures: -0,012000	-0,012000	1,008000
+[11:45:59]: [Data] General temperature: 31500
+[11:45:59]: [Data] Camera temperature: 0
+[11:45:59]: [Data] CPU temperature: 59451
+[11:45:59]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860760.raw
+[11:46:00]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860760.raw
+bufferfilename: ./images/image1410860760.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860760.raw
+[11:46:00]: [Data] Magnetometer measures:  0,205455	0,068182	-0,222449
+[11:46:00]: [Data] Accelerometer measures: -0,012000	-0,012000	1,008000
+[11:46:00]: [Data] General temperature: 31500
+[11:46:00]: [Data] Camera temperature: 0
+[11:46:00]: [Data] CPU temperature: 59451
+[11:46:00]: [Data] Magnetometer temperature: 17000
+[11:46:01]: [Data] Magnetometer measures:  0,205455	0,068182	-0,222449
+[11:46:01]: [Data] Accelerometer measures: -0,012000	-0,012000	1,008000
+[11:46:01]: [Data] General temperature: 31500
+[11:46:01]: [Data] Camera temperature: 0
+[11:46:01]: [Data] CPU temperature: 59451
+[11:46:01]: [Data] Magnetometer temperature: 17000
+[11:46:01]: [Data] Magnetometer measures:  0,210000	0,060909	-0,224490
+[11:46:01]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:46:01]: [Data] General temperature: 31500
+[11:46:01]: [Data] Camera temperature: 0
+[11:46:01]: [Data] CPU temperature: 58376
+[11:46:01]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860762.raw
+[11:46:02]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860762.raw
+bufferfilename: ./images/image1410860762.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860762.raw
+[11:46:02]: [Data] Magnetometer measures:  0,210000	0,060909	-0,224490
+[11:46:02]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:46:02]: [Data] General temperature: 31500
+[11:46:02]: [Data] Camera temperature: 0
+[11:46:02]: [Data] CPU temperature: 58376
+[11:46:02]: [Data] Magnetometer temperature: 17000
+[11:46:03]: [Data] Magnetometer measures:  0,210000	0,060909	-0,224490
+[11:46:03]: [Data] Accelerometer measures: -0,012000	-0,016000	0,988000
+[11:46:03]: [Data] General temperature: 31500
+[11:46:03]: [Data] Camera temperature: 0
+[11:46:03]: [Data] CPU temperature: 58376
+[11:46:03]: [Data] Magnetometer temperature: 17000
+[11:46:03]: [Data] Magnetometer measures:  0,210000	0,060909	-0,222449
+[11:46:03]: [Data] Accelerometer measures: -0,016000	-0,024000	1,004000
+[11:46:03]: [Data] General temperature: 31500
+[11:46:03]: [Data] Camera temperature: 0
+[11:46:03]: [Data] CPU temperature: 58376
+[11:46:03]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860764.raw
+[11:46:04]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860764.raw
+bufferfilename: ./images/image1410860764.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860764.raw
+[11:46:04]: [Data] Magnetometer measures:  0,210000	0,060909	-0,222449
+[11:46:04]: [Data] Accelerometer measures: -0,016000	-0,024000	1,004000
+[11:46:04]: [Data] General temperature: 31500
+[11:46:04]: [Data] Camera temperature: 0
+[11:46:04]: [Data] CPU temperature: 58376
+[11:46:04]: [Data] Magnetometer temperature: 17000
+[11:46:05]: [Data] Magnetometer measures:  0,210000	0,060909	-0,222449
+[11:46:05]: [Data] Accelerometer measures: -0,016000	-0,024000	1,004000
+[11:46:05]: [Data] General temperature: 31500
+[11:46:05]: [Data] Camera temperature: 0
+[11:46:05]: [Data] CPU temperature: 58376
+[11:46:05]: [Data] Magnetometer temperature: 17000
+[11:46:05]: [Data] Magnetometer measures:  0,210000	0,060909	-0,222449
+[11:46:05]: [Data] Accelerometer measures: -0,008000	-0,020000	1,000000
+[11:46:05]: [Data] General temperature: 31500
+[11:46:05]: [Data] Camera temperature: 0
+[11:46:05]: [Data] CPU temperature: 58376
+[11:46:05]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860766.raw
+bufferfilename: ./images/image1410860766.raw
+bufferfilename: ./images/image1410860766.raw
+[11:46:06]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860766.raw
+[11:46:06]: [Data] Magnetometer measures:  0,210000	0,060909	-0,222449
+[11:46:06]: [Data] Accelerometer measures: -0,008000	-0,020000	1,000000
+[11:46:06]: [Data] General temperature: 31500
+[11:46:06]: [Data] Camera temperature: 0
+[11:46:06]: [Data] CPU temperature: 58376
+[11:46:06]: [Data] Magnetometer temperature: 17000
+[11:46:07]: [Data] Magnetometer measures:  0,210000	0,060909	-0,222449
+[11:46:07]: [Data] Accelerometer measures: -0,008000	-0,020000	1,000000
+[11:46:07]: [Data] General temperature: 31500
+[11:46:07]: [Data] Camera temperature: 0
+[11:46:07]: [Data] CPU temperature: 58376
+[11:46:07]: [Data] Magnetometer temperature: 17000
+[11:46:07]: [Data] Magnetometer measures:  0,209091	0,061818	-0,225510
+[11:46:07]: [Data] Accelerometer measures: -0,008000	-0,020000	0,988000
+[11:46:07]: [Data] General temperature: 31500
+[11:46:07]: [Data] Camera temperature: 0
+[11:46:07]: [Data] CPU temperature: 58914
+[11:46:07]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860768.raw
+[11:46:08]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860768.raw
+bufferfilename: ./images/image1410860768.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860768.raw
+[11:46:09]: [Data] Magnetometer measures:  0,209091	0,061818	-0,225510
+[11:46:09]: [Data] Accelerometer measures: -0,008000	-0,020000	0,988000
+[11:46:09]: [Data] General temperature: 31500
+[11:46:09]: [Data] Camera temperature: 0
+[11:46:09]: [Data] CPU temperature: 58914
+[11:46:09]: [Data] Magnetometer temperature: 17000
+[11:46:09]: [Data] Magnetometer measures:  0,210000	0,062727	-0,219388
+[11:46:09]: [Data] Accelerometer measures: -0,012000	-0,020000	0,996000
+[11:46:09]: [Data] General temperature: 31500
+[11:46:09]: [Data] Camera temperature: 0
+[11:46:09]: [Data] CPU temperature: 58376
+[11:46:09]: [Data] Magnetometer temperature: 17000
+[11:46:10]: [Data] Magnetometer measures:  0,210000	0,062727	-0,219388
+[11:46:10]: [Data] Accelerometer measures: -0,012000	-0,020000	0,996000
+[11:46:10]: [Data] General temperature: 31500
+[11:46:10]: [Data] Camera temperature: 0
+[11:46:10]: [Data] CPU temperature: 58376
+[11:46:10]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860770.raw
+[11:46:10]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860770.raw
+bufferfilename: ./images/image1410860770.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860770.raw
+[11:46:11]: [Data] Magnetometer measures:  0,210000	0,062727	-0,219388
+[11:46:11]: [Data] Accelerometer measures: -0,012000	-0,020000	0,996000
+[11:46:11]: [Data] General temperature: 31500
+[11:46:11]: [Data] Camera temperature: 0
+[11:46:11]: [Data] CPU temperature: 58376
+[11:46:11]: [Data] Magnetometer temperature: 17000
+[11:46:12]: [Data] Magnetometer measures:  0,208182	0,061818	-0,223469
+[11:46:12]: [Data] Accelerometer measures: -0,008000	-0,012000	1,004000
+[11:46:12]: [Data] General temperature: 31500
+[11:46:12]: [Data] Camera temperature: 0
+[11:46:12]: [Data] CPU temperature: 58376
+[11:46:12]: [Data] Magnetometer temperature: 17000
+[11:46:12]: [Data] Magnetometer measures:  0,208182	0,061818	-0,223469
+[11:46:12]: [Data] Accelerometer measures: -0,008000	-0,012000	1,004000
+[11:46:12]: [Data] General temperature: 31500
+[11:46:12]: [Data] Camera temperature: 0
+[11:46:12]: [Data] CPU temperature: 58376
+[11:46:12]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860773.raw
+[11:46:13]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860773.raw
+bufferfilename: ./images/image1410860773.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860773.raw
+[11:46:13]: [Data] Magnetometer measures:  0,207273	0,060909	-0,225510
+[11:46:13]: [Data] Accelerometer measures: -0,016000	-0,012000	1,004000
+[11:46:13]: [Data] General temperature: 31500
+[11:46:13]: [Data] Camera temperature: 0
+[11:46:13]: [Data] CPU temperature: 58376
+[11:46:13]: [Data] Magnetometer temperature: 17000
+[11:46:14]: [Data] Magnetometer measures:  0,207273	0,060909	-0,225510
+[11:46:14]: [Data] Accelerometer measures: -0,016000	-0,012000	1,004000
+[11:46:14]: [Data] General temperature: 31500
+[11:46:14]: [Data] Camera temperature: 0
+[11:46:14]: [Data] CPU temperature: 58376
+[11:46:14]: [Data] Magnetometer temperature: 17000
+[11:46:14]: [Data] Magnetometer measures:  0,207273	0,060909	-0,225510
+[11:46:14]: [Data] Accelerometer measures: -0,016000	-0,012000	1,004000
+[11:46:14]: [Data] General temperature: 31500
+[11:46:14]: [Data] Camera temperature: 0
+[11:46:14]: [Data] CPU temperature: 58376
+[11:46:14]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860775.raw
+[11:46:15]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860775.raw
+bufferfilename: ./images/image1410860775.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860775.raw
+[11:46:15]: [Data] Magnetometer measures:  0,207273	0,062727	-0,220408
+[11:46:15]: [Data] Accelerometer measures: -0,008000	-0,016000	1,004000
+[11:46:15]: [Data] General temperature: 31500
+[11:46:15]: [Data] Camera temperature: 0
+[11:46:15]: [Data] CPU temperature: 58376
+[11:46:15]: [Data] Magnetometer temperature: 17000
+[11:46:16]: [Data] Magnetometer measures:  0,207273	0,062727	-0,220408
+[11:46:16]: [Data] Accelerometer measures: -0,008000	-0,016000	1,004000
+[11:46:16]: [Data] General temperature: 31500
+[11:46:16]: [Data] Camera temperature: 0
+[11:46:16]: [Data] CPU temperature: 58376
+[11:46:16]: [Data] Magnetometer temperature: 17000
+[11:46:16]: [Data] Magnetometer measures:  0,207273	0,062727	-0,220408
+[11:46:16]: [Data] Accelerometer measures: -0,008000	-0,016000	1,004000
+[11:46:16]: [Data] General temperature: 31500
+[11:46:16]: [Data] Camera temperature: 0
+[11:46:16]: [Data] CPU temperature: 58376
+[11:46:16]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860777.raw
+[11:46:17]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860777.raw
+bufferfilename: ./images/image1410860777.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860777.raw
+[11:46:17]: [Data] Magnetometer measures:  0,205455	0,063636	-0,222449
+[11:46:17]: [Data] Accelerometer measures: -0,008000	-0,020000	0,984000
+[11:46:17]: [Data] General temperature: 31500
+[11:46:17]: [Data] Camera temperature: 0
+[11:46:17]: [Data] CPU temperature: 58376
+[11:46:17]: [Data] Magnetometer temperature: 17000
+[11:46:18]: [Data] Magnetometer measures:  0,205455	0,063636	-0,222449
+[11:46:18]: [Data] Accelerometer measures: -0,008000	-0,020000	0,984000
+[11:46:18]: [Data] General temperature: 31500
+[11:46:18]: [Data] Camera temperature: 0
+[11:46:18]: [Data] CPU temperature: 58376
+[11:46:18]: [Data] Magnetometer temperature: 17000
+[11:46:18]: [Data] Magnetometer measures:  0,205455	0,063636	-0,222449
+[11:46:18]: [Data] Accelerometer measures: -0,008000	-0,020000	0,984000
+[11:46:18]: [Data] General temperature: 31500
+[11:46:18]: [Data] Camera temperature: 0
+[11:46:18]: [Data] CPU temperature: 58376
+[11:46:18]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860779.raw
+[11:46:19]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860779.raw
+bufferfilename: ./images/image1410860779.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860779.raw
+[11:46:19]: [Data] Magnetometer measures:  0,206364	0,059091	-0,220408
+[11:46:19]: [Data] Accelerometer measures: -0,012000	-0,012000	0,996000
+[11:46:19]: [Data] General temperature: 31500
+[11:46:19]: [Data] Camera temperature: 0
+[11:46:19]: [Data] CPU temperature: 58376
+[11:46:19]: [Data] Magnetometer temperature: 17000
+[11:46:20]: [Data] Magnetometer measures:  0,206364	0,059091	-0,220408
+[11:46:20]: [Data] Accelerometer measures: -0,012000	-0,012000	0,996000
+[11:46:20]: [Data] General temperature: 31500
+[11:46:20]: [Data] Camera temperature: 0
+[11:46:20]: [Data] CPU temperature: 58376
+[11:46:20]: [Data] Magnetometer temperature: 17000
+[11:46:20]: [Data] Magnetometer measures:  0,206364	0,059091	-0,220408
+[11:46:20]: [Data] Accelerometer measures: -0,012000	-0,012000	0,996000
+[11:46:20]: [Data] General temperature: 31500
+[11:46:20]: [Data] Camera temperature: 0
+[11:46:20]: [Data] CPU temperature: 58376
+[11:46:20]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860781.raw
+[11:46:21]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860781.raw
+bufferfilename: ./images/image1410860781.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860781.raw
+[11:46:22]: [Data] Magnetometer measures:  0,206364	0,059091	-0,220408
+[11:46:22]: [Data] Accelerometer measures: -0,020000	-0,020000	0,992000
+[11:46:22]: [Data] General temperature: 31500
+[11:46:22]: [Data] Camera temperature: 0
+[11:46:22]: [Data] CPU temperature: 58376
+[11:46:22]: [Data] Magnetometer temperature: 17000
+[11:46:22]: [Data] Magnetometer measures:  0,208182	0,061818	-0,224490
+[11:46:22]: [Data] Accelerometer measures: -0,020000	-0,020000	0,992000
+[11:46:22]: [Data] General temperature: 31500
+[11:46:22]: [Data] Camera temperature: 0
+[11:46:22]: [Data] CPU temperature: 58376
+[11:46:22]: [Data] Magnetometer temperature: 17000
+[11:46:23]: [Data] Magnetometer measures:  0,208182	0,061818	-0,224490
+[11:46:23]: [Data] Accelerometer measures: -0,020000	-0,020000	0,992000
+[11:46:23]: [Data] General temperature: 31500
+[11:46:23]: [Data] Camera temperature: 0
+[11:46:23]: [Data] CPU temperature: 58376
+[11:46:23]: [Data] Magnetometer temperature: 17000
+bufferfilename: ./images/image1410860783.raw
+[11:46:23]: [Image] Calling "imageConvert" to convert images/image.raw into images/image.bmp
+bufferfilename: ./images/image1410860783.raw
+bufferfilename: ./images/image1410860783.raw
+[ImageConvert] Converting images/image.raw into images/image.bmp
