@@ -83,6 +83,37 @@ static void transform_image(const char* filename_in, const char* filename_out) {
     }
 
     // Writes star data
+    CvFont font;
+    CvScalar text_colour = cvScalar(255,255,255,0);
+    cvInitFont(&font, CV_FONT_HERSHEY_SIMPLEX, 0.5, 0.5, 0, 1.5, 8);
+    char string[100];
+
+    //TIMESTAMP
+    sprintf(string, "%d.%d", timestamp_buffer[0], timestamp_buffer[1]);
+    cvPutText(cv_image, string, cvPoint(20, 20), &font, text_colour);
+
+    //PARAMETERS
+    sprintf(string, "BRIGHTNESS:%d GAMMA:%d GAIN:%d EXP_VALUE:%d EXP_MODE:%d",
+            parameters_buffer[0], parameters_buffer[1], parameters_buffer[2], parameters_buffer[3], parameters_buffer[4]);
+    cvPutText(cv_image, string, cvPoint(20, 40), &font, text_colour);
+
+    //ATTITUDE DATA
+    //Attitude mode
+    sprintf(string, "ATTITUDE MODE: ");
+    if(attmode_buffer[0] == 1)
+        sprintf(string, "%s Star Tracker", string);
+    else
+        sprintf(string, "%s Horizon sensor", string);
+    cvPutText(cv_image, string, cvPoint(20, 60), &font, text_colour);
+
+    //Attitude data
+    int i;
+    for (i = 0; i < 10; ++i)
+    {
+        sprintf(string, "%d", attfile_buffer[i]);
+        cvPutText(cv_image, string, cvPoint(20, 80+i*20), &font, text_colour);
+    }
+
     
     
     // Resizes and saves the bmp image
