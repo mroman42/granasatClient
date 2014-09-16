@@ -29,6 +29,7 @@ static void spin_gain_changed           (GtkSpinButton *button, gpointer data);
 static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data);
 static void button_shutdown_clicked     (GtkButton *button, gpointer data);
 static void button_restart_clicked      (GtkButton *button, gpointer data);
+static void button_measures_clicked     (GtkButton *button, gpointer data);
 static void scale_binthres_value_changed(GtkRange *range, gpointer data);
 static void scale_canny_value_changed   (GtkRange *range, gpointer data);
 static void scale_speed_changed         (GtkRange *range, gpointer data);
@@ -42,6 +43,7 @@ static void connect_all_signals (){
     // Main signals
     g_signal_connect (G_OBJECT (button_shutdown), "clicked", G_CALLBACK (button_shutdown_clicked), NULL);
     g_signal_connect (G_OBJECT (button_restart),  "clicked", G_CALLBACK (button_restart_clicked),  NULL);
+    g_signal_connect (G_OBJECT (button_start_measures), "clicked", G_CALLBACK (button_measures_clicked),  NULL);
     g_signal_connect (G_OBJECT (radiobutton_altitude1), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(1));
     g_signal_connect (G_OBJECT (radiobutton_altitude2), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(2));
     g_signal_connect (G_OBJECT (radiobutton_altitude3), "clicked", G_CALLBACK (altitude_toggled), GINT_TO_POINTER(3));
@@ -130,6 +132,11 @@ static void button_shutdown_clicked (GtkButton *button, gpointer data) {
 
 static void button_restart_clicked  (GtkButton *button, gpointer data) {
     send_restart();
+}
+
+static void button_measures_clicked (GtkButton *button, gpointer data) {
+    send_start_measures();
+    send_all();
 }
 
 static void scale_binthres_value_changed (GtkRange *range, gpointer data) {

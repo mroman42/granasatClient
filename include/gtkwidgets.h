@@ -26,6 +26,7 @@ static GtkWidget*  scale_speed;
 // Main
 static GtkWidget*  button_shutdown;
 static GtkWidget*  button_restart;
+static GtkWidget*  button_start_measures;
 static GtkWidget*  radiobutton_altitude1;
 static GtkWidget*  radiobutton_altitude2;
 static GtkWidget*  radiobutton_altitude3;
@@ -99,6 +100,10 @@ static GtkWidget* add_measures_container() {
 
 static GtkWidget* add_startracker_container() {
     return add_widget("startracker_fixed");
+}
+
+static GtkWidget* add_button_start_measures() {
+    return button_start_measures = add_widget("start_measurement_button");
 }
 
 static GtkWidget* add_status_container() {
@@ -212,11 +217,12 @@ static void add_label_temperatures() {
 static void add_all_widgets() {
     add_main_window();
     add_main_notebook();
+    add_button_start_measures();
     add_measures_container();
     add_startracker_container();
     add_status_container();
     add_magnetometer_label();
-    add_accelerometer_label ();
+    add_accelerometer_label();
     add_drawing_area1();
     add_drawing_area2();
     add_status_connected_label();

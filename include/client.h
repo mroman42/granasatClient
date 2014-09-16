@@ -71,7 +71,7 @@ static void check_connection() {
         CONNECTED = connect_server();
     
         if (CONNECTED)
-            send_all();
+            //send_all();
     }
 }
 
@@ -233,7 +233,7 @@ static void send_all() {
 static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
-        printlog(LCLIENT, " Shutdown signal sent. Disconnecting\n");
+        printlog(LCLIENT, "Shutdown signal sent. Disconnecting\n");
         disconnect_server();
     }
 }
@@ -245,12 +245,21 @@ static void send_shutdown() {
 static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
-        printlog(LCLIENT, " Restart signal sent. Disconnecting\n");
+        printlog(LCLIENT, "Restart signal sent. Disconnecting\n");
         disconnect_server();
     }
 }
 
-
+/**
+ * Sends the \c start \c measurements command to the server.
+ * \warning This function will do nothing if the server is not connected.
+ */
+static void send_start_measures() {
+    if (CONNECTED) {
+        send_msg(MSG_START_EXP);
+        printlog(LCLIENT, "Start measures signal sent.\n");
+    }
+}
 
 // READING
 
