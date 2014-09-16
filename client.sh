@@ -26,8 +26,12 @@ int_trap() {
 # Sets the trap.
 trap int_trap INT
 
-# Runs the program
+# Runs the program and image viewer
+xdg-open ./images/image.bmp &
 (./bin/granasatClient | tee rawlog.log) || true
+
 
 # Cleans the log
 raw_log
+
+# Magnetometer and accelerometer measures
