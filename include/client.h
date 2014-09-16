@@ -175,6 +175,7 @@ static void send_expvalue()       { send_value(MSG_SET_EXP_VAL,    EXPVALUE,    
 static void send_binthres()       { send_value(MSG_SET_BIN_TH,     BIN_TH,          "Binary threshold" ); }
 static void send_canny()          { send_value(MSG_SET_CANNY_TH,   CANNY_TH,        "Canny threshold"  ); }
 static void send_speed()          { send_value(MSG_SET_BANDWITH,   SPEED,           "Maximum bandwith" ); }
+static void send_expmode()        { send_value(MSG_SET_EXP_MODE,   EXPMODE,         "Exposure mode"    ); }
 
 static void send_error() {
     if (CONNECTED) {

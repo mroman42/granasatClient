@@ -33,7 +33,7 @@ static void button_measures_clicked     (GtkButton *button, gpointer data);
 static void scale_binthres_value_changed(GtkRange *range, gpointer data);
 static void scale_canny_value_changed   (GtkRange *range, gpointer data);
 static void scale_speed_changed         (GtkRange *range, gpointer data);
-
+static void exposure_toggled (GtkToggleButton *button, gpointer data);
 
 /**
  * Connects all the signals defined in the code to its respective GTK widgets.
@@ -71,6 +71,8 @@ static void connect_all_signals (){
     g_signal_connect (G_OBJECT (spin_gamma),           "value_changed", G_CALLBACK (spin_gamma_changed),         NULL);
     g_signal_connect (G_OBJECT (spin_gain),            "value_changed", G_CALLBACK (spin_gain_changed),          NULL);
     g_signal_connect (G_OBJECT (spin_exposure_value),  "value_changed", G_CALLBACK (spin_exposure_value_changed),NULL);
+    g_signal_connect (G_OBJECT (radiobutton_exp1), "clicked", G_CALLBACK (exposure_toggled), GINT_TO_POINTER(1));
+    g_signal_connect (G_OBJECT (radiobutton_exp3), "clicked", G_CALLBACK (exposure_toggled), GINT_TO_POINTER(3));
 
     // Horizon Sensor signals
     g_signal_connect (G_OBJECT (scale_binthres), "value_changed", G_CALLBACK (scale_binthres_value_changed), NULL);
@@ -88,6 +90,11 @@ static void catalog_toggled (GtkToggleButton *button, gpointer data) {
 static void altitude_toggled (GtkToggleButton *button, gpointer data) {
     if (gtk_toggle_button_get_active(button))
         set_mode(GPOINTER_TO_INT(data));
+}
+
+static void exposure_toggled (GtkToggleButton *button, gpointer data) {
+    if (gtk_toggle_button_get_active(button))
+        set_exposure_mode(GPOINTER_TO_INT(data));
 }
 
 static void spin_vectors_changed (GtkSpinButton *button, gpointer data) {

@@ -51,6 +51,8 @@ static GtkWidget*  spin_brightness;
 static GtkWidget*  spin_gamma;
 static GtkWidget*  spin_gain;
 static GtkWidget*  spin_exposure_value;
+static GtkWidget*  radiobutton_exp1;
+static GtkWidget*  radiobutton_exp3;
 // Horizon Sensor
 static GtkWidget*  scale_binthres;
 static GtkWidget*  scale_canny;
@@ -145,6 +147,12 @@ static GtkWidget* add_altitude_size_group() {
     radiobutton_altitude2 = add_widget("radiobutton_altitude2");
     radiobutton_altitude3 = add_widget("radiobutton_altitude3");
     return radiobutton_altitude1;
+}
+
+static GtkWidget* add_exposure_size_group() {
+    radiobutton_exp1 = add_widget("radiobutton_exp1");
+    radiobutton_exp3 = add_widget("radiobutton_exp3");
+    return radiobutton_exp1;
 }
 
 static GtkWidget* add_spin_vectors() {
@@ -243,6 +251,7 @@ static void add_all_widgets() {
     add_scale_canny();
     add_altitude_size_group();
     add_label_temperatures();
+    add_exposure_size_group();
 }
 
 #endif

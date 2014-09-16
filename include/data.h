@@ -52,6 +52,7 @@ static int BRIGHTNESS = 0;
 static int GAMMA = 100;
 static int GAIN = 260;
 static int EXPVALUE = 200;
+static int EXPMODE = 0;
 
 // Horizon Sensor
 static int BIN_TH = 50;
@@ -70,6 +71,7 @@ static void send_brightness();
 static void send_gamma();
 static void send_gain();
 static void send_expvalue();
+static void send_expmode();
 static void send_binthres();
 static void send_canny();
 static void send_mode();
@@ -110,6 +112,7 @@ static void set_brightness      (int bright)    { set_value(&bright,    &BRIGHTN
 static void set_gamma           (int gamma)     { set_value(&gamma,     &GAMMA,             LCAMERA,  "Gamma changed to %d\n",                  send_gamma);          }
 static void set_gain            (int gain)      { set_value(&gain,      &GAIN,              LCAMERA,  "Gain changed to %d\n",                   send_gain);           }
 static void set_exposure_value  (int expvalue)  { set_value(&expvalue,  &EXPVALUE,          LCAMERA,  "Exposure value changed to %d\n",         send_expvalue);       }
+static void set_exposure_mode   (int expmode)   { set_value(&expmode,   &EXPMODE,           LCAMERA,  "Exposure mode changed to %d\n",          send_expmode);        }
 // Horizon Sensor
 static void set_binthres        (int binthres)  { set_value(&binthres,  &BIN_TH,            LHORIZON, "Binary threshold change to %d\n",send_binthres);       }
 static void set_canny           (int canny)     { set_value(&canny,     &CANNY_TH,          LHORIZON, "Canny threshold change to %d\n", send_canny);          }
