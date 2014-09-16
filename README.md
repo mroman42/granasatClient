@@ -17,7 +17,7 @@ make doc
 ### Execution
 The **client** can be executed directly using `./granasatClient`.
 However, it is recommended to run the script `./client.sh`, which saves the
-simplified execution log into a new file.  
+simplified execution log into a new file and displays the image window.  
 The execution log can be used to retrieve the data that was read from the raspberry server.
 
 ### Connection
