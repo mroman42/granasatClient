@@ -16,6 +16,7 @@
 
 // WIDGET REFERENCES
 // General
+static GtkWidget*  main_window;
 static GtkBuilder* builder;
 static GtkLabel*   magnetometer_label;
 static GtkLabel*   accelerometer_label;
@@ -86,7 +87,7 @@ static GtkWidget* add_widget(char* name) {
 
 // Widgets
 static GtkWidget* add_main_window() {
-    GtkWidget* main_window = add_widget("main_window");
+    main_window = add_widget("main_window");
     g_signal_connect (main_window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
     gtk_window_set_keep_above((GtkWindow *) main_window, TRUE);
     return main_window;
