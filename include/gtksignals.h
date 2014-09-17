@@ -134,15 +134,19 @@ static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data) {
 }
 
 static void button_shutdown_clicked (GtkButton *button, gpointer data) {
+    // Shows confirmation dialog
     GtkWidget *dialog;
     GtkDialogFlags flags = GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT;
-    dialog = gtk_dialog_new_with_buttons ("My dialog", (GtkWindow*) main_window, flags, "OK", GTK_RESPONSE_ACCEPT, "Cancel", GTK_RESPONSE_REJECT, NULL);
+    dialog = gtk_dialog_new_with_buttons ("Confirm", (GtkWindow*) main_window, flags, "Shut Down", GTK_RESPONSE_ACCEPT, "Cancel", GTK_RESPONSE_REJECT, NULL);
     gint result = gtk_dialog_run (GTK_DIALOG (dialog));
+
+    // Tipical result will be GTK_RESPONSE_ACCEPT
     switch (result) {
         case GTK_RESPONSE_ACCEPT:
             send_shutdown();
             break;
     }
+
     gtk_widget_destroy (dialog);
 }
 
