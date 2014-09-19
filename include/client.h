@@ -52,6 +52,9 @@ static void send_msg(char msg);
 static void send_int(int msg);
 static void send_all();
 
+// Variables
+static int image_bytes_sent;
+static int packet_bytes_sent;
 
 /**
  * Checks the connection to the server and 
@@ -79,6 +82,7 @@ static void disconnect_server() {
     if (CONNECTED) {
         CONNECTED = false;
         close_sockets();
+        image_bytes_sent = 0;
     }
 }
 
@@ -245,8 +249,8 @@ static void send_all() {
 static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
-        printlog(LCLIENT, "Shutdown signal sent. Disconnecting\n");
-        disconnect_server();
+        printlog(LCLIENT, "Shutdown signal sent.\n");
+        //disconnect_server();
     }
 }
 
@@ -257,8 +261,8 @@ static void send_shutdown() {
 static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
-        printlog(LCLIENT, "Restart signal sent. Disconnecting\n");
-        disconnect_server();
+        printlog(LCLIENT, "Restart signal sent.\n");
+        //disconnect_server();
     }
 }
 
@@ -274,6 +278,11 @@ static void send_start_measures() {
 }
 
 // READING
+
+/**
+ * Currently read packet bytes.
+ */
+static int packet_bytes_sent = 0;
 
 /**
  * Reads a data packet from the <tt> small data socket </tt>.
@@ -300,12 +309,11 @@ static void read_data_packet() {
 
     // Reading
     static int n_bytes = PACKET_SIZE;
-    static int bytes_sent = 0;
     uint8_t packet[PACKET_SIZE];
     int n;
 
-    if (bytes_sent < n_bytes) {
-        if ((n = recv(SOCKET_SMALL_DATA, packet + bytes_sent, n_bytes - bytes_sent, MSG_DONTWAIT)) < 0)  {
+    if (packet_bytes_sent < n_bytes) {
+        if ((n = recv(SOCKET_SMALL_DATA, packet + packet_bytes_sent, n_bytes - packet_bytes_sent, MSG_DONTWAIT)) < 0)  {
             if (errno != EAGAIN) {
                 perror("ERROR reading socket");
                 disconnect_server();
@@ -316,11 +324,11 @@ static void read_data_packet() {
             }
         }
         else
-            bytes_sent += n;
+            packet_bytes_sent += n;
     }
 
-    if (bytes_sent == n_bytes) {
-        bytes_sent = 0;
+    if (packet_bytes_sent == n_bytes) {
+        packet_bytes_sent = 0;
 
         int16_t m[3];
     	*(m+0) = (int16_t)(packet[1] | packet[0] << 8);
@@ -360,6 +368,11 @@ static void read_data_packet() {
 }
 
 /**
+ * Currently read image bytes.
+ */
+static int image_bytes_sent = 0;
+
+/**
  * Reads an image from the <tt>big data socket<\tt>.
  * If the image is not completely sent, it reads the partial
  * image and storages it. The rest of the image will be read
@@ -370,11 +383,10 @@ static void read_data_packet() {
  */
 static void read_image() {
     static int n_bytes = IMG_FILE_SIZE;
-    static int bytes_sent = 0;
     int n = 0;
 
-    if (bytes_sent < n_bytes) {
-        if ((n = recv(SOCKET_BIG_DATA, IMAGE_STREAM+bytes_sent, n_bytes-bytes_sent, MSG_DONTWAIT)) < 0)  {
+    if (image_bytes_sent < n_bytes) {
+        if ((n = recv(SOCKET_BIG_DATA, IMAGE_STREAM+image_bytes_sent, n_bytes-image_bytes_sent, MSG_DONTWAIT)) < 0)  {
             if (errno != EAGAIN) {
                 perror("ERROR reading socket");
                 disconnect_server();
@@ -385,12 +397,12 @@ static void read_image() {
             }
         }
         else
-            bytes_sent += n;
+            image_bytes_sent += n;
     }
 
     // If the image is complete, write and transform it
-    if (bytes_sent == n_bytes) {
-        bytes_sent = 0;
+    if (image_bytes_sent == n_bytes) {
+        image_bytes_sent = 0;
         set_image();
     }
 }
