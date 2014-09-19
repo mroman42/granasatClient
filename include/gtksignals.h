@@ -151,7 +151,20 @@ static void button_shutdown_clicked (GtkButton *button, gpointer data) {
 }
 
 static void button_restart_clicked  (GtkButton *button, gpointer data) {
-    send_restart();
+    // Shows confirmation dialog
+    GtkWidget *dialog;
+    GtkDialogFlags flags = GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT;
+    dialog = gtk_dialog_new_with_buttons ("Confirm", (GtkWindow*) main_window, flags, "Restart", GTK_RESPONSE_ACCEPT, "Cancel", GTK_RESPONSE_REJECT, NULL);
+    gint result = gtk_dialog_run (GTK_DIALOG (dialog));
+
+    // Tipical result will be GTK_RESPONSE_ACCEPT
+    switch (result) {
+        case GTK_RESPONSE_ACCEPT:
+            send_restart();
+        break;
+    }
+
+    gtk_widget_destroy (dialog);
 }
 
 static void button_measures_clicked (GtkButton *button, gpointer data) {

@@ -435,6 +435,7 @@ static int connect_socket(int portno) {
 
     if (connect(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0) {
         perror("ERROR connecting to server");
+        close(sockfd);
         return false;
     }
 
