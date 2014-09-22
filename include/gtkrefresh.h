@@ -20,6 +20,7 @@ const int REFRESH_INTERVAL_CONNECTION = 1000;
 const int REFRESH_INTERVAL_IMAGE = 1;
 const int REFRESH_INTERVAL_DATA = 5;
 const int REFRESH_INTERVAL_REDRAW = 100;
+const int REFRESH_INTERVAL_SYNCTIME = 300000; 
 
 static void add_timeouts();
 static gboolean checkServer();
@@ -33,6 +34,7 @@ static gboolean refreshTempGeneral();
 static gboolean refreshTempCamera();
 static gboolean refreshTempCpu();
 static gboolean refreshTempMagnetometer();
+static gboolean syncTime();
 
 
 /**
@@ -62,6 +64,9 @@ static void add_timeouts() {
 
     // Redraw timeouts
     g_timeout_add (REFRESH_INTERVAL_REDRAW, (GSourceFunc) sendRedrawSignals, NULL);
+
+    // Sync time timeout
+    g_timeout_add (REFRESH_INTERVAL_SYNCTIME, (GSourceFunc) syncTime, NULL);
 }
 
 
@@ -129,6 +134,10 @@ static gboolean sendRedrawSignals() {
 	gtk_widget_queue_draw(drawing_area1);
 	gtk_widget_queue_draw(drawing_area2);
 	return 1;
+}
+
+static gboolean syncTime() {
+    return 1;
 }
 
 static gboolean refreshConnectionLabel() {
