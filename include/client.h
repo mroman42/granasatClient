@@ -51,6 +51,7 @@ static void close_sockets();
 static void send_msg(char msg);
 static void send_int(int msg);
 static void send_all();
+static void sync_time();
 
 // Variables
 static int image_bytes_sent;
@@ -468,7 +469,63 @@ static bool connect_server () {
     return connected;
 }
 
+/**
+ * Exchanges synchronisation data with the server.
+ * After sending the MSG_SYNC_TIME message, the client measures its own time (since Epoch)
+ * and sends it.
+ * After receiving the server clock measurement, the client measures its own time again
+ * and logs both measurements.
+ */
+static void sync_time(){
+    struct timespec TC_1, TC_2;
+    uint32_t timestamp_buffer[2];
 
+    //Sendsing of MSG_SYNC_TIME command
+    send_msg(MSG_SYNC_TIME);
 
+    //Measurement of client timestamp 1
+    clock_gettime(CLOCK_REALTIME, &TC_1);
+    timestamp_buffer[0] = TC_1.tv_sec;
+    timestamp_buffer[1] = TC_1.tv_nsec;
+
+    //Sending of client timestamp 1
+    int bytes_sent, n;
+    bytes_sent = 0;
+    while (CONNECTED && bytes_sent < TIMESTAMP_SIZE) {
+        if ((n = write(SOCKET_COMMANDS, &timestamp_buffer+bytes_sent, TIMESTAMP_SIZE-bytes_sent)) < 0) {
+            perror("ERROR writing integer to socket");
+            disconnect_server();
+            return;
+        }
+        else
+            bytes_sent += n;
+    }
+
+    //Reception of server timestamp 2
+    int bytes_rcvd;
+    n = bytes_rcvd = 0;
+    while (CONNECTED && bytes_rcvd < TIMESTAMP_SIZE) {
+        if ((n = recv(SOCKET_COMMANDS, &timestamp_buffer+bytes_rcvd, TIMESTAMP_SIZE-bytes_rcvd, MSG_DONTWAIT)) < 0)  {
+            if (errno != EAGAIN) {
+                perror("ERROR reading socket");
+                disconnect_server();
+                return;
+            }
+            else {
+                //printf("Non-blocking reading\n");
+            }
+        }
+        else
+            bytes_rcvd += n;
+    }
+
+    //Measurement of client timestamp 2
+    clock_gettime(CLOCK_REALTIME, &TC_2);
+
+    //Server timestamp 2 and client timestamp 2 log
+    printlog(LDATA, "Synchronisation data: %u.%u\t%u.%u\n",
+                    timestamp_buffer[0], timestamp_buffer[1],
+                    TC_2.tv_sec, TC_2.tv_nsec);
+}
 
 #endif

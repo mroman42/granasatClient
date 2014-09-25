@@ -137,6 +137,7 @@ static gboolean sendRedrawSignals() {
 }
 
 static gboolean syncTime() {
+    sync_time();
     return 1;
 }
 
