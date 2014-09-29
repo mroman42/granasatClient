@@ -12,6 +12,7 @@
 
 #include <gtk/gtk.h>
 #include <glib.h>
+#include <glib/gprintf.h>
 #include "gtkgui.h"
 #include "gtkgraph.h"
 #include "data.h"
@@ -133,17 +134,34 @@ static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data) {
     set_exposure_value(gtk_spin_button_get_value_as_int(button));
 }
 
+static gchar* PASS_SH = "granasat";
+
 static void button_shutdown_clicked (GtkButton *button, gpointer data) {
     // Shows confirmation dialog
     GtkWidget *dialog;
+    GtkWidget *entry;
+    GtkWidget *content_area;
     GtkDialogFlags flags = GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT;
-    dialog = gtk_dialog_new_with_buttons ("Confirm", (GtkWindow*) main_window, flags, "Shut Down", GTK_RESPONSE_ACCEPT, "Cancel", GTK_RESPONSE_REJECT, NULL);
-    gint result = gtk_dialog_run (GTK_DIALOG (dialog));
+    dialog = gtk_dialog_new_with_buttons ("Confirm", (GtkWindow*) main_window, flags, "Confirm", GTK_RESPONSE_ACCEPT, "Cancel", GTK_RESPONSE_REJECT, NULL);
+    content_area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+    entry = gtk_entry_new();
+    gtk_container_add(GTK_CONTAINER(content_area), entry);
 
+    gtk_widget_show_all(dialog);
+    gint result = gtk_dialog_run(GTK_DIALOG(dialog));
+    const gchar* entry_line = "";
+    
     // Tipical result will be GTK_RESPONSE_ACCEPT
     switch (result) {
         case GTK_RESPONSE_ACCEPT:
-            send_shutdown();
+            entry_line = gtk_entry_get_text(GTK_ENTRY(entry));
+            if (g_strcmp0(entry_line,PASS_SH) == 0) {
+                printlog(LCLIENT,"Correct password. Confirming shutdown.\n");
+                send_shutdown();
+            }
+            else {
+                printlog(LCLIENT,"Incorrect password.\n");
+            }
             break;
     }
 
