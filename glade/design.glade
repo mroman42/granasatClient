@@ -4,7 +4,7 @@
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkAdjustment" id="adjustment_binthres">
     <property name="upper">255</property>
-    <property name="value">50</property>
+    <property name="value">240</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
@@ -14,14 +14,14 @@
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment_cannythres">
-    <property name="upper">460</property>
-    <property name="value">100</property>
+    <property name="upper">480</property>
+    <property name="value">480</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment_error">
     <property name="upper">100</property>
-    <property name="value">2.5</property>
+    <property name="value">0.01</property>
     <property name="step_increment">0.01</property>
     <property name="page_increment">10</property>
   </object>
@@ -49,14 +49,14 @@
   <object class="GtkAdjustment" id="adjustment_points">
     <property name="lower">1</property>
     <property name="upper">100</property>
-    <property name="value">1</property>
+    <property name="value">5</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment_roi">
     <property name="lower">3</property>
     <property name="upper">101</property>
-    <property name="value">3</property>
+    <property name="value">11</property>
     <property name="step_increment">2</property>
     <property name="page_increment">10</property>
   </object>
@@ -68,7 +68,7 @@
   </object>
   <object class="GtkAdjustment" id="adjustment_threshold">
     <property name="upper">255</property>
-    <property name="value">100</property>
+    <property name="value">120</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
@@ -654,7 +654,7 @@
                 <property name="adjustment">adjustment_vectors</property>
                 <property name="snap_to_ticks">True</property>
                 <property name="numeric">True</property>
-                <property name="value">1</property>
+                <property name="value">5</property>
               </object>
               <packing>
                 <property name="x">160</property>
@@ -684,7 +684,7 @@
                 <property name="adjustment">adjustment_roi</property>
                 <property name="snap_to_ticks">True</property>
                 <property name="numeric">True</property>
-                <property name="value">3</property>
+                <property name="value">11</property>
               </object>
               <packing>
                 <property name="x">160</property>
@@ -702,7 +702,7 @@
                 <property name="adjustment">adjustment_threshold</property>
                 <property name="snap_to_ticks">True</property>
                 <property name="numeric">True</property>
-                <property name="value">100</property>
+                <property name="value">120</property>
               </object>
               <packing>
                 <property name="x">160</property>
@@ -760,7 +760,7 @@
                 <property name="digits">2</property>
                 <property name="snap_to_ticks">True</property>
                 <property name="numeric">True</property>
-                <property name="value">2.5</property>
+                <property name="value">0.01</property>
               </object>
               <packing>
                 <property name="x">340</property>
@@ -788,7 +788,7 @@
                 <property name="can_focus">True</property>
                 <property name="progress_pulse_step">0.080000000000000002</property>
                 <property name="adjustment">adjustment_points</property>
-                <property name="value">1</property>
+                <property name="value">5</property>
               </object>
               <packing>
                 <property name="x">340</property>

@@ -41,10 +41,10 @@ static int TEMP_MAGNETOMETER  = 0;
 // Star Tracker
 static int CATALOG = 4;
 static int UNIT_VECTORS = 5;
-static int PIXEL_THRESHOLD = 100;
-static int ROI = 3;
-static int POINTS = 1;
-static float ERROR = 2.50;
+static int PIXEL_THRESHOLD = 120;
+static int ROI = 11;
+static int POINTS = 5;
+static float ERROR = 0.01;
 
 // Camera
 uint8_t IMAGE_STREAM [IMG_FILE_SIZE];
@@ -55,8 +55,8 @@ static int EXPVALUE = 200;
 static int EXPMODE = 0;
 
 // Horizon Sensor
-static int BIN_TH = 50;
-static int CANNY_TH = 100;
+static int BIN_TH = 240;
+static int CANNY_TH = 480;
 
 // Sending to server
 // Defined in client.h
