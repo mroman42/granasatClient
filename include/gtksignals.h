@@ -134,6 +134,9 @@ static void spin_exposure_value_changed (GtkSpinButton *button, gpointer data) {
     set_exposure_value(gtk_spin_button_get_value_as_int(button));
 }
 
+/**
+ * Password used to confirm shutdown signal.
+ */
 static gchar* PASS_SH = "granasat";
 
 static void button_shutdown_clicked (GtkButton *button, gpointer data) {
