@@ -52,6 +52,8 @@ static void send_msg(char msg);
 static void send_int(int msg);
 static void send_all();
 static void sync_time();
+static void sync_time_send();
+static void sync_time_rcv();
 
 // Variables
 static int image_bytes_sent;
@@ -477,7 +479,12 @@ static bool connect_server () {
  * and logs both measurements.
  */
 static void sync_time(){
-    struct timespec TC_1, TC_2;
+    sync_time_send();
+    sync_time_rcv();
+}
+
+static void sync_time_send() {
+    struct timespec TC_1;
     uint32_t timestamp_buffer[2];
 
     //Sendsing of MSG_SYNC_TIME command
@@ -500,10 +507,15 @@ static void sync_time(){
         else
             bytes_sent += n;
     }
+}
+
+static void sync_time_rcv() {
+    struct timespec TC_2;
+    uint32_t timestamp_buffer[2];
 
     //Reception of server timestamp 2
-    int bytes_rcvd;
-    n = bytes_rcvd = 0;
+    int bytes_rcvd, n;
+    bytes_rcvd = 0;
     while (CONNECTED && bytes_rcvd < TIMESTAMP_SIZE) {
         if ((n = recv(SOCKET_COMMANDS, &timestamp_buffer+bytes_rcvd, TIMESTAMP_SIZE-bytes_rcvd, MSG_DONTWAIT)) < 0)  {
             if (errno != EAGAIN) {
