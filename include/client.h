@@ -54,6 +54,7 @@ static void send_all();
 static void sync_time();
 static void sync_time_send();
 static void sync_time_rcv();
+static void repeat_char();
 
 // Variables
 static int image_bytes_sent;
@@ -283,6 +284,49 @@ static void send_start_measures() {
 // READING
 
 /**
+ * Reads a command from the <tt> commands socket </tt>.
+ * If the command socket is empty nothing will be read.
+ * Executes the reads command.
+ */
+static void read_commands() {
+    char command;
+
+    // Reads a command
+    if ((recv(SOCKET_COMMANDS, &command, sizeof(char), MSG_DONTWAIT)) < 0)  {
+        if (errno != EAGAIN) {
+            perror("ERROR reading socket");
+            disconnect_server();
+            return
+        }
+    }
+    // Executes the command
+    else {
+        switch (command) {
+        case MSG_SYNC_TIME: sync_time_rcv(); break;
+        case MSG_REPEAT: repeat_char(); break;
+        }
+    }
+}
+
+/**
+ * Reads a number from the server and sends the same number. 
+ */
+static void repeat_char() {
+    char repeat;
+
+    // Reads a the number
+    if ((recv(SOCKET_COMMANDS, &command, sizeof(char), NULL)) < 0)  {
+        perror("ERROR reading socket");
+        disconnect_server();
+        return
+    }
+
+    // Sends the same number.
+    send_msg(MSG_REPEAT);
+    send_msg(repeat);
+}
+
+/**
  * Currently read packet bytes.
  */
 static int packet_bytes_sent = 0;
@@ -480,14 +524,14 @@ static bool connect_server () {
  */
 static void sync_time(){
     sync_time_send();
-    sync_time_rcv();
+
 }
 
 static void sync_time_send() {
     struct timespec TC_1;
     uint32_t timestamp_buffer[2];
 
-    //Sendsing of MSG_SYNC_TIME command
+    //Sending of MSG_SYNC_TIME command
     send_msg(MSG_SYNC_TIME);
 
     //Measurement of client timestamp 1
