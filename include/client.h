@@ -35,6 +35,7 @@
 
 // Connection data
 static bool CONNECTED = false;
+static bool IS_SHUTDOWN_SENT = false;
 static int  SOCKFD1 = 0;
 static int  SOCKFD2 = 0;
 static int  SOCKFD3 = 0;
@@ -254,7 +255,7 @@ static void send_shutdown() {
     if (CONNECTED) {
         send_msg(MSG_END);
         printlog(LCLIENT, "Shutdown signal sent.\n");
-        //disconnect_server();
+        IS_SHUTDOWN_SENT = true;
     }
 }
 
@@ -266,7 +267,6 @@ static void send_restart() {
     if (CONNECTED) {
         send_msg(MSG_RESTART);
         printlog(LCLIENT, "Restart signal sent.\n");
-        //disconnect_server();
     }
 }
 
@@ -303,7 +303,12 @@ static void read_commands() {
     else {
         switch (command) {
         case MSG_SYNC_TIME: sync_time_rcv(); break;
-        case MSG_REPEAT: repeat_char(); break;
+        case MSG_REPEAT: 
+            if (IS_SHUTDOWN_SENT) {
+                repeat_char(); 
+                IS_SHUTDOWN_SENT = false;
+            }
+            break;
         }
     }
 }
