@@ -49,7 +49,7 @@ static void add_timeouts() {
     g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
     g_timeout_add (REFRESH_INTERVAL_IMAGE, (GSourceFunc) readImage, NULL);
-    g_timeout_add (REFRESH_INTERVAL_DATA), (GSourceFunc) readCommands, NULL);
+    g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readCommands, NULL);
 
     // Temperature label timeouts
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) refreshTempGeneral, NULL);

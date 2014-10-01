@@ -296,7 +296,7 @@ static void read_commands() {
         if (errno != EAGAIN) {
             perror("ERROR reading socket");
             disconnect_server();
-            return
+            return;
         }
     }
     // Executes the command
@@ -315,14 +315,14 @@ static void repeat_char() {
     char repeat;
 
     // Reads a the number
-    if ((recv(SOCKET_COMMANDS, &command, sizeof(char), NULL)) < 0)  {
+    if ((recv(SOCKET_COMMANDS, &repeat, sizeof(char), 0)) < 0)  {
         perror("ERROR reading socket");
         disconnect_server();
-        return
+        return;
     }
 
     // Sends the same number.
-    send_msg(MSG_REPEAT);
+    send_msg(MSG_REPEAT);   
     send_msg(repeat);
 }
 
