@@ -89,7 +89,7 @@ static void transform_image(const char* filename_in, const char* filename_out) {
     char string[100];
 
     //TIMESTAMP
-    sprintf(string, "%d.%d", timestamp_buffer[0], timestamp_buffer[1]);
+    sprintf(string, "%u.%u", timestamp_buffer[0], timestamp_buffer[1]);
     cvPutText(cv_image, string, cvPoint(20, 20), &font, text_colour);
 
     //PARAMETERS
