@@ -40,7 +40,7 @@ static int  SOCKFD1 = 0;
 static int  SOCKFD2 = 0;
 static int  SOCKFD3 = 0;
 //static char SERVER_IP [] = "127.0.0.1";
-static char SERVER_IP [] = "192.168.0.200";
+static char SERVER_IP [] = "172.16.18.170";
 
 // Functions
 static bool connect_server();
