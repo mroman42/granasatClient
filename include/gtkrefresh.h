@@ -10,6 +10,8 @@
 #ifndef GTKREFRESH_H
 #define GTKREFRESH_H
 
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <gtk/gtk.h>
 #include "gtkwidgets.h"
 #include "data.h"
@@ -21,6 +23,7 @@ const int REFRESH_INTERVAL_IMAGE = 1;
 const int REFRESH_INTERVAL_DATA = 5;
 const int REFRESH_INTERVAL_REDRAW = 100;
 const int REFRESH_INTERVAL_SYNCTIME = 300000; 
+const int REFRESH_CHILD_WAIT = 2000;
 
 static void add_timeouts();
 static gboolean checkServer();
@@ -36,7 +39,7 @@ static gboolean refreshTempCamera();
 static gboolean refreshTempCpu();
 static gboolean refreshTempMagnetometer();
 static gboolean syncTime();
-
+static gboolean waitChild();
 
 /**
  * Adds all the timeout handlers to the GTK main loop.
@@ -45,6 +48,8 @@ static gboolean syncTime();
  * of the program.
  */
 static void add_timeouts() {
+    g_timeout_add (REFRESH_CHILD_WAIT, (GSourceFunc) waitChild, NULL);
+
     // Client timeouts
     g_timeout_add (REFRESH_INTERVAL_CONNECTION, (GSourceFunc) checkServer, NULL);    
     g_timeout_add (REFRESH_INTERVAL_DATA, (GSourceFunc) readData, NULL);
@@ -154,6 +159,11 @@ static gboolean refreshConnectionLabel() {
         gtk_label_set_text (status_connected_label, MSG_CONNECTION_ON);
     else
         gtk_label_set_text (status_connected_label, MSG_CONNECTION_OFF);
+    return 1;
+}
+
+static gboolean waitChild() {
+    waitpid(-1, NULL, WNOHANG);
     return 1;
 }
 
