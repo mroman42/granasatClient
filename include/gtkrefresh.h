@@ -23,7 +23,7 @@ const int REFRESH_INTERVAL_IMAGE = 1;
 const int REFRESH_INTERVAL_DATA = 5;
 const int REFRESH_INTERVAL_REDRAW = 100;
 const int REFRESH_INTERVAL_SYNCTIME = 300000; 
-const int REFRESH_CHILD_WAIT = 2000;
+const int REFRESH_CHILD_WAIT = 500;
 
 static void add_timeouts();
 static gboolean checkServer();
