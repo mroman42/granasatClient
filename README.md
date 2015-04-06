@@ -3,7 +3,7 @@ granasatClient
 ![GranaSAT](https://cloud.githubusercontent.com/assets/3924815/3865957/261cbb64-1fb6-11e4-8724-823485676743.jpg)
 ========================================================================
 Client side of GranaSAT experiment, selected for BEXUS 19 campaign.  
-The server side code can be seen in its [GitHub page](https://github.com/agarciamontoro/granasatServer).
+This code was originally written by Mario Román (`@M42`) and Alejandro García (`@agarciamontoro`) and released under a **GPLv2** license. The server side code can be seen in its [GitHub page](https://github.com/agarciamontoro/granasatServer).
 
 ## Usage
 ### Building
@@ -27,7 +27,7 @@ The server side execution can be started after or before the client execution, a
 will try to recover the connection if it were cut. Anyway, the client can be used without connection,
 and the changed parameters are sent to the server when the connection is restored.
 
-## Do you want to know more about us?
+## Do you want to know more about GranaSAT?
 See more information at [GranaSAT website](http://granasat.ugr.es).  
 Like our fanpage at [Facebook](http://www.facebook.com/granasat).  
 Follow us on Twitter: [@granaSAT](http://twitter.com/GranaSAT).  
